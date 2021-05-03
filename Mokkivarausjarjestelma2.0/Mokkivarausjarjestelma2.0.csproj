@@ -94,22 +94,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Mokinluonti.cs">
+    <Compile Include="Mokinluominen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mokinluonti.Designer.cs">
-      <DependentUpon>Mokinluonti.cs</DependentUpon>
+    <Compile Include="Mokinluominen.Designer.cs">
+      <DependentUpon>Mokinluominen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mokinvaraus.cs">
+    <Compile Include="Mokinvaraaminen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mokinvaraus.Designer.cs">
-      <DependentUpon>Mokinvaraus.cs</DependentUpon>
+    <Compile Include="Mokinvaraaminen.Designer.cs">
+      <DependentUpon>Mokinvaraaminen.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Mokinluonti.resx">
-      <DependentUpon>Mokinluonti.cs</DependentUpon>
+    <EmbeddedResource Include="Mokinluominen.resx">
+      <DependentUpon>Mokinluominen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mokinvaraaminen.resx">
+      <DependentUpon>Mokinvaraaminen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
