@@ -24,6 +24,8 @@ namespace Mokkivarausjarjestelma2._0
 
         private void palveluhallinta_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'kaikkidata.palvelu' table. You can move, or remove it, as needed.
+            this.palveluTableAdapter1.Fill(this.kaikkidata.palvelu);
 
         }
     }

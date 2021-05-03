@@ -30,9 +30,6 @@ namespace Mokkivarausjarjestelma2._0
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.palveluidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nimiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tyyppiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblHinta = new System.Windows.Forms.Label();
             this.btnPeruuta = new System.Windows.Forms.Button();
             this.btnLisaaUusi = new System.Windows.Forms.Button();
@@ -41,14 +38,10 @@ namespace Mokkivarausjarjestelma2._0
             this.tbAlv = new System.Windows.Forms.TextBox();
             this.tbHinta = new System.Windows.Forms.TextBox();
             this.tbKuvaus = new System.Windows.Forms.TextBox();
-            this.kuvausDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hintaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.alvDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbNimi = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.toimintaalueidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.palveluBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.palvelut = new Mokkivarausjarjestelma2._0.Palvelut();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,6 +57,17 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.kaikkidata = new Mokkivarausjarjestelma2._0.Kaikkidata();
+            this.kaikkidataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.palveluBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.palveluTableAdapter1 = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.palveluTableAdapter();
+            this.palveluidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toimintaalueidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nimiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tyyppiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kuvausDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hintaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alvDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.palvelut)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -71,25 +75,10 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kaikkidataBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // palveluidDataGridViewTextBoxColumn
-            // 
-            this.palveluidDataGridViewTextBoxColumn.DataPropertyName = "palvelu_id";
-            this.palveluidDataGridViewTextBoxColumn.HeaderText = "palvelu_id";
-            this.palveluidDataGridViewTextBoxColumn.Name = "palveluidDataGridViewTextBoxColumn";
-            // 
-            // nimiDataGridViewTextBoxColumn
-            // 
-            this.nimiDataGridViewTextBoxColumn.DataPropertyName = "nimi";
-            this.nimiDataGridViewTextBoxColumn.HeaderText = "nimi";
-            this.nimiDataGridViewTextBoxColumn.Name = "nimiDataGridViewTextBoxColumn";
-            // 
-            // tyyppiDataGridViewTextBoxColumn
-            // 
-            this.tyyppiDataGridViewTextBoxColumn.DataPropertyName = "tyyppi";
-            this.tyyppiDataGridViewTextBoxColumn.HeaderText = "tyyppi";
-            this.tyyppiDataGridViewTextBoxColumn.Name = "tyyppiDataGridViewTextBoxColumn";
             // 
             // lblHinta
             // 
@@ -166,24 +155,6 @@ namespace Mokkivarausjarjestelma2._0
             this.tbKuvaus.Size = new System.Drawing.Size(201, 40);
             this.tbKuvaus.TabIndex = 10;
             // 
-            // kuvausDataGridViewTextBoxColumn
-            // 
-            this.kuvausDataGridViewTextBoxColumn.DataPropertyName = "kuvaus";
-            this.kuvausDataGridViewTextBoxColumn.HeaderText = "kuvaus";
-            this.kuvausDataGridViewTextBoxColumn.Name = "kuvausDataGridViewTextBoxColumn";
-            // 
-            // hintaDataGridViewTextBoxColumn
-            // 
-            this.hintaDataGridViewTextBoxColumn.DataPropertyName = "hinta";
-            this.hintaDataGridViewTextBoxColumn.HeaderText = "hinta";
-            this.hintaDataGridViewTextBoxColumn.Name = "hintaDataGridViewTextBoxColumn";
-            // 
-            // alvDataGridViewTextBoxColumn
-            // 
-            this.alvDataGridViewTextBoxColumn.DataPropertyName = "alv";
-            this.alvDataGridViewTextBoxColumn.HeaderText = "alv";
-            this.alvDataGridViewTextBoxColumn.Name = "alvDataGridViewTextBoxColumn";
-            // 
             // tbNimi
             // 
             this.tbNimi.Location = new System.Drawing.Point(164, 78);
@@ -222,12 +193,6 @@ namespace Mokkivarausjarjestelma2._0
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Kuvaus";
-            // 
-            // toimintaalueidDataGridViewTextBoxColumn
-            // 
-            this.toimintaalueidDataGridViewTextBoxColumn.DataPropertyName = "toimintaalue_id";
-            this.toimintaalueidDataGridViewTextBoxColumn.HeaderText = "toimintaalue_id";
-            this.toimintaalueidDataGridViewTextBoxColumn.Name = "toimintaalueidDataGridViewTextBoxColumn";
             // 
             // palveluBindingSource
             // 
@@ -310,7 +275,7 @@ namespace Mokkivarausjarjestelma2._0
             this.kuvausDataGridViewTextBoxColumn,
             this.hintaDataGridViewTextBoxColumn,
             this.alvDataGridViewTextBoxColumn});
-            this.dgridPalvelut.DataSource = this.palveluBindingSource;
+            this.dgridPalvelut.DataSource = this.palveluBindingSource1;
             this.dgridPalvelut.Location = new System.Drawing.Point(2, 2);
             this.dgridPalvelut.Margin = new System.Windows.Forms.Padding(2);
             this.dgridPalvelut.Name = "dgridPalvelut";
@@ -397,6 +362,67 @@ namespace Mokkivarausjarjestelma2._0
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
+            // kaikkidata
+            // 
+            this.kaikkidata.DataSetName = "Kaikkidata";
+            this.kaikkidata.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // kaikkidataBindingSource
+            // 
+            this.kaikkidataBindingSource.DataSource = this.kaikkidata;
+            this.kaikkidataBindingSource.Position = 0;
+            // 
+            // palveluBindingSource1
+            // 
+            this.palveluBindingSource1.DataMember = "palvelu";
+            this.palveluBindingSource1.DataSource = this.kaikkidataBindingSource;
+            // 
+            // palveluTableAdapter1
+            // 
+            this.palveluTableAdapter1.ClearBeforeFill = true;
+            // 
+            // palveluidDataGridViewTextBoxColumn
+            // 
+            this.palveluidDataGridViewTextBoxColumn.DataPropertyName = "palvelu_id";
+            this.palveluidDataGridViewTextBoxColumn.HeaderText = "palvelu_id";
+            this.palveluidDataGridViewTextBoxColumn.Name = "palveluidDataGridViewTextBoxColumn";
+            // 
+            // toimintaalueidDataGridViewTextBoxColumn
+            // 
+            this.toimintaalueidDataGridViewTextBoxColumn.DataPropertyName = "toimintaalue_id";
+            this.toimintaalueidDataGridViewTextBoxColumn.HeaderText = "toimintaalue_id";
+            this.toimintaalueidDataGridViewTextBoxColumn.Name = "toimintaalueidDataGridViewTextBoxColumn";
+            // 
+            // nimiDataGridViewTextBoxColumn
+            // 
+            this.nimiDataGridViewTextBoxColumn.DataPropertyName = "nimi";
+            this.nimiDataGridViewTextBoxColumn.HeaderText = "nimi";
+            this.nimiDataGridViewTextBoxColumn.Name = "nimiDataGridViewTextBoxColumn";
+            // 
+            // tyyppiDataGridViewTextBoxColumn
+            // 
+            this.tyyppiDataGridViewTextBoxColumn.DataPropertyName = "tyyppi";
+            this.tyyppiDataGridViewTextBoxColumn.HeaderText = "tyyppi";
+            this.tyyppiDataGridViewTextBoxColumn.Name = "tyyppiDataGridViewTextBoxColumn";
+            // 
+            // kuvausDataGridViewTextBoxColumn
+            // 
+            this.kuvausDataGridViewTextBoxColumn.DataPropertyName = "kuvaus";
+            this.kuvausDataGridViewTextBoxColumn.HeaderText = "kuvaus";
+            this.kuvausDataGridViewTextBoxColumn.Name = "kuvausDataGridViewTextBoxColumn";
+            // 
+            // hintaDataGridViewTextBoxColumn
+            // 
+            this.hintaDataGridViewTextBoxColumn.DataPropertyName = "hinta";
+            this.hintaDataGridViewTextBoxColumn.HeaderText = "hinta";
+            this.hintaDataGridViewTextBoxColumn.Name = "hintaDataGridViewTextBoxColumn";
+            // 
+            // alvDataGridViewTextBoxColumn
+            // 
+            this.alvDataGridViewTextBoxColumn.DataPropertyName = "alv";
+            this.alvDataGridViewTextBoxColumn.HeaderText = "alv";
+            this.alvDataGridViewTextBoxColumn.Name = "alvDataGridViewTextBoxColumn";
+            // 
             // palveluhallinta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,15 +440,14 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kaikkidataBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn palveluidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nimiDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tyyppiDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lblHinta;
         private System.Windows.Forms.Button btnPeruuta;
         private System.Windows.Forms.Button btnLisaaUusi;
@@ -431,14 +456,10 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.TextBox tbAlv;
         private System.Windows.Forms.TextBox tbHinta;
         private System.Windows.Forms.TextBox tbKuvaus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kuvausDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hintaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alvDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox tbNimi;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn toimintaalueidDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource palveluBindingSource;
         private Palvelut palvelut;
         private System.Windows.Forms.Label label5;
@@ -454,5 +475,16 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.BindingSource kaikkidataBindingSource;
+        private Kaikkidata kaikkidata;
+        private System.Windows.Forms.BindingSource palveluBindingSource1;
+        private KaikkidataTableAdapters.palveluTableAdapter palveluTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn palveluidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn toimintaalueidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nimiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tyyppiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kuvausDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hintaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alvDataGridViewTextBoxColumn;
     }
 }

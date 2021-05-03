@@ -66,6 +66,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Kaikkidata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Kaikkidata.xsd</DependentUpon>
+    </Compile>
     <Compile Include="palveluhallinta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +101,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Kaikkidata.xsc">
+      <DependentUpon>Kaikkidata.xsd</DependentUpon>
+    </None>
+    <None Include="Kaikkidata.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Kaikkidata.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Kaikkidata.xss">
+      <DependentUpon>Kaikkidata.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Palvelut.xsc">
       <DependentUpon>Palvelut.xsd</DependentUpon>
