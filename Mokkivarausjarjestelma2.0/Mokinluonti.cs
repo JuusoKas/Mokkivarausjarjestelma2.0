@@ -25,6 +25,8 @@ namespace Mokkivarausjarjestelma
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dataSet1.mokki' table. You can move, or remove it, as needed.
+            this.mokkiTableAdapter.Fill(this.dataSet1.mokki);
             populateDGV();
         }
         public void populateDGV()
