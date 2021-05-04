@@ -26,6 +26,8 @@ namespace Mokkivarausjarjestelma2._0
             // TODO: This line of code loads data into the 'dataSet1.mokki' table. You can move, or remove it, as needed.
             this.mokkiTableAdapter.Fill(this.dataSet1.mokki);
 
+
+
         }
 
         private void dgvMokit_MouseClick(object sender, MouseEventArgs e)
@@ -43,14 +45,41 @@ namespace Mokkivarausjarjestelma2._0
 
         }
 
-        private void btnPeruuta_Click(object sender, EventArgs e)
+        private void RecursiveClearTextBoxes(Control.ControlCollection cc)
+
         {
 
-            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            foreach (Control ctrl in cc)
+
             {
-                tb.Text = string.Empty;
+
+                TextBox tb = ctrl as TextBox;
+
+                if (tb != null)
+
+                    tb.Clear();
+
+                else
+
+                    RecursiveClearTextBoxes(ctrl.Controls);
+
             }
 
         }
+
+        private void btnPeruuta_MouseClick(object sender, MouseEventArgs e)
+        {
+            RecursiveClearTextBoxes(this.Controls);
+        }
+
+        private void btnTallenna_Click(object sender, EventArgs e)
+        {
+            RecursiveClearTextBoxes(this.Controls);
+
+            tabControl1.SelectedTab = tabPage2;
+
+        }
     }
+
+
 }
