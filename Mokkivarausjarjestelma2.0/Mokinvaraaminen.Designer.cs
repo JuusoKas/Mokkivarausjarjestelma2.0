@@ -31,7 +31,8 @@ namespace Mokkivarausjarjestelma2._0
         {
             this.components = new System.ComponentModel.Container();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.varausBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet1 = new Mokkivarausjarjestelma2._0.DataSet1();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,52 +56,40 @@ namespace Mokkivarausjarjestelma2._0
             this.tbAsiakas = new System.Windows.Forms.TextBox();
             this.lbAsiakas = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataSet1 = new Mokkivarausjarjestelma2._0.DataSet1();
-            this.varausBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.varausTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.varausTableAdapter();
-            this.varausidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.asiakasidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mokkimokkiidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.varattupvmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vahvistuspvmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.varattualkupvmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.varattuloppupvmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPoista = new System.Windows.Forms.Button();
+            this.btnMuokkaa = new System.Windows.Forms.Button();
+            this.dgvVaraukset = new System.Windows.Forms.DataGridView();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVaraukset)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.dgvVaraukset);
+            this.tabPage2.Controls.Add(this.btnMuokkaa);
+            this.tabPage2.Controls.Add(this.btnPoista);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(645, 310);
+            this.tabPage2.Size = new System.Drawing.Size(752, 310);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Varaukset";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // varausBindingSource
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.varausidDataGridViewTextBoxColumn,
-            this.asiakasidDataGridViewTextBoxColumn,
-            this.mokkimokkiidDataGridViewTextBoxColumn,
-            this.varattupvmDataGridViewTextBoxColumn,
-            this.vahvistuspvmDataGridViewTextBoxColumn,
-            this.varattualkupvmDataGridViewTextBoxColumn,
-            this.varattuloppupvmDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.varausBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(643, 252);
-            this.dataGridView1.TabIndex = 0;
+            this.varausBindingSource.DataMember = "varaus";
+            this.varausBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // textBox4
             // 
@@ -167,6 +156,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnCheckin.TabIndex = 13;
             this.btnCheckin.Text = "Sisäänkirjaa";
             this.btnCheckin.UseVisualStyleBackColor = true;
+            this.btnCheckin.Click += new System.EventHandler(this.btnCheckin_Click);
             // 
             // dateTimePicker2
             // 
@@ -191,7 +181,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tabControl1.Location = new System.Drawing.Point(12, 60);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(653, 336);
+            this.tabControl1.Size = new System.Drawing.Size(760, 336);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -220,7 +210,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(645, 310);
+            this.tabPage1.Size = new System.Drawing.Size(752, 310);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Mökin varaus";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -317,61 +307,35 @@ namespace Mokkivarausjarjestelma2._0
             this.label1.TabIndex = 0;
             this.label1.Text = "Varauskaavake";
             // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // varausBindingSource
-            // 
-            this.varausBindingSource.DataMember = "varaus";
-            this.varausBindingSource.DataSource = this.dataSet1;
-            // 
             // varausTableAdapter
             // 
             this.varausTableAdapter.ClearBeforeFill = true;
             // 
-            // varausidDataGridViewTextBoxColumn
+            // btnPoista
             // 
-            this.varausidDataGridViewTextBoxColumn.DataPropertyName = "varaus_id";
-            this.varausidDataGridViewTextBoxColumn.HeaderText = "varaus_id";
-            this.varausidDataGridViewTextBoxColumn.Name = "varausidDataGridViewTextBoxColumn";
+            this.btnPoista.Location = new System.Drawing.Point(634, 281);
+            this.btnPoista.Name = "btnPoista";
+            this.btnPoista.Size = new System.Drawing.Size(98, 23);
+            this.btnPoista.TabIndex = 3;
+            this.btnPoista.Text = "Poista";
+            this.btnPoista.UseVisualStyleBackColor = true;
             // 
-            // asiakasidDataGridViewTextBoxColumn
+            // btnMuokkaa
             // 
-            this.asiakasidDataGridViewTextBoxColumn.DataPropertyName = "asiakas_id";
-            this.asiakasidDataGridViewTextBoxColumn.HeaderText = "asiakas_id";
-            this.asiakasidDataGridViewTextBoxColumn.Name = "asiakasidDataGridViewTextBoxColumn";
+            this.btnMuokkaa.Location = new System.Drawing.Point(530, 281);
+            this.btnMuokkaa.Name = "btnMuokkaa";
+            this.btnMuokkaa.Size = new System.Drawing.Size(98, 23);
+            this.btnMuokkaa.TabIndex = 4;
+            this.btnMuokkaa.Text = "Muokkaa";
+            this.btnMuokkaa.UseVisualStyleBackColor = true;
             // 
-            // mokkimokkiidDataGridViewTextBoxColumn
+            // dgvVaraukset
             // 
-            this.mokkimokkiidDataGridViewTextBoxColumn.DataPropertyName = "mokki_mokki_id";
-            this.mokkimokkiidDataGridViewTextBoxColumn.HeaderText = "mokki_mokki_id";
-            this.mokkimokkiidDataGridViewTextBoxColumn.Name = "mokkimokkiidDataGridViewTextBoxColumn";
-            // 
-            // varattupvmDataGridViewTextBoxColumn
-            // 
-            this.varattupvmDataGridViewTextBoxColumn.DataPropertyName = "varattu_pvm";
-            this.varattupvmDataGridViewTextBoxColumn.HeaderText = "varattu_pvm";
-            this.varattupvmDataGridViewTextBoxColumn.Name = "varattupvmDataGridViewTextBoxColumn";
-            // 
-            // vahvistuspvmDataGridViewTextBoxColumn
-            // 
-            this.vahvistuspvmDataGridViewTextBoxColumn.DataPropertyName = "vahvistus_pvm";
-            this.vahvistuspvmDataGridViewTextBoxColumn.HeaderText = "vahvistus_pvm";
-            this.vahvistuspvmDataGridViewTextBoxColumn.Name = "vahvistuspvmDataGridViewTextBoxColumn";
-            // 
-            // varattualkupvmDataGridViewTextBoxColumn
-            // 
-            this.varattualkupvmDataGridViewTextBoxColumn.DataPropertyName = "varattu_alkupvm";
-            this.varattualkupvmDataGridViewTextBoxColumn.HeaderText = "varattu_alkupvm";
-            this.varattualkupvmDataGridViewTextBoxColumn.Name = "varattualkupvmDataGridViewTextBoxColumn";
-            // 
-            // varattuloppupvmDataGridViewTextBoxColumn
-            // 
-            this.varattuloppupvmDataGridViewTextBoxColumn.DataPropertyName = "varattu_loppupvm";
-            this.varattuloppupvmDataGridViewTextBoxColumn.HeaderText = "varattu_loppupvm";
-            this.varattuloppupvmDataGridViewTextBoxColumn.Name = "varattuloppupvmDataGridViewTextBoxColumn";
+            this.dgvVaraukset.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVaraukset.Location = new System.Drawing.Point(3, 3);
+            this.dgvVaraukset.Name = "dgvVaraukset";
+            this.dgvVaraukset.Size = new System.Drawing.Size(746, 272);
+            this.dgvVaraukset.TabIndex = 5;
             // 
             // Mokinvaraaminen
             // 
@@ -381,14 +345,13 @@ namespace Mokkivarausjarjestelma2._0
             this.Controls.Add(this.tabControl1);
             this.Name = "Mokinvaraaminen";
             this.Text = "Mokinvaraaminen";
-            this.Load += new System.EventHandler(this.Mokinvaraaminen_Load);
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVaraukset)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -396,7 +359,6 @@ namespace Mokkivarausjarjestelma2._0
         #endregion
 
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label2;
@@ -423,12 +385,8 @@ namespace Mokkivarausjarjestelma2._0
         private DataSet1 dataSet1;
         private System.Windows.Forms.BindingSource varausBindingSource;
         private DataSet1TableAdapters.varausTableAdapter varausTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn varausidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn asiakasidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mokkimokkiidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn varattupvmDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vahvistuspvmDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn varattualkupvmDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn varattuloppupvmDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnPoista;
+        private System.Windows.Forms.Button btnMuokkaa;
+        private System.Windows.Forms.DataGridView dgvVaraukset;
     }
 }

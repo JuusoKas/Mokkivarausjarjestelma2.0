@@ -23,5 +23,10 @@ namespace Mokkivarausjarjestelma2._0
             this.varausTableAdapter.Fill(this.dataSet1.varaus);
 
         }
+
+        private void btnCheckin_Click(object sender, EventArgs e)
+        {
+          
+        }
     }
 }

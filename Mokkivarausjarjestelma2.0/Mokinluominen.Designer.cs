@@ -33,6 +33,8 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPeruuta = new System.Windows.Forms.Button();
             this.btnTallenna = new System.Windows.Forms.Button();
             this.tbVarustelu = new System.Windows.Forms.TextBox();
+            this.mokkiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet1 = new Mokkivarausjarjestelma2._0.DataSet1();
             this.tbHenkilomaara = new System.Windows.Forms.TextBox();
             this.tbKuvaus = new System.Windows.Forms.TextBox();
             this.tbKatuosoite = new System.Windows.Forms.TextBox();
@@ -43,27 +45,18 @@ namespace Mokkivarausjarjestelma2._0
             this.lbHenkilo = new System.Windows.Forms.Label();
             this.lbNimi = new System.Windows.Forms.Label();
             this.btnPoista = new System.Windows.Forms.Button();
-            this.dgvMokit = new System.Windows.Forms.DataGridView();
-            this.mokkiidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toimintaalueidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postinroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mokkinimiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.katuosoiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kuvausDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.henkilomaaraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.varusteluDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mokkiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new Mokkivarausjarjestelma2._0.DataSet1();
             this.btnMuokkaa = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnPaivita = new System.Windows.Forms.Button();
             this.lbMokki = new System.Windows.Forms.Label();
             this.pnMokki = new System.Windows.Forms.Panel();
+            this.lbAlue = new System.Windows.Forms.Label();
+            this.toimintaalueBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cbPosti = new System.Windows.Forms.ComboBox();
             this.postiBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbPostinumero = new System.Windows.Forms.Label();
             this.cbToiminta = new System.Windows.Forms.ComboBox();
-            this.toimintaalueBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbToiminta = new System.Windows.Forms.Label();
             this.tbMokkiID = new System.Windows.Forms.TextBox();
             this.lbMokkiID = new System.Windows.Forms.Label();
@@ -72,16 +65,21 @@ namespace Mokkivarausjarjestelma2._0
             this.mokkiTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.mokkiTableAdapter();
             this.toimintaalueTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.toimintaalueTableAdapter();
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.postiTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMokit)).BeginInit();
+            this.toimintaalueBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.toimintaalueBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.dgvMokit = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.mokkiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.pnMokki.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.postiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMokit)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPeruuta
@@ -92,7 +90,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPeruuta.TabIndex = 13;
             this.btnPeruuta.Text = "Peruuta";
             this.btnPeruuta.UseVisualStyleBackColor = true;
-            this.btnPeruuta.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnPeruuta_MouseClick);
+            this.btnPeruuta.Click += new System.EventHandler(this.btnPeruuta_Click);
             // 
             // btnTallenna
             // 
@@ -102,17 +100,29 @@ namespace Mokkivarausjarjestelma2._0
             this.btnTallenna.TabIndex = 12;
             this.btnTallenna.Text = "Tallenna";
             this.btnTallenna.UseVisualStyleBackColor = true;
-            this.btnTallenna.Click += new System.EventHandler(this.btnTallenna_Click);
+            this.btnTallenna.Click += new System.EventHandler(this.btnTallenna_Click_1);
             // 
             // tbVarustelu
             // 
+            this.tbVarustelu.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mokkiBindingSource, "varustelu", true));
             this.tbVarustelu.Location = new System.Drawing.Point(91, 206);
             this.tbVarustelu.Name = "tbVarustelu";
             this.tbVarustelu.Size = new System.Drawing.Size(86, 20);
             this.tbVarustelu.TabIndex = 11;
             // 
+            // mokkiBindingSource
+            // 
+            this.mokkiBindingSource.DataMember = "mokki";
+            this.mokkiBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // tbHenkilomaara
             // 
+            this.tbHenkilomaara.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mokkiBindingSource, "henkilomaara", true));
             this.tbHenkilomaara.Location = new System.Drawing.Point(91, 180);
             this.tbHenkilomaara.Name = "tbHenkilomaara";
             this.tbHenkilomaara.Size = new System.Drawing.Size(86, 20);
@@ -120,6 +130,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tbKuvaus
             // 
+            this.tbKuvaus.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mokkiBindingSource, "kuvaus", true));
             this.tbKuvaus.Location = new System.Drawing.Point(91, 153);
             this.tbKuvaus.Name = "tbKuvaus";
             this.tbKuvaus.Size = new System.Drawing.Size(86, 20);
@@ -127,6 +138,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tbKatuosoite
             // 
+            this.tbKatuosoite.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mokkiBindingSource, "katuosoite", true));
             this.tbKatuosoite.Location = new System.Drawing.Point(91, 93);
             this.tbKatuosoite.Name = "tbKatuosoite";
             this.tbKatuosoite.Size = new System.Drawing.Size(86, 20);
@@ -134,6 +146,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tbMokinnimi
             // 
+            this.tbMokinnimi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mokkiBindingSource, "mokkinimi", true));
             this.tbMokinnimi.Location = new System.Drawing.Point(91, 65);
             this.tbMokinnimi.Name = "tbMokinnimi";
             this.tbMokinnimi.Size = new System.Drawing.Size(86, 20);
@@ -193,85 +206,6 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPoista.Text = "Poista";
             this.btnPoista.UseVisualStyleBackColor = true;
             // 
-            // dgvMokit
-            // 
-            this.dgvMokit.AutoGenerateColumns = false;
-            this.dgvMokit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMokit.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.mokkiidDataGridViewTextBoxColumn,
-            this.toimintaalueidDataGridViewTextBoxColumn,
-            this.postinroDataGridViewTextBoxColumn,
-            this.mokkinimiDataGridViewTextBoxColumn,
-            this.katuosoiteDataGridViewTextBoxColumn,
-            this.kuvausDataGridViewTextBoxColumn,
-            this.henkilomaaraDataGridViewTextBoxColumn,
-            this.varusteluDataGridViewTextBoxColumn});
-            this.dgvMokit.DataSource = this.mokkiBindingSource;
-            this.dgvMokit.Location = new System.Drawing.Point(3, 3);
-            this.dgvMokit.Name = "dgvMokit";
-            this.dgvMokit.RowTemplate.Height = 25;
-            this.dgvMokit.Size = new System.Drawing.Size(855, 292);
-            this.dgvMokit.TabIndex = 0;
-            this.dgvMokit.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvMokit_MouseClick);
-            // 
-            // mokkiidDataGridViewTextBoxColumn
-            // 
-            this.mokkiidDataGridViewTextBoxColumn.DataPropertyName = "mokki_id";
-            this.mokkiidDataGridViewTextBoxColumn.HeaderText = "mokki_id";
-            this.mokkiidDataGridViewTextBoxColumn.Name = "mokkiidDataGridViewTextBoxColumn";
-            // 
-            // toimintaalueidDataGridViewTextBoxColumn
-            // 
-            this.toimintaalueidDataGridViewTextBoxColumn.DataPropertyName = "toimintaalue_id";
-            this.toimintaalueidDataGridViewTextBoxColumn.HeaderText = "toimintaalue_id";
-            this.toimintaalueidDataGridViewTextBoxColumn.Name = "toimintaalueidDataGridViewTextBoxColumn";
-            // 
-            // postinroDataGridViewTextBoxColumn
-            // 
-            this.postinroDataGridViewTextBoxColumn.DataPropertyName = "postinro";
-            this.postinroDataGridViewTextBoxColumn.HeaderText = "postinro";
-            this.postinroDataGridViewTextBoxColumn.Name = "postinroDataGridViewTextBoxColumn";
-            // 
-            // mokkinimiDataGridViewTextBoxColumn
-            // 
-            this.mokkinimiDataGridViewTextBoxColumn.DataPropertyName = "mokkinimi";
-            this.mokkinimiDataGridViewTextBoxColumn.HeaderText = "mokkinimi";
-            this.mokkinimiDataGridViewTextBoxColumn.Name = "mokkinimiDataGridViewTextBoxColumn";
-            // 
-            // katuosoiteDataGridViewTextBoxColumn
-            // 
-            this.katuosoiteDataGridViewTextBoxColumn.DataPropertyName = "katuosoite";
-            this.katuosoiteDataGridViewTextBoxColumn.HeaderText = "katuosoite";
-            this.katuosoiteDataGridViewTextBoxColumn.Name = "katuosoiteDataGridViewTextBoxColumn";
-            // 
-            // kuvausDataGridViewTextBoxColumn
-            // 
-            this.kuvausDataGridViewTextBoxColumn.DataPropertyName = "kuvaus";
-            this.kuvausDataGridViewTextBoxColumn.HeaderText = "kuvaus";
-            this.kuvausDataGridViewTextBoxColumn.Name = "kuvausDataGridViewTextBoxColumn";
-            // 
-            // henkilomaaraDataGridViewTextBoxColumn
-            // 
-            this.henkilomaaraDataGridViewTextBoxColumn.DataPropertyName = "henkilomaara";
-            this.henkilomaaraDataGridViewTextBoxColumn.HeaderText = "henkilomaara";
-            this.henkilomaaraDataGridViewTextBoxColumn.Name = "henkilomaaraDataGridViewTextBoxColumn";
-            // 
-            // varusteluDataGridViewTextBoxColumn
-            // 
-            this.varusteluDataGridViewTextBoxColumn.DataPropertyName = "varustelu";
-            this.varusteluDataGridViewTextBoxColumn.HeaderText = "varustelu";
-            this.varusteluDataGridViewTextBoxColumn.Name = "varusteluDataGridViewTextBoxColumn";
-            // 
-            // mokkiBindingSource
-            // 
-            this.mokkiBindingSource.DataMember = "mokki";
-            this.mokkiBindingSource.DataSource = this.dataSet1;
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // btnMuokkaa
             // 
             this.btnMuokkaa.Location = new System.Drawing.Point(649, 328);
@@ -280,11 +214,13 @@ namespace Mokkivarausjarjestelma2._0
             this.btnMuokkaa.TabIndex = 1;
             this.btnMuokkaa.Text = "Muokkaa";
             this.btnMuokkaa.UseVisualStyleBackColor = true;
+            this.btnMuokkaa.Click += new System.EventHandler(this.dgvMokit_Click);
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnPoista);
             this.tabPage2.Controls.Add(this.dgvMokit);
+            this.tabPage2.Controls.Add(this.btnPaivita);
+            this.tabPage2.Controls.Add(this.btnPoista);
             this.tabPage2.Controls.Add(this.btnMuokkaa);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -293,6 +229,15 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mökit";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnPaivita
+            // 
+            this.btnPaivita.Location = new System.Drawing.Point(545, 328);
+            this.btnPaivita.Name = "btnPaivita";
+            this.btnPaivita.Size = new System.Drawing.Size(98, 23);
+            this.btnPaivita.TabIndex = 3;
+            this.btnPaivita.Text = "Päivitä";
+            this.btnPaivita.UseVisualStyleBackColor = true;
             // 
             // lbMokki
             // 
@@ -306,6 +251,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // pnMokki
             // 
+            this.pnMokki.Controls.Add(this.lbAlue);
             this.pnMokki.Controls.Add(this.cbPosti);
             this.pnMokki.Controls.Add(this.lbPostinumero);
             this.pnMokki.Controls.Add(this.cbToiminta);
@@ -329,8 +275,25 @@ namespace Mokkivarausjarjestelma2._0
             this.pnMokki.Size = new System.Drawing.Size(421, 261);
             this.pnMokki.TabIndex = 1;
             // 
+            // lbAlue
+            // 
+            this.lbAlue.AutoSize = true;
+            this.lbAlue.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.mokkiBindingSource, "toimintaalue_id", true));
+            this.lbAlue.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.toimintaalueBindingSource, "nimi", true));
+            this.lbAlue.Location = new System.Drawing.Point(183, 40);
+            this.lbAlue.Name = "lbAlue";
+            this.lbAlue.Size = new System.Drawing.Size(25, 13);
+            this.lbAlue.TabIndex = 20;
+            this.lbAlue.Text = "      ";
+            // 
+            // toimintaalueBindingSource
+            // 
+            this.toimintaalueBindingSource.DataMember = "toimintaalue";
+            this.toimintaalueBindingSource.DataSource = this.dataSet1;
+            // 
             // cbPosti
             // 
+            this.cbPosti.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mokkiBindingSource, "postinro", true));
             this.cbPosti.DataSource = this.postiBindingSource;
             this.cbPosti.DisplayMember = "postinro";
             this.cbPosti.FormattingEnabled = true;
@@ -361,18 +324,14 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // cbToiminta
             // 
-            this.cbToiminta.DataSource = this.toimintaalueBindingSource;
+            this.cbToiminta.DataSource = this.mokkiBindingSource;
             this.cbToiminta.DisplayMember = "toimintaalue_id";
             this.cbToiminta.FormattingEnabled = true;
             this.cbToiminta.Location = new System.Drawing.Point(91, 37);
             this.cbToiminta.Name = "cbToiminta";
             this.cbToiminta.Size = new System.Drawing.Size(86, 21);
             this.cbToiminta.TabIndex = 17;
-            // 
-            // toimintaalueBindingSource
-            // 
-            this.toimintaalueBindingSource.DataMember = "toimintaalue";
-            this.toimintaalueBindingSource.DataSource = this.dataSet1;
+            this.cbToiminta.ValueMember = "toimintaalue_id";
             // 
             // lbToiminta
             // 
@@ -385,6 +344,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tbMokkiID
             // 
+            this.tbMokkiID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mokkiBindingSource, "mokki_id", true));
             this.tbMokkiID.Location = new System.Drawing.Point(91, 11);
             this.tbMokkiID.Name = "tbMokkiID";
             this.tbMokkiID.Size = new System.Drawing.Size(86, 20);
@@ -433,6 +393,24 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.postiTableAdapter.ClearBeforeFill = true;
             // 
+            // toimintaalueBindingSource1
+            // 
+            this.toimintaalueBindingSource1.DataMember = "toimintaalue";
+            this.toimintaalueBindingSource1.DataSource = this.dataSet1BindingSource;
+            // 
+            // toimintaalueBindingSource2
+            // 
+            this.toimintaalueBindingSource2.DataMember = "toimintaalue";
+            this.toimintaalueBindingSource2.DataSource = this.dataSet1BindingSource;
+            // 
+            // dgvMokit
+            // 
+            this.dgvMokit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMokit.Location = new System.Drawing.Point(6, 0);
+            this.dgvMokit.Name = "dgvMokit";
+            this.dgvMokit.Size = new System.Drawing.Size(852, 322);
+            this.dgvMokit.TabIndex = 4;
+            // 
             // Mokinluominen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,19 +419,20 @@ namespace Mokkivarausjarjestelma2._0
             this.Controls.Add(this.tabControl1);
             this.Name = "Mokinluominen";
             this.Text = "Mokinluominen";
-            this.Load += new System.EventHandler(this.Mokinluominen_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMokit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mokkiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.pnMokki.ResumeLayout(false);
             this.pnMokki.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.postiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMokit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -472,7 +451,6 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.Label lbHenkilo;
         private System.Windows.Forms.Label lbNimi;
         private System.Windows.Forms.Button btnPoista;
-        private System.Windows.Forms.DataGridView dgvMokit;
         private System.Windows.Forms.Button btnMuokkaa;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label lbMokki;
@@ -482,14 +460,6 @@ namespace Mokkivarausjarjestelma2._0
         private DataSet1 dataSet1;
         private System.Windows.Forms.BindingSource mokkiBindingSource;
         private DataSet1TableAdapters.mokkiTableAdapter mokkiTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mokkiidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn toimintaalueidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn postinroDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mokkinimiDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn katuosoiteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kuvausDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn henkilomaaraDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn varusteluDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lbMokkiID;
         private System.Windows.Forms.ComboBox cbToiminta;
         private System.Windows.Forms.BindingSource dataSet1BindingSource;
@@ -501,5 +471,10 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.Label lbPostinumero;
         private System.Windows.Forms.BindingSource postiBindingSource;
         private DataSet1TableAdapters.postiTableAdapter postiTableAdapter;
+        private System.Windows.Forms.Button btnPaivita;
+        private System.Windows.Forms.Label lbAlue;
+        private System.Windows.Forms.BindingSource toimintaalueBindingSource1;
+        private System.Windows.Forms.BindingSource toimintaalueBindingSource2;
+        private System.Windows.Forms.DataGridView dgvMokit;
     }
 }

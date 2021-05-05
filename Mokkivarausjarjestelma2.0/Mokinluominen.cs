@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,35 +16,92 @@ namespace Mokkivarausjarjestelma2._0
         public Mokinluominen()
         {
             InitializeComponent();
+
+            populateDGV();
+            populateComboboxes();
         }
 
-        private void Mokinluominen_Load(object sender, EventArgs e)
+        MySqlConnection connection = new MySqlConnection("datasource=localhost;port=3307;Initial Catalog=vn;username=root;Password=root");
+        MySqlCommand command;
+
+        public void populateDGV()
         {
-            // TODO: This line of code loads data into the 'dataSet1.posti' table. You can move, or remove it, as needed.
-            this.postiTableAdapter.Fill(this.dataSet1.posti);
-            // TODO: This line of code loads data into the 'dataSet1.toimintaalue' table. You can move, or remove it, as needed.
-            this.toimintaalueTableAdapter.Fill(this.dataSet1.toimintaalue);
-            // TODO: This line of code loads data into the 'dataSet1.mokki' table. You can move, or remove it, as needed.
-            this.mokkiTableAdapter.Fill(this.dataSet1.mokki);
-
-
+            string query = "SELECT * FROM mokki";
+            DataTable table = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+            adapter.Fill(table);
+            dgvMokit.DataSource = table;
 
         }
 
-        private void dgvMokit_MouseClick(object sender, MouseEventArgs e)
+        public void populateComboboxes()
         {
-            tabControl1.SelectedTab = tabPage1;
-            tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
-            cbToiminta.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
-            cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
-            tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
-            tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
-            tbKuvaus.Text = dgvMokit.CurrentRow.Cells[5].Value.ToString();
-            tbHenkilomaara.Text = dgvMokit.CurrentRow.Cells[6].Value.ToString();
-            tbVarustelu.Text = dgvMokit.CurrentRow.Cells[7].Value.ToString();
+
+            string queryToiminta = "SELECT * FROM toimintaalue";
+
+            MySqlDataAdapter adapter2 = new MySqlDataAdapter(queryToiminta, connection);
+            DataSet dsCombobox = new DataSet();
+            adapter2.Fill(dsCombobox,"toimintaalue");
+            cbToiminta.DisplayMember = "toimintaalue_id";
+            cbToiminta.DataSource = dsCombobox.Tables["toimintaalue"];
+
+            string queryPosti = "SELECT * FROM posti";
+
+            MySqlDataAdapter adapter3 = new MySqlDataAdapter(queryPosti, connection);
+            DataSet dsComboboxPosti = new DataSet();
+            adapter3.Fill(dsComboboxPosti, "posti");
+            cbPosti.DisplayMember = "postinro";
+            cbPosti.DataSource = dsComboboxPosti.Tables["posti"];
+
+
 
 
         }
+
+
+        public void OpenConnection()
+        {
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+        }
+
+        public void CloseConnection()
+        {
+            if (connection.State == ConnectionState.Open)
+            {
+                connection.Close();
+            }
+        }
+
+
+        public void ExecuteMyQuery(string query)
+        {
+            try
+            {
+                OpenConnection();
+                command = new MySqlCommand(query, connection);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Kysely suoritettu");
+                }
+                else
+                {
+                    MessageBox.Show("Kyselyä ei suoritettu");
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
 
         private void RecursiveClearTextBoxes(Control.ControlCollection cc)
 
@@ -74,12 +132,64 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnTallenna_Click(object sender, EventArgs e)
         {
+            Validate();
+
+            mokkiBindingSource.EndEdit();
+            mokkiTableAdapter.Update(this.dataSet1);
+            mokkiTableAdapter.Insert(int.Parse(cbToiminta.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
+
             RecursiveClearTextBoxes(this.Controls);
 
-            tabControl1.SelectedTab = tabPage2;
+        }
+
+        private void btnPoista_Click(object sender, EventArgs e)
+        {
+            Validate();
+            mokkiBindingSource.EndEdit();
+            mokkiTableAdapter.Update(this.dataSet1);
+            mokkiTableAdapter.Delete(int.Parse(tbMokkiID.Text), int.Parse(cbToiminta.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
 
         }
+
+        private void btnMuokkaa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvMokit_Click(object sender, EventArgs e)
+        {
+
+            tabControl1.SelectedTab = tabPage1;
+
+            tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
+            cbToiminta.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
+            cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
+            tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
+            tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
+            tbKuvaus.Text = dgvMokit.CurrentRow.Cells[5].Value.ToString();
+            tbHenkilomaara.Text = dgvMokit.CurrentRow.Cells[6].Value.ToString();
+            tbVarustelu.Text = dgvMokit.CurrentRow.Cells[7].Value.ToString();
+
+        }
+
+        private void btnTallenna_Click_1(object sender, EventArgs e)
+        {
+            int mokkiID = int.Parse(tbMokkiID.Text);
+            int toimintaalueID = int.Parse(cbToiminta.Text);
+            int henkilomaara = int.Parse(tbHenkilomaara.Text);
+            string insertQuery = "insert into mokki(mokki_id, toimintaalue_id, postinro, mokkinimi, katuosoite, kuvaus) values(" + mokkiID + "','" + toimintaalueID + "','" + cbPosti.Text + "','" + tbMokinnimi.Text + "','" + tbKatuosoite.Text + "','" + tbKuvaus.Text + "')";
+            ExecuteMyQuery(insertQuery);
+            populateDGV();
+
+        }
+
+        private void btnPeruuta_Click(object sender, EventArgs e)
+        {
+
+
+            RecursiveClearTextBoxes(this.Controls);
+        }
     }
-
-
 }
+
+
