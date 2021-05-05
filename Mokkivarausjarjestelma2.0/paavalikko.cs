@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Mokkivarausjarjestelma2._0
 {
-    public partial class Form1 : Form
+    public partial class paavalikko : Form
     {
-        public Form1()
+        public paavalikko()
         {
             InitializeComponent();
+        }
+
+        private void toolStripLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
