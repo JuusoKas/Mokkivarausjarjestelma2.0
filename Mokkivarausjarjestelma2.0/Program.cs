@@ -16,7 +16,7 @@ namespace Mokkivarausjarjestelma2._0
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new toiminta_alue());
+            Application.Run(new palveluhallinta());
         }
     }
 }
