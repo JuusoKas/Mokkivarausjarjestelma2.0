@@ -66,10 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+    <Compile Include="Kaikkidata.cs">
+      <DependentUpon>Kaikkidata.xsd</DependentUpon>
     </Compile>
     <Compile Include="Kaikkidata.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -81,11 +79,6 @@
     </Compile>
     <Compile Include="palveluhallinta.Designer.cs">
       <DependentUpon>palveluhallinta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Palvelut.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Palvelut.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,17 +94,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
     <None Include="Kaikkidata.xsc">
       <DependentUpon>Kaikkidata.xsd</DependentUpon>
     </None>
@@ -124,17 +106,6 @@
       <DependentUpon>Kaikkidata.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Palvelut.xsc">
-      <DependentUpon>Palvelut.xsd</DependentUpon>
-    </None>
-    <None Include="Palvelut.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Palvelut.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Palvelut.xss">
-      <DependentUpon>Palvelut.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
