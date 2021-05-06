@@ -47,6 +47,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPoista = new System.Windows.Forms.Button();
             this.btnMuokkaa = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgvMokit = new System.Windows.Forms.DataGridView();
             this.btnPaivita = new System.Windows.Forms.Button();
             this.lbMokki = new System.Windows.Forms.Label();
             this.pnMokki = new System.Windows.Forms.Panel();
@@ -67,10 +68,18 @@ namespace Mokkivarausjarjestelma2._0
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.postiTableAdapter();
             this.toimintaalueBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toimintaalueBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvMokit = new System.Windows.Forms.DataGridView();
+            this.mokkiidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toimintaalueidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postinroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mokkinimiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.katuosoiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kuvausDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.henkilomaaraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.varusteluDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.mokkiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMokit)).BeginInit();
             this.pnMokki.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.postiBindingSource)).BeginInit();
@@ -79,7 +88,6 @@ namespace Mokkivarausjarjestelma2._0
             this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMokit)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPeruuta
@@ -100,7 +108,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnTallenna.TabIndex = 12;
             this.btnTallenna.Text = "Tallenna";
             this.btnTallenna.UseVisualStyleBackColor = true;
-            this.btnTallenna.Click += new System.EventHandler(this.btnTallenna_Click_1);
+            this.btnTallenna.Click += new System.EventHandler(this.btnTallenna_Click);
             // 
             // tbVarustelu
             // 
@@ -214,7 +222,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnMuokkaa.TabIndex = 1;
             this.btnMuokkaa.Text = "Muokkaa";
             this.btnMuokkaa.UseVisualStyleBackColor = true;
-            this.btnMuokkaa.Click += new System.EventHandler(this.dgvMokit_Click);
+            this.btnMuokkaa.Click += new System.EventHandler(this.btnMuokkaa_Click);
             // 
             // tabPage2
             // 
@@ -229,6 +237,25 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mökit";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dgvMokit
+            // 
+            this.dgvMokit.AutoGenerateColumns = false;
+            this.dgvMokit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMokit.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.mokkiidDataGridViewTextBoxColumn,
+            this.toimintaalueidDataGridViewTextBoxColumn,
+            this.postinroDataGridViewTextBoxColumn,
+            this.mokkinimiDataGridViewTextBoxColumn,
+            this.katuosoiteDataGridViewTextBoxColumn,
+            this.kuvausDataGridViewTextBoxColumn,
+            this.henkilomaaraDataGridViewTextBoxColumn,
+            this.varusteluDataGridViewTextBoxColumn});
+            this.dgvMokit.DataSource = this.mokkiBindingSource;
+            this.dgvMokit.Location = new System.Drawing.Point(6, 0);
+            this.dgvMokit.Name = "dgvMokit";
+            this.dgvMokit.Size = new System.Drawing.Size(852, 322);
+            this.dgvMokit.TabIndex = 4;
             // 
             // btnPaivita
             // 
@@ -347,6 +374,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tbMokkiID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mokkiBindingSource, "mokki_id", true));
             this.tbMokkiID.Location = new System.Drawing.Point(91, 11);
             this.tbMokkiID.Name = "tbMokkiID";
+            this.tbMokkiID.ReadOnly = true;
             this.tbMokkiID.Size = new System.Drawing.Size(86, 20);
             this.tbMokkiID.TabIndex = 15;
             // 
@@ -403,13 +431,53 @@ namespace Mokkivarausjarjestelma2._0
             this.toimintaalueBindingSource2.DataMember = "toimintaalue";
             this.toimintaalueBindingSource2.DataSource = this.dataSet1BindingSource;
             // 
-            // dgvMokit
+            // mokkiidDataGridViewTextBoxColumn
             // 
-            this.dgvMokit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMokit.Location = new System.Drawing.Point(6, 0);
-            this.dgvMokit.Name = "dgvMokit";
-            this.dgvMokit.Size = new System.Drawing.Size(852, 322);
-            this.dgvMokit.TabIndex = 4;
+            this.mokkiidDataGridViewTextBoxColumn.DataPropertyName = "mokki_id";
+            this.mokkiidDataGridViewTextBoxColumn.HeaderText = "mokki_id";
+            this.mokkiidDataGridViewTextBoxColumn.Name = "mokkiidDataGridViewTextBoxColumn";
+            // 
+            // toimintaalueidDataGridViewTextBoxColumn
+            // 
+            this.toimintaalueidDataGridViewTextBoxColumn.DataPropertyName = "toimintaalue_id";
+            this.toimintaalueidDataGridViewTextBoxColumn.HeaderText = "toimintaalue_id";
+            this.toimintaalueidDataGridViewTextBoxColumn.Name = "toimintaalueidDataGridViewTextBoxColumn";
+            // 
+            // postinroDataGridViewTextBoxColumn
+            // 
+            this.postinroDataGridViewTextBoxColumn.DataPropertyName = "postinro";
+            this.postinroDataGridViewTextBoxColumn.HeaderText = "postinro";
+            this.postinroDataGridViewTextBoxColumn.Name = "postinroDataGridViewTextBoxColumn";
+            // 
+            // mokkinimiDataGridViewTextBoxColumn
+            // 
+            this.mokkinimiDataGridViewTextBoxColumn.DataPropertyName = "mokkinimi";
+            this.mokkinimiDataGridViewTextBoxColumn.HeaderText = "mokkinimi";
+            this.mokkinimiDataGridViewTextBoxColumn.Name = "mokkinimiDataGridViewTextBoxColumn";
+            // 
+            // katuosoiteDataGridViewTextBoxColumn
+            // 
+            this.katuosoiteDataGridViewTextBoxColumn.DataPropertyName = "katuosoite";
+            this.katuosoiteDataGridViewTextBoxColumn.HeaderText = "katuosoite";
+            this.katuosoiteDataGridViewTextBoxColumn.Name = "katuosoiteDataGridViewTextBoxColumn";
+            // 
+            // kuvausDataGridViewTextBoxColumn
+            // 
+            this.kuvausDataGridViewTextBoxColumn.DataPropertyName = "kuvaus";
+            this.kuvausDataGridViewTextBoxColumn.HeaderText = "kuvaus";
+            this.kuvausDataGridViewTextBoxColumn.Name = "kuvausDataGridViewTextBoxColumn";
+            // 
+            // henkilomaaraDataGridViewTextBoxColumn
+            // 
+            this.henkilomaaraDataGridViewTextBoxColumn.DataPropertyName = "henkilomaara";
+            this.henkilomaaraDataGridViewTextBoxColumn.HeaderText = "henkilomaara";
+            this.henkilomaaraDataGridViewTextBoxColumn.Name = "henkilomaaraDataGridViewTextBoxColumn";
+            // 
+            // varusteluDataGridViewTextBoxColumn
+            // 
+            this.varusteluDataGridViewTextBoxColumn.DataPropertyName = "varustelu";
+            this.varusteluDataGridViewTextBoxColumn.HeaderText = "varustelu";
+            this.varusteluDataGridViewTextBoxColumn.Name = "varusteluDataGridViewTextBoxColumn";
             // 
             // Mokinluominen
             // 
@@ -422,6 +490,7 @@ namespace Mokkivarausjarjestelma2._0
             ((System.ComponentModel.ISupportInitialize)(this.mokkiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMokit)).EndInit();
             this.pnMokki.ResumeLayout(false);
             this.pnMokki.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).EndInit();
@@ -432,7 +501,6 @@ namespace Mokkivarausjarjestelma2._0
             this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMokit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -476,5 +544,13 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.BindingSource toimintaalueBindingSource1;
         private System.Windows.Forms.BindingSource toimintaalueBindingSource2;
         private System.Windows.Forms.DataGridView dgvMokit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mokkiidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn toimintaalueidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn postinroDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mokkinimiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn katuosoiteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kuvausDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn henkilomaaraDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn varusteluDataGridViewTextBoxColumn;
     }
 }
