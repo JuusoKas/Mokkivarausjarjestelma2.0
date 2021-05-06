@@ -14,12 +14,10 @@ namespace Mokkivarausjarjestelma2._0
 {
     public partial class Aluehallinta : Form
     {
-        
         MySqlConnection connection = new MySqlConnection(
             "datasource=localhost;port=3307;Initial Catalog='vn';username=root;Password=root");
 
-        
-        private List<Aluedata1> asiakkaat = new List<Aluedata1>();
+
         public Aluehallinta()
         {
             InitializeComponent();
@@ -28,38 +26,32 @@ namespace Mokkivarausjarjestelma2._0
 
         public void populateDGV()
         {
+            //täytetään datagrid datalla
             string query = "SELECT * FROM toimintaalue";
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
             adapter.Fill(table);
-            dgridtesti.DataSource = table;
+            dgridAlueet.DataSource = table;
 
         }
 
 
         private void Aluehallinta_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'aluedata1.toimintaalue' table. You can move, or remove it, as needed.
-            this.toimintaalueTableAdapter.Fill(this.aluedata1.toimintaalue);
             tbIDnro.Clear();
             tbAlueNimi.Clear();
-            asiakkaat.Add(aluedata1);
-            
         }
+
         public void OpenConnection()
         {
             if (connection.State == ConnectionState.Closed)
-            {
                 connection.Open();
-            }
         }
 
         public void CloseConnection()
         {
             if (connection.State == ConnectionState.Open)
-            {
                 connection.Close();
-            }
         }
 
         private void btnTallenna_Click(object sender, EventArgs e)
@@ -69,9 +61,11 @@ namespace Mokkivarausjarjestelma2._0
             aluedata1BindingSource.EndEdit();
             toimintaalueTableAdapter.Update(this.aluedata1);
             toimintaalueTableAdapter.Insert(tbAlueNimi.Text);
-            toimintaalueTableAdapter.Delete(long.Parse(tbIDnro.Text), tbAlueNimi.Text);
-            toimintaalueTableAdapter.Fill(aluedata1.toimintaalue);
 
+            //päivityksenä toimii uudelleentäyttäminen
+            populateDGV();
+            tbAlueNimi.Clear();
+            tbIDnro.Clear();
         }
 
 
@@ -79,9 +73,9 @@ namespace Mokkivarausjarjestelma2._0
         {
             //vaihdetaan sivulle Lisää
             tabControl1.SelectedIndex = 0;
-            
+            tbIDnro.ReadOnly = false;
         }
-
+        
         private void btnPoista_Click(object sender, EventArgs e)
         {
             //rivin poisto
@@ -89,8 +83,9 @@ namespace Mokkivarausjarjestelma2._0
             aluedata1BindingSource.EndEdit();
             toimintaalueTableAdapter.Update(this.aluedata1);
             toimintaalueTableAdapter.Delete(long.Parse(tbIDnro.Text), tbAlueNimi.Text);
-            toimintaalueTableAdapter.Fill(aluedata1.toimintaalue);
-
+            populateDGV();
+            tbAlueNimi.Clear();
+            tbIDnro.Clear();
         }
 
 
@@ -109,7 +104,9 @@ namespace Mokkivarausjarjestelma2._0
             aluedata1BindingSource.EndEdit();
             toimintaalueTableAdapter.Update(this.aluedata1);
             toimintaalueTableAdapter.Insert(tbAlueNimi.Text);
-            toimintaalueTableAdapter.Fill(aluedata1.toimintaalue);
+            populateDGV();
+            tbAlueNimi.Clear();
+            tbIDnro.Clear();
         }
     }
 }
