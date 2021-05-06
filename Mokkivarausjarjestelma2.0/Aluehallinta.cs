@@ -70,8 +70,8 @@ namespace Mokkivarausjarjestelma2._0
             toimintaalueTableAdapter.Update(this.aluedata1);
             toimintaalueTableAdapter.Insert(tbAlueNimi.Text);
             toimintaalueTableAdapter.Delete(long.Parse(tbIDnro.Text), tbAlueNimi.Text);
-            
-           
+            toimintaalueTableAdapter.Fill(aluedata1.toimintaalue);
+
         }
 
 
@@ -84,30 +84,32 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnPoista_Click(object sender, EventArgs e)
         {
+            //rivin poisto
             Validate();
             aluedata1BindingSource.EndEdit();
             toimintaalueTableAdapter.Update(this.aluedata1);
             toimintaalueTableAdapter.Delete(long.Parse(tbIDnro.Text), tbAlueNimi.Text);
-            
+            toimintaalueTableAdapter.Fill(aluedata1.toimintaalue);
 
         }
 
 
         private void dgridAlueet_MouseClick(object sender, MouseEventArgs e)
         {
-            
-            //tbAlueNimi.Text = dgridAlueet.CurrentRow.Cells[1].Value.ToString();
-            //tbIDnro.Text = dgridAlueet.CurrentRow.Cells[0].Value.ToString();
+            //rivivalinta
+            tbAlueNimi.Text = dgridAlueet.CurrentRow.Cells[1].Value.ToString();
+            tbIDnro.Text = dgridAlueet.CurrentRow.Cells[0].Value.ToString();
             
         }
 
         private void btnLisaa_Click(object sender, EventArgs e)
         {
+            //uuden rivin lisäys
             Validate();
             aluedata1BindingSource.EndEdit();
             toimintaalueTableAdapter.Update(this.aluedata1);
             toimintaalueTableAdapter.Insert(tbAlueNimi.Text);
-            
+            toimintaalueTableAdapter.Fill(aluedata1.toimintaalue);
         }
     }
 }
