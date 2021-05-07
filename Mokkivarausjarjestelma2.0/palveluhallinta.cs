@@ -20,18 +20,30 @@ namespace Mokkivarausjarjestelma2._0
             populateDGV();
         }
 
-        MySqlConnection connection = new MySqlConnection(
+       private MySqlConnection connection = new MySqlConnection(
             "datasource=localhost;port=3307;Initial Catalog='vn';username=root;Password=root");
 
+        private string queryPalvelu = "SELECT * FROM palvelu";
+
+        
         private void palveluhallinta_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'kaikkidata.toimintaalue' table. You can move, or remove it, as needed.
+            // toiminta-alueen datan tuonti
             this.toimintaalueTableAdapter.Fill(this.kaikkidata.toimintaalue);
-            tbAlv.Clear();
-            tbHinta.Clear();
+            numAlv.ResetText();
+            numHinta.ResetText();
             tbKuvaus.Clear();
             tbNimi.Clear();
-            
+            lblPalID.Text = cbTyyppi.Text;
+            lblPalID.Visible = true;
+
+            //täytetään tyyppi-combobox
+            MySqlDataAdapter adapter2 = new MySqlDataAdapter(queryPalvelu, connection);
+            DataSet dscombo = new DataSet();
+            adapter2.Fill(dscombo, "palvelu");
+            cbTyyppi.DisplayMember = "tyyppi";
+            cbTyyppi.DataSource = dscombo.Tables["palvelu"];
+
         }
 
         public void populateDGV()
@@ -59,10 +71,12 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnPeruuta_Click(object sender, EventArgs e)
         {
-            tbAlv.Clear();
-            tbHinta.Clear();
+            numAlv.ResetText();
+            numHinta.ResetText();
             tbKuvaus.Clear();
             tbNimi.Clear();
+            lblHinta.Text = "";
+            lblPalID.Text = "";
         }
 
         private void btnPoista_Click(object sender, EventArgs e)
@@ -72,11 +86,11 @@ namespace Mokkivarausjarjestelma2._0
             kaikkidataBindingSource.EndEdit();
             palveluTableAdapter.Update(this.kaikkidata);
             palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
-                    int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(tbHinta.Text), double.Parse(tbAlv.Text));
+                    int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Text), double.Parse(numAlv.Text));
             populateDGV();
 
-            tbAlv.Clear();
-            tbHinta.Clear();
+            numAlv.ResetText();
+            numHinta.ResetText();
             tbKuvaus.Clear();
             tbNimi.Clear();
         }
@@ -96,37 +110,71 @@ namespace Mokkivarausjarjestelma2._0
             tbNimi.Text = dgridPalvelut.CurrentRow.Cells[2].Value.ToString();
             cbTyyppi.Text = dgridPalvelut.CurrentRow.Cells[3].Value.ToString();
             tbKuvaus.Text = dgridPalvelut.CurrentRow.Cells[4].Value.ToString();
-            tbHinta.Text = dgridPalvelut.CurrentRow.Cells[5].Value.ToString();
-            tbAlv.Text = dgridPalvelut.CurrentRow.Cells[6].Value.ToString();
+            numHinta.Text = dgridPalvelut.CurrentRow.Cells[5].Value.ToString();
+            numAlv.Text = dgridPalvelut.CurrentRow.Cells[6].Value.ToString();
         }
-
+        /*
         private void lblHinta_TextChanged(object sender, EventArgs e)
         {
-            //TODO tarkista toimiiko oikein
-            if (tbHinta.Text != null && tbAlv.Text != null)
+            try
             {
-                double hinta = double.Parse(tbHinta.Text) * (1 + (int.Parse(tbAlv.Text) / 100));
-                lblHinta.Text = hinta.ToString("F");
-                lblHinta.Visible = true;
+                if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
+                {
+                    double hinta = (double.Parse(numHinta.Text) * (1 + (int.Parse(numAlv.Text) / 100)));
+                    lblHinta.Text = hinta.ToString();
+                    lblHinta.Visible = true;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            //TODO tarkista toimiiko oikein
+            
         }
+        */
 
         private void btnTallenna_Click(object sender, EventArgs e)
         {
             //uuden rivin lisäys
+            
             Validate();
             kaikkidataBindingSource.EndEdit();
             palveluTableAdapter.Update(this.kaikkidata);
-            palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
-                    int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(tbHinta.Text), double.Parse(tbAlv.Text));
+            //TODO: tämä on ongelma---------------------
+            palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text.ToString(),
+                    int.Parse(cbTyyppi.Text), tbKuvaus.Text.ToString(), double.Parse(numHinta.Text), double.Parse(numAlv.Text)); ;
             populateDGV();
 
-            tbAlv.Clear();
-            tbHinta.Clear();
+            numAlv.ResetText();
+            numHinta.ResetText();
             tbKuvaus.Clear();
             tbNimi.Clear();
             lblPalID.Text = "";
+            lblHinta.Text = "";
             // palveluID(long), toimalueID(long), Nimi, Tyyppi(int), kuvaus, hinta(double), alv(double)
+        }
+
+        private void numHinta_ValueChanged(object sender, EventArgs e)
+        {
+            lblPalID.Text = cbTyyppi.Text;
+            lblPalID.Visible = true;
+            try
+            {
+                if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
+                {
+                    lblHinta.Visible = true;
+                    double hinta = (double.Parse(numHinta.Text) * (1 + (double.Parse(numAlv.Text) / 100)));
+                    lblHinta.Text = hinta.ToString() + " euroa";
+                    hinta = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
     }
 }
