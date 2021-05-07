@@ -143,16 +143,11 @@ namespace Mokkivarausjarjestelma2._0
             kaikkidataBindingSource.EndEdit();
             palveluTableAdapter.Update(this.kaikkidata);
             //TODO: tämä on ongelma---------------------
-            palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text.ToString(),
-                    int.Parse(cbTyyppi.Text), tbKuvaus.Text.ToString(), double.Parse(numHinta.Text), double.Parse(numAlv.Text)); ;
+            palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
+                    int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Text), double.Parse(numAlv.Text));
             populateDGV();
 
-            numAlv.ResetText();
-            numHinta.ResetText();
-            tbKuvaus.Clear();
-            tbNimi.Clear();
-            lblPalID.Text = "";
-            lblHinta.Text = "";
+            //RecursiveClearTextBoxes(this.Controls); 
             // palveluID(long), toimalueID(long), Nimi, Tyyppi(int), kuvaus, hinta(double), alv(double)
         }
 
@@ -176,5 +171,23 @@ namespace Mokkivarausjarjestelma2._0
                 throw;
             }
         }
+
+
+        //tyhjennetään formi
+        private void RecursiveClearTextBoxes(Control.ControlCollection cc)
+        {
+            foreach (Control ctrl in cc)
+            {
+                TextBox tb = ctrl as TextBox;
+
+                if (tb != null)
+
+                    tb.Clear();
+                else
+
+                    RecursiveClearTextBoxes(ctrl.Controls);
+            }
+        }
+
     }
 }
