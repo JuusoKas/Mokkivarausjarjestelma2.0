@@ -417,7 +417,7 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.Button btnMuokkaa;
         private System.Windows.Forms.DataGridView dgvVaraukset;
         private System.Windows.Forms.Label lbMokkiID;
-        public System.Windows.Forms.Label lbAsiakasID;
-        public System.Windows.Forms.TextBox tbAsiakas;
+        private System.Windows.Forms.TextBox tbAsiakas;
+        private System.Windows.Forms.Label lbAsiakasID;
     }
 }
