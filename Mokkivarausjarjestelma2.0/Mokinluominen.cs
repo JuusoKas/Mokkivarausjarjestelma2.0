@@ -145,10 +145,23 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnPoista_Click(object sender, EventArgs e)
         {
+
+            tbMokkiID.ReadOnly = false;
+            tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
+            cbToiminta.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
+            cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
+            tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
+            tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
+            tbKuvaus.Text = dgvMokit.CurrentRow.Cells[5].Value.ToString();
+            tbHenkilomaara.Text = dgvMokit.CurrentRow.Cells[6].Value.ToString();
+            tbVarustelu.Text = dgvMokit.CurrentRow.Cells[7].Value.ToString();
+
             Validate();
             mokkiBindingSource.EndEdit();
             mokkiTableAdapter.Update(this.dataSet1);
-            mokkiTableAdapter.Delete(int.Parse(tbMokkiID.Text), int.Parse(cbToiminta.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
+            mokkiTableAdapter.Delete(long.Parse(tbMokkiID.Text), long.Parse(cbToiminta.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
+            populateDGV();
+
 
         }
 
@@ -197,30 +210,7 @@ namespace Mokkivarausjarjestelma2._0
             RecursiveClearTextBoxes(this.Controls);
         }
 
-        private void btnPoista_Click_1(object sender, EventArgs e)
-        {
 
-            tbMokkiID.ReadOnly = false;
-
-            tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
-            cbToiminta.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
-            cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
-            tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
-            tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
-            tbKuvaus.Text = dgvMokit.CurrentRow.Cells[5].Value.ToString();
-            tbHenkilomaara.Text = dgvMokit.CurrentRow.Cells[6].Value.ToString();
-            tbVarustelu.Text = dgvMokit.CurrentRow.Cells[7].Value.ToString();
-
-            Validate();
-
-            mokkiBindingSource.EndEdit();
-            mokkiTableAdapter.Update(this.dataSet1);
-            mokkiTableAdapter.Delete(long.Parse(tbMokkiID.Text),long.Parse(cbToiminta.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
-            populateDGV();
-            RecursiveClearTextBoxes(this.Controls);
-
-        
-        }
     }
 }
 

@@ -76,6 +76,7 @@ namespace Mokkivarausjarjestelma2._0
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.postiTableAdapter();
             this.toimintaalueBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toimintaalueBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.lbToimintaAlue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mokkiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -213,7 +214,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPoista.TabIndex = 2;
             this.btnPoista.Text = "Poista";
             this.btnPoista.UseVisualStyleBackColor = true;
-            this.btnPoista.Click += new System.EventHandler(this.btnPoista_Click_1);
+            this.btnPoista.Click += new System.EventHandler(this.btnPoista_Click);
             // 
             // btnMuokkaa
             // 
@@ -327,6 +328,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // pnMokki
             // 
+            this.pnMokki.Controls.Add(this.lbToimintaAlue);
             this.pnMokki.Controls.Add(this.lbAlue);
             this.pnMokki.Controls.Add(this.cbPosti);
             this.pnMokki.Controls.Add(this.lbPostinumero);
@@ -480,6 +482,15 @@ namespace Mokkivarausjarjestelma2._0
             this.toimintaalueBindingSource2.DataMember = "toimintaalue";
             this.toimintaalueBindingSource2.DataSource = this.dataSet1BindingSource;
             // 
+            // lbToimintaAlue
+            // 
+            this.lbToimintaAlue.AutoSize = true;
+            this.lbToimintaAlue.Location = new System.Drawing.Point(183, 40);
+            this.lbToimintaAlue.Name = "lbToimintaAlue";
+            this.lbToimintaAlue.Size = new System.Drawing.Size(34, 13);
+            this.lbToimintaAlue.TabIndex = 21;
+            this.lbToimintaAlue.Text = "         ";
+            // 
             // Mokinluominen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -553,5 +564,6 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.DataGridViewTextBoxColumn kuvausDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn henkilomaaraDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn varusteluDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lbToimintaAlue;
     }
 }

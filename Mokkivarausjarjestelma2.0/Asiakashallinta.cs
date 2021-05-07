@@ -129,6 +129,37 @@ namespace Mokkivarausjarjestelma2._0
             RecursiveClearTextBoxes(this.Controls);
         }
 
+        private void btnPoista_Click(object sender, EventArgs e)
+        {
+            tbAsiakasID.ReadOnly = false;
+            tbAsiakasID.Text = dgvAsiakkaat.CurrentRow.Cells[0].Value.ToString();
+            cbPostinro.Text = dgvAsiakkaat.CurrentRow.Cells[1].Value.ToString();
+            tbEtunimi.Text = dgvAsiakkaat.CurrentRow.Cells[2].Value.ToString();
+            tbSukunimi.Text = dgvAsiakkaat.CurrentRow.Cells[3].Value.ToString();
+            tbLahiosoite.Text = dgvAsiakkaat.CurrentRow.Cells[4].Value.ToString();
+            tbSahkoposti.Text = dgvAsiakkaat.CurrentRow.Cells[5].Value.ToString();
+            tbPuhnro.Text = dgvAsiakkaat.CurrentRow.Cells[6].Value.ToString();
 
+            Validate();
+            asiakasBindingSource.EndEdit();
+            asiakasTableAdapter.Update(this.AsiakkaatdataSet);
+            asiakasTableAdapter.Delete(long.Parse(tbAsiakasID.Text), cbPostinro.Text, tbEtunimi.Text, tbSukunimi.Text, tbLahiosoite.Text, tbSahkoposti.Text, tbPuhnro.Text);
+            populateDGV();
+        }
+
+        private void btnMuokkaa_Click(object sender, EventArgs e)
+        {
+            tbAsiakasID.ReadOnly = false;
+            tbAsiakasID.Text = dgvAsiakkaat.CurrentRow.Cells[0].Value.ToString();
+            cbPostinro.Text = dgvAsiakkaat.CurrentRow.Cells[1].Value.ToString();
+            tbEtunimi.Text = dgvAsiakkaat.CurrentRow.Cells[2].Value.ToString();
+            tbSukunimi.Text = dgvAsiakkaat.CurrentRow.Cells[3].Value.ToString();
+            tbLahiosoite.Text = dgvAsiakkaat.CurrentRow.Cells[4].Value.ToString();
+            tbSahkoposti.Text = dgvAsiakkaat.CurrentRow.Cells[5].Value.ToString();
+            tbPuhnro.Text = dgvAsiakkaat.CurrentRow.Cells[6].Value.ToString();
+
+            tabControl1.SelectedIndex = 0;
+            tabControl1.SelectedTab = tabUusi;
+        }
     }
 }
