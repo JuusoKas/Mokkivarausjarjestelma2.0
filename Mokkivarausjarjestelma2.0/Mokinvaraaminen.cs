@@ -26,7 +26,7 @@ namespace Mokkivarausjarjestelma2._0
 
         public void populateDGV()
         {
-            string query = "SELECT * FROM mokki";
+            string query = "SELECT * FROM varaus";
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
             adapter.Fill(table);
@@ -79,13 +79,13 @@ namespace Mokkivarausjarjestelma2._0
 
         public void PassValue(string strValue, string strvalue2) // Tässä tuodaan label ID ja Asiakkaan nimi asiakaslistasta
         {
-            lbID.Text = "ID: " + strValue;
+            lbAsiakasID.Text = strValue;
             tbAsiakas.Text = strvalue2;
         }
 
         public void PassValue2(string strValue, string strvalue2) // Tässä tuodaan label ID ja mökin nimi nimi mökkilistasta
         {
-            lbID2.Text = "ID: " + strValue;
+            lbMokkiID.Text = strValue;
             tbMokki.Text = strvalue2;
         }
 
@@ -123,7 +123,7 @@ namespace Mokkivarausjarjestelma2._0
 
             varausBindingSource.EndEdit();
             varausTableAdapter.Update(this.dataSet1);
-            varausTableAdapter.Insert(long.Parse(lbAsiakasID.Text), long.Parse(lbMokkiID.Text), dtpSisaankirjautuminen.Value, DateTime.Now, DateTime.Now, dtpUloskirjautuminen.Value);
+            varausTableAdapter.Insert(long.Parse(lbAsiakasID.Text), long.Parse(lbMokkiID.Text), dtpVarauspaiva.Value, DateTime.Now, dtpSisaankirjautuminen.Value, dtpUloskirjautuminen.Value);
             populateDGV();
             RecursiveClearTextBoxes(this.Controls);
         }
@@ -182,11 +182,9 @@ namespace Mokkivarausjarjestelma2._0
             tbVarausID.Text = dgvVaraukset.CurrentRow.Cells[0].Value.ToString();
             lbAsiakasID.Text = dgvVaraukset.CurrentRow.Cells[1].Value.ToString();
             lbMokkiID.Text = dgvVaraukset.CurrentRow.Cells[2].Value.ToString();
-            dtp = dgvMokit.CurrentRow.Cells[3].Value.ToString();
-            tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
-            tbKuvaus.Text = dgvMokit.CurrentRow.Cells[5].Value.ToString();
-            tbHenkilomaara.Text = dgvMokit.CurrentRow.Cells[6].Value.ToString();
-            tbVarustelu.Text = dgvMokit.CurrentRow.Cells[7].Value.ToString();
+            dtpVarauspaiva.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[3].Value.ToString());
+            dtpSisaankirjautuminen.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[5].Value.ToString());
+            dtpUloskirjautuminen.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[6].Value.ToString());
 
             tabControl1.SelectedIndex = 0;
             tabControl1.SelectedTab = tabPage1;
