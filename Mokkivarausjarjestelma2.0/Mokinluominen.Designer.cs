@@ -59,6 +59,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPaivita = new System.Windows.Forms.Button();
             this.lbMokki = new System.Windows.Forms.Label();
             this.pnMokki = new System.Windows.Forms.Panel();
+            this.lbToimintaAlue = new System.Windows.Forms.Label();
             this.lbAlue = new System.Windows.Forms.Label();
             this.toimintaalueBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cbPosti = new System.Windows.Forms.ComboBox();
@@ -76,7 +77,6 @@ namespace Mokkivarausjarjestelma2._0
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.postiTableAdapter();
             this.toimintaalueBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toimintaalueBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.lbToimintaAlue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mokkiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -136,6 +136,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tbHenkilomaara.Name = "tbHenkilomaara";
             this.tbHenkilomaara.Size = new System.Drawing.Size(86, 20);
             this.tbHenkilomaara.TabIndex = 10;
+            this.tbHenkilomaara.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHenkilomaara_KeyPress);
             // 
             // tbKuvaus
             // 
@@ -353,6 +354,15 @@ namespace Mokkivarausjarjestelma2._0
             this.pnMokki.Size = new System.Drawing.Size(421, 261);
             this.pnMokki.TabIndex = 1;
             // 
+            // lbToimintaAlue
+            // 
+            this.lbToimintaAlue.AutoSize = true;
+            this.lbToimintaAlue.Location = new System.Drawing.Point(183, 40);
+            this.lbToimintaAlue.Name = "lbToimintaAlue";
+            this.lbToimintaAlue.Size = new System.Drawing.Size(34, 13);
+            this.lbToimintaAlue.TabIndex = 21;
+            this.lbToimintaAlue.Text = "         ";
+            // 
             // lbAlue
             // 
             this.lbAlue.AutoSize = true;
@@ -481,15 +491,6 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.toimintaalueBindingSource2.DataMember = "toimintaalue";
             this.toimintaalueBindingSource2.DataSource = this.dataSet1BindingSource;
-            // 
-            // lbToimintaAlue
-            // 
-            this.lbToimintaAlue.AutoSize = true;
-            this.lbToimintaAlue.Location = new System.Drawing.Point(183, 40);
-            this.lbToimintaAlue.Name = "lbToimintaAlue";
-            this.lbToimintaAlue.Size = new System.Drawing.Size(34, 13);
-            this.lbToimintaAlue.TabIndex = 21;
-            this.lbToimintaAlue.Text = "         ";
             // 
             // Mokinluominen
             // 

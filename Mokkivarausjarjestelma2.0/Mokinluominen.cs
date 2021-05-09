@@ -210,7 +210,13 @@ namespace Mokkivarausjarjestelma2._0
             RecursiveClearTextBoxes(this.Controls);
         }
 
-
+        private void tbHenkilomaara_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
 
