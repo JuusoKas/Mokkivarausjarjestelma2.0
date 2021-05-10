@@ -79,7 +79,7 @@ namespace Mokkivarausjarjestelma2._0
         }
 
 
-        private void RecursiveClearTextBoxes(Control.ControlCollection cc)
+        private void RecursiveClearTextBoxes(Control.ControlCollection cc) // Tyhjennetään tekstilaatikot
 
         {
 
@@ -104,7 +104,7 @@ namespace Mokkivarausjarjestelma2._0
 
 
 
-        private void btnTallenna_Click(object sender, EventArgs e)
+        private void btnTallenna_Click(object sender, EventArgs e) // Tallennetaan asiakas
         {
             Validate();
 
@@ -124,12 +124,12 @@ namespace Mokkivarausjarjestelma2._0
 
         }
 
-        private void btnPeru_Click(object sender, EventArgs e)
+        private void btnPeru_Click(object sender, EventArgs e) // Perutaan asiakkaan lisäys
         {
             RecursiveClearTextBoxes(this.Controls);
         }
 
-        private void btnPoista_Click(object sender, EventArgs e)
+        private void btnPoista_Click(object sender, EventArgs e) // Poistetaan asiakas
         {
             tbAsiakasID.ReadOnly = false;
             tbAsiakasID.Text = dgvAsiakkaat.CurrentRow.Cells[0].Value.ToString();
@@ -147,7 +147,7 @@ namespace Mokkivarausjarjestelma2._0
             populateDGV();
         }
 
-        private void btnMuokkaa_Click(object sender, EventArgs e)
+        private void btnMuokkaa_Click(object sender, EventArgs e) // muokataan asiakasta, eli datagridin kenttien tiedot tuodaan kaavakkeelle
         {
             tbAsiakasID.ReadOnly = false;
             tbAsiakasID.Text = dgvAsiakkaat.CurrentRow.Cells[0].Value.ToString();

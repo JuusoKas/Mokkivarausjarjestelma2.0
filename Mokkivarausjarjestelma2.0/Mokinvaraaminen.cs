@@ -31,8 +31,17 @@ namespace Mokkivarausjarjestelma2._0
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
             adapter.Fill(table);
             dgvVaraukset.DataSource = table;
+            cbVarausID.DataSource = table;
+
+            string query2 = "SELECT * FROM varauksen_palvelut";
+            DataTable table2 = new DataTable();
+            MySqlDataAdapter adapter2 = new MySqlDataAdapter(query2, connection);
+            adapter2.Fill(table2);
+            dgvVarauksenpalvelut.DataSource = table2;
 
         }
+
+
 
         public void OpenConnection()
         {
@@ -117,8 +126,12 @@ namespace Mokkivarausjarjestelma2._0
 
         }
 
-        private void btnCheckin_Click(object sender, EventArgs e)
+        private void btnCheckin_Click(object sender, EventArgs e) // Tässä tehdään varaus
         {
+
+
+       
+
             Validate();
 
             varausBindingSource.EndEdit();
@@ -126,21 +139,25 @@ namespace Mokkivarausjarjestelma2._0
             varausTableAdapter.Insert(long.Parse(lbAsiakasID.Text), long.Parse(lbMokkiID.Text), dtpVarauspaiva.Value, DateTime.Now, dtpSisaankirjautuminen.Value, dtpUloskirjautuminen.Value);
             populateDGV();
             RecursiveClearTextBoxes(this.Controls);
+            dtpSisaankirjautuminen.Value = DateTime.Today.Date;
+            dtpUloskirjautuminen.Value = DateTime.Today.Date;
+            lbMokkiID.Text = "";
+            lbAsiakasID.Text = "";
         }
 
-        private void btnAsiakas_Click(object sender, EventArgs e)
+        private void btnAsiakas_Click(object sender, EventArgs e) // avataan uusi asiakas välilehti, josta tehdään valinta varaukselle
         {
             Asiakaslista form2 = new Asiakaslista(this);
             form2.ShowDialog();
         }
 
-        private void btnMokki_Click(object sender, EventArgs e)
+        private void btnMokki_Click(object sender, EventArgs e) // avataan uusi mökki välilehti, josta tehdään valinta varaukselle
         {
             Mokkilista form3 = new Mokkilista(this);
             form3.ShowDialog();
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e) // tässä estetään muut kuin numeroiden syötöt, käytetään mm. hinta kenttään
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -148,13 +165,18 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
-        private void btnPeruuta_Click(object sender, EventArgs e)
+        private void btnPeruuta_Click(object sender, EventArgs e) // peruutetaan varaus, eli tyhjennetään kentät
         {
             dtpSisaankirjautuminen.Value = DateTime.Now.Date;
             dtpUloskirjautuminen.Value = DateTime.Now.Date;
+            RecursiveClearTextBoxes(this.Controls);
+            dtpSisaankirjautuminen.Value = DateTime.Today.Date;
+            dtpUloskirjautuminen.Value = DateTime.Today.Date;
+            lbMokkiID.Text = "";
+            lbAsiakasID.Text = "";
         }
 
-        private void dtpSisaankirjautuminen_ValueChanged(object sender, EventArgs e)
+        private void dtpSisaankirjautuminen_ValueChanged(object sender, EventArgs e) // Tarkistetaan, että päivämääriin ei syötetä virheellisiä valintoja
         {
             DateTime today = DateTime.Today.Date;
             if (dtpSisaankirjautuminen.Value < today)
@@ -176,7 +198,7 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
-        private void btnMuokkaa_Click(object sender, EventArgs e)
+        private void btnMuokkaa_Click(object sender, EventArgs e) // Muokkausnappi varaukselle. Vie tiedot datagridistä kenttiin.
         {
 
             tbVarausID.Text = dgvVaraukset.CurrentRow.Cells[0].Value.ToString();
@@ -184,16 +206,78 @@ namespace Mokkivarausjarjestelma2._0
             lbMokkiID.Text = dgvVaraukset.CurrentRow.Cells[2].Value.ToString();
             dtpVarauspaiva.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[3].Value.ToString());
             dtpSisaankirjautuminen.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[5].Value.ToString());
+            dtpVahvistuspaiva.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[4].Value.ToString());
             dtpUloskirjautuminen.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[6].Value.ToString());
 
             tabControl1.SelectedIndex = 0;
             tabControl1.SelectedTab = tabPage1;
 
+
         }
 
-        private void btnPoista_Click(object sender, EventArgs e)
+        private void btnPoista_Click(object sender, EventArgs e) // Poistonappi varaukselle. Poistaa tiedot valitun rivin tiedot datagridistä ja databasesta.
         {
 
+            tbVarausID.Text = dgvVaraukset.CurrentRow.Cells[0].Value.ToString();
+            lbAsiakasID.Text = dgvVaraukset.CurrentRow.Cells[1].Value.ToString();
+            lbMokkiID.Text = dgvVaraukset.CurrentRow.Cells[2].Value.ToString();
+            dtpVarauspaiva.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[3].Value.ToString());
+            dtpSisaankirjautuminen.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[5].Value.ToString());
+            dtpVahvistuspaiva.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[4].Value.ToString());
+            dtpUloskirjautuminen.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[6].Value.ToString());
+
+            Validate();
+            varausBindingSource1.EndEdit();
+            varausTableAdapter.Update(this.dataSet1);
+            varausTableAdapter.Delete(long.Parse(tbVarausID.Text), long.Parse(lbAsiakasID.Text), long.Parse(lbMokkiID.Text), dtpVarauspaiva.Value, dtpVahvistuspaiva.Value, dtpSisaankirjautuminen.Value, dtpUloskirjautuminen.Value);
+            populateDGV();
+
+
+
+        }
+
+        private void Mokinvaraaminen_Load_1(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dataSet1.varauksen_palvelut' table. You can move, or remove it, as needed.
+            this.varauksen_palvelutTableAdapter.Fill(this.dataSet1.varauksen_palvelut);
+            // TODO: This line of code loads data into the 'dataSet1.palvelu' table. You can move, or remove it, as needed.
+            this.palveluTableAdapter.Fill(this.dataSet1.palvelu);
+            // TODO: This line of code loads data into the 'dataSet1.asiakas' table. You can move, or remove it, as needed.
+            this.asiakasTableAdapter.Fill(this.dataSet1.asiakas);
+    
+        }
+
+        private void textBox1_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            
+        }
+
+        private void btnLisaa_Click(object sender, EventArgs e)
+        {
+            Validate();
+            varauksenpalvelutBindingSource.EndEdit();
+            varauksen_palvelutTableAdapter.Update(this.dataSet1);
+            varauksen_palvelutTableAdapter.Insert(long.Parse(cbVarausID.Text), long.Parse(lbPalvelu.Text), int.Parse(tbLukumaara.Text));
+            populateDGV();
+            RecursiveClearTextBoxes(this.Controls);
+        }
+
+        private void btnPoistapalvelu_Click(object sender, EventArgs e)
+        {
+            cbVarausID.Text = dgvVarauksenpalvelut.CurrentRow.Cells[0].Value.ToString();
+            cbPalveluID.Text = dgvVarauksenpalvelut.CurrentRow.Cells[1].Value.ToString();
+            tbLukumaara.Text = dgvVarauksenpalvelut.CurrentRow.Cells[2].Value.ToString();
+
+            Validate();
+            varauksenpalvelutBindingSource.EndEdit();
+            varauksen_palvelutTableAdapter.Update(this.dataSet1);
+            varauksen_palvelutTableAdapter.Delete(long.Parse(cbVarausID.Text), long.Parse(lbPalvelu.Text), int.Parse(tbLukumaara.Text));
+            populateDGV();
         }
     }
 }

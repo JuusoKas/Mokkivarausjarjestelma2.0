@@ -31,9 +31,6 @@ namespace Mokkivarausjarjestelma2._0
         {
             this.components = new System.ComponentModel.Container();
             this.dgvAsiakaslista = new System.Windows.Forms.DataGridView();
-            this.dataSet1 = new Mokkivarausjarjestelma2._0.DataSet1();
-            this.asiakasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.asiakasTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.asiakasTableAdapter();
             this.asiakasidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postinroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.etunimiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,13 +38,17 @@ namespace Mokkivarausjarjestelma2._0
             this.lahiosoiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.puhelinnroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.asiakasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet1 = new Mokkivarausjarjestelma2._0.DataSet1();
+            this.asiakasTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.asiakasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsiakaslista)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asiakasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvAsiakaslista
             // 
+            this.dgvAsiakaslista.AllowUserToAddRows = false;
             this.dgvAsiakaslista.AutoGenerateColumns = false;
             this.dgvAsiakaslista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAsiakaslista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -61,65 +62,73 @@ namespace Mokkivarausjarjestelma2._0
             this.dgvAsiakaslista.DataSource = this.asiakasBindingSource;
             this.dgvAsiakaslista.Location = new System.Drawing.Point(12, 42);
             this.dgvAsiakaslista.Name = "dgvAsiakaslista";
+            this.dgvAsiakaslista.ReadOnly = true;
             this.dgvAsiakaslista.Size = new System.Drawing.Size(747, 396);
             this.dgvAsiakaslista.TabIndex = 0;
             this.dgvAsiakaslista.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvAsiakaslista_MouseDoubleClick);
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // asiakasBindingSource
-            // 
-            this.asiakasBindingSource.DataMember = "asiakas";
-            this.asiakasBindingSource.DataSource = this.dataSet1;
-            // 
-            // asiakasTableAdapter
-            // 
-            this.asiakasTableAdapter.ClearBeforeFill = true;
             // 
             // asiakasidDataGridViewTextBoxColumn
             // 
             this.asiakasidDataGridViewTextBoxColumn.DataPropertyName = "asiakas_id";
             this.asiakasidDataGridViewTextBoxColumn.HeaderText = "asiakas_id";
             this.asiakasidDataGridViewTextBoxColumn.Name = "asiakasidDataGridViewTextBoxColumn";
+            this.asiakasidDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // postinroDataGridViewTextBoxColumn
             // 
             this.postinroDataGridViewTextBoxColumn.DataPropertyName = "postinro";
             this.postinroDataGridViewTextBoxColumn.HeaderText = "postinro";
             this.postinroDataGridViewTextBoxColumn.Name = "postinroDataGridViewTextBoxColumn";
+            this.postinroDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // etunimiDataGridViewTextBoxColumn
             // 
             this.etunimiDataGridViewTextBoxColumn.DataPropertyName = "etunimi";
             this.etunimiDataGridViewTextBoxColumn.HeaderText = "etunimi";
             this.etunimiDataGridViewTextBoxColumn.Name = "etunimiDataGridViewTextBoxColumn";
+            this.etunimiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // sukunimiDataGridViewTextBoxColumn
             // 
             this.sukunimiDataGridViewTextBoxColumn.DataPropertyName = "sukunimi";
             this.sukunimiDataGridViewTextBoxColumn.HeaderText = "sukunimi";
             this.sukunimiDataGridViewTextBoxColumn.Name = "sukunimiDataGridViewTextBoxColumn";
+            this.sukunimiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // lahiosoiteDataGridViewTextBoxColumn
             // 
             this.lahiosoiteDataGridViewTextBoxColumn.DataPropertyName = "lahiosoite";
             this.lahiosoiteDataGridViewTextBoxColumn.HeaderText = "lahiosoite";
             this.lahiosoiteDataGridViewTextBoxColumn.Name = "lahiosoiteDataGridViewTextBoxColumn";
+            this.lahiosoiteDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // puhelinnroDataGridViewTextBoxColumn
             // 
             this.puhelinnroDataGridViewTextBoxColumn.DataPropertyName = "puhelinnro";
             this.puhelinnroDataGridViewTextBoxColumn.HeaderText = "puhelinnro";
             this.puhelinnroDataGridViewTextBoxColumn.Name = "puhelinnroDataGridViewTextBoxColumn";
+            this.puhelinnroDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // asiakasBindingSource
+            // 
+            this.asiakasBindingSource.DataMember = "asiakas";
+            this.asiakasBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // asiakasTableAdapter
+            // 
+            this.asiakasTableAdapter.ClearBeforeFill = true;
             // 
             // Asiakaslista
             // 
@@ -131,8 +140,8 @@ namespace Mokkivarausjarjestelma2._0
             this.Text = "Asiakaslista";
             this.Load += new System.EventHandler(this.Asiakaslista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsiakaslista)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.asiakasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.ResumeLayout(false);
 
         }

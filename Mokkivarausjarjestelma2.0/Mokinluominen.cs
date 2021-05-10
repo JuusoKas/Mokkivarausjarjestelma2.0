@@ -20,6 +20,8 @@ namespace Mokkivarausjarjestelma2._0
 
             populateDGV();
             populateComboboxes();
+
+            
         }
 
         MySqlConnection connection = new MySqlConnection("datasource=localhost;port=3307;Initial Catalog=vn;username=root;Password=root");
@@ -35,7 +37,7 @@ namespace Mokkivarausjarjestelma2._0
 
         }
 
-        public void populateComboboxes()
+        public void populateComboboxes() // Täytetään comboboxit tietokannasta
         {
 
             string queryToiminta = "SELECT * FROM toimintaalue";
@@ -43,7 +45,7 @@ namespace Mokkivarausjarjestelma2._0
             MySqlDataAdapter adapter2 = new MySqlDataAdapter(queryToiminta, connection);
             DataSet dsCombobox = new DataSet();
             adapter2.Fill(dsCombobox,"toimintaalue");
-            cbToiminta.DisplayMember = "toimintaalue_id";
+            cbToiminta.DisplayMember = "nimi";
             cbToiminta.DataSource = dsCombobox.Tables["toimintaalue"];
 
             string queryPosti = "SELECT * FROM posti";
@@ -104,7 +106,7 @@ namespace Mokkivarausjarjestelma2._0
         }
 
 
-        private void RecursiveClearTextBoxes(Control.ControlCollection cc)
+        private void RecursiveClearTextBoxes(Control.ControlCollection cc) // Tyhjennetään tekstilaatikot
 
         {
 
@@ -126,29 +128,29 @@ namespace Mokkivarausjarjestelma2._0
 
         }
 
-        private void btnPeruuta_MouseClick(object sender, MouseEventArgs e)
+        private void btnPeruuta_MouseClick(object sender, MouseEventArgs e) // Tyhjennetään kaavake
         {
             RecursiveClearTextBoxes(this.Controls);
         }
 
-        private void btnTallenna_Click(object sender, EventArgs e)
+        private void btnTallenna_Click(object sender, EventArgs e) // Tallennetaan mökki
         {
             Validate();
 
             mokkiBindingSource.EndEdit();
             mokkiTableAdapter.Update(this.dataSet1);
-            mokkiTableAdapter.Insert(long.Parse(cbToiminta.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
+            mokkiTableAdapter.Insert(long.Parse(lbToimintanimi.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
             populateDGV();
             RecursiveClearTextBoxes(this.Controls);
 
         }
 
-        private void btnPoista_Click(object sender, EventArgs e)
+        private void btnPoista_Click(object sender, EventArgs e) // Poistetaan asiakas
         {
 
             tbMokkiID.ReadOnly = false;
             tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
-            cbToiminta.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
+            lbToimintanimi.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
             cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
             tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
             tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
@@ -159,19 +161,18 @@ namespace Mokkivarausjarjestelma2._0
             Validate();
             mokkiBindingSource.EndEdit();
             mokkiTableAdapter.Update(this.dataSet1);
-            mokkiTableAdapter.Delete(long.Parse(tbMokkiID.Text), long.Parse(cbToiminta.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
+            mokkiTableAdapter.Delete(long.Parse(tbMokkiID.Text), long.Parse(lbToimintanimi.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
             populateDGV();
 
 
         }
 
 
-        private void btnMuokkaa_Click(object sender, EventArgs e)
+        private void btnMuokkaa_Click(object sender, EventArgs e) // Tuodaan datagridistä valitun asiakkaan tiedot kaavakkeelle muokkausta varten
         {
-            tbMokkiID.ReadOnly = false;
 
             tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
-            cbToiminta.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
+            lbToimintanimi.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
             cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
             tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
             tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
@@ -185,37 +186,24 @@ namespace Mokkivarausjarjestelma2._0
 
         }
 
-        private void dgvMokit_Click(object sender, EventArgs e)
-        {
-
-            tabControl1.SelectedTab = tabPage1;
-
-            tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
-            cbToiminta.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
-            cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
-            tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
-            tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
-            tbKuvaus.Text = dgvMokit.CurrentRow.Cells[5].Value.ToString();
-            tbHenkilomaara.Text = dgvMokit.CurrentRow.Cells[6].Value.ToString();
-            tbVarustelu.Text = dgvMokit.CurrentRow.Cells[7].Value.ToString();
-
-        }
-
-
-
-        private void btnPeruuta_Click(object sender, EventArgs e)
+        private void btnPeruuta_Click(object sender, EventArgs e) // Peruutetaan luonti, eli tyhjennetään kentät
         {
 
 
             RecursiveClearTextBoxes(this.Controls);
         }
 
-        private void tbHenkilomaara_KeyPress(object sender, KeyPressEventArgs e)
+        private void tbHenkilomaara_KeyPress(object sender, KeyPressEventArgs e) // Tällä varmistetaan, että henkilömäärään syötetään vain numeroita
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
+        }
+
+        private void cbToiminta_TextChanged(object sender, EventArgs e)
+        {
+            lbToimintanimi.Text = cbToiminta.SelectedValue.ToString();
         }
     }
 }

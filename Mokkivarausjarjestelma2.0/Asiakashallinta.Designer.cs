@@ -32,6 +32,8 @@ namespace Mokkivarausjarjestelma2._0
             this.components = new System.ComponentModel.Container();
             this.lbAsiakkaat = new System.Windows.Forms.Label();
             this.tabAsiakkaat = new System.Windows.Forms.TabPage();
+            this.btnPoista = new System.Windows.Forms.Button();
+            this.btnMuokkaa = new System.Windows.Forms.Button();
             this.dgvAsiakkaat = new System.Windows.Forms.DataGridView();
             this.asiakasidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postinroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +59,8 @@ namespace Mokkivarausjarjestelma2._0
             this.lbPuhelin = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabUusi = new System.Windows.Forms.TabPage();
+            this.tbAsiakasID = new System.Windows.Forms.TextBox();
+            this.lbAsiakasID = new System.Windows.Forms.Label();
             this.cbPostinro = new System.Windows.Forms.ComboBox();
             this.postiBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbPostinro = new System.Windows.Forms.Label();
@@ -64,10 +68,6 @@ namespace Mokkivarausjarjestelma2._0
             this.asiakasTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.asiakasTableAdapter();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.postiTableAdapter();
-            this.btnPoista = new System.Windows.Forms.Button();
-            this.btnMuokkaa = new System.Windows.Forms.Button();
-            this.lbAsiakasID = new System.Windows.Forms.Label();
-            this.tbAsiakasID = new System.Windows.Forms.TextBox();
             this.tabAsiakkaat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsiakkaat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asiakasBindingSource)).BeginInit();
@@ -103,8 +103,29 @@ namespace Mokkivarausjarjestelma2._0
             this.tabAsiakkaat.Text = "Asiakkaat";
             this.tabAsiakkaat.UseVisualStyleBackColor = true;
             // 
+            // btnPoista
+            // 
+            this.btnPoista.Location = new System.Drawing.Point(604, 276);
+            this.btnPoista.Name = "btnPoista";
+            this.btnPoista.Size = new System.Drawing.Size(98, 23);
+            this.btnPoista.TabIndex = 5;
+            this.btnPoista.Text = "Poista";
+            this.btnPoista.UseVisualStyleBackColor = true;
+            this.btnPoista.Click += new System.EventHandler(this.btnPoista_Click);
+            // 
+            // btnMuokkaa
+            // 
+            this.btnMuokkaa.Location = new System.Drawing.Point(500, 275);
+            this.btnMuokkaa.Name = "btnMuokkaa";
+            this.btnMuokkaa.Size = new System.Drawing.Size(98, 23);
+            this.btnMuokkaa.TabIndex = 6;
+            this.btnMuokkaa.Text = "Muokkaa";
+            this.btnMuokkaa.UseVisualStyleBackColor = true;
+            this.btnMuokkaa.Click += new System.EventHandler(this.btnMuokkaa_Click);
+            // 
             // dgvAsiakkaat
             // 
+            this.dgvAsiakkaat.AllowUserToAddRows = false;
             this.dgvAsiakkaat.AutoGenerateColumns = false;
             this.dgvAsiakkaat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAsiakkaat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -118,6 +139,7 @@ namespace Mokkivarausjarjestelma2._0
             this.dgvAsiakkaat.DataSource = this.asiakasBindingSource;
             this.dgvAsiakkaat.Location = new System.Drawing.Point(1, 48);
             this.dgvAsiakkaat.Name = "dgvAsiakkaat";
+            this.dgvAsiakkaat.ReadOnly = true;
             this.dgvAsiakkaat.RowTemplate.Height = 25;
             this.dgvAsiakkaat.Size = new System.Drawing.Size(707, 221);
             this.dgvAsiakkaat.TabIndex = 1;
@@ -127,42 +149,49 @@ namespace Mokkivarausjarjestelma2._0
             this.asiakasidDataGridViewTextBoxColumn.DataPropertyName = "asiakas_id";
             this.asiakasidDataGridViewTextBoxColumn.HeaderText = "asiakas_id";
             this.asiakasidDataGridViewTextBoxColumn.Name = "asiakasidDataGridViewTextBoxColumn";
+            this.asiakasidDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // postinroDataGridViewTextBoxColumn
             // 
             this.postinroDataGridViewTextBoxColumn.DataPropertyName = "postinro";
             this.postinroDataGridViewTextBoxColumn.HeaderText = "postinro";
             this.postinroDataGridViewTextBoxColumn.Name = "postinroDataGridViewTextBoxColumn";
+            this.postinroDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // etunimiDataGridViewTextBoxColumn
             // 
             this.etunimiDataGridViewTextBoxColumn.DataPropertyName = "etunimi";
             this.etunimiDataGridViewTextBoxColumn.HeaderText = "etunimi";
             this.etunimiDataGridViewTextBoxColumn.Name = "etunimiDataGridViewTextBoxColumn";
+            this.etunimiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // sukunimiDataGridViewTextBoxColumn
             // 
             this.sukunimiDataGridViewTextBoxColumn.DataPropertyName = "sukunimi";
             this.sukunimiDataGridViewTextBoxColumn.HeaderText = "sukunimi";
             this.sukunimiDataGridViewTextBoxColumn.Name = "sukunimiDataGridViewTextBoxColumn";
+            this.sukunimiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // lahiosoiteDataGridViewTextBoxColumn
             // 
             this.lahiosoiteDataGridViewTextBoxColumn.DataPropertyName = "lahiosoite";
             this.lahiosoiteDataGridViewTextBoxColumn.HeaderText = "lahiosoite";
             this.lahiosoiteDataGridViewTextBoxColumn.Name = "lahiosoiteDataGridViewTextBoxColumn";
+            this.lahiosoiteDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // puhelinnroDataGridViewTextBoxColumn
             // 
             this.puhelinnroDataGridViewTextBoxColumn.DataPropertyName = "puhelinnro";
             this.puhelinnroDataGridViewTextBoxColumn.HeaderText = "puhelinnro";
             this.puhelinnroDataGridViewTextBoxColumn.Name = "puhelinnroDataGridViewTextBoxColumn";
+            this.puhelinnroDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // asiakasBindingSource
             // 
@@ -321,6 +350,23 @@ namespace Mokkivarausjarjestelma2._0
             this.tabUusi.Text = "Uusi asiakas";
             this.tabUusi.UseVisualStyleBackColor = true;
             // 
+            // tbAsiakasID
+            // 
+            this.tbAsiakasID.Location = new System.Drawing.Point(104, 31);
+            this.tbAsiakasID.Name = "tbAsiakasID";
+            this.tbAsiakasID.ReadOnly = true;
+            this.tbAsiakasID.Size = new System.Drawing.Size(100, 20);
+            this.tbAsiakasID.TabIndex = 15;
+            // 
+            // lbAsiakasID
+            // 
+            this.lbAsiakasID.AutoSize = true;
+            this.lbAsiakasID.Location = new System.Drawing.Point(18, 34);
+            this.lbAsiakasID.Name = "lbAsiakasID";
+            this.lbAsiakasID.Size = new System.Drawing.Size(58, 13);
+            this.lbAsiakasID.TabIndex = 14;
+            this.lbAsiakasID.Text = "Asiakas ID";
+            // 
             // cbPostinro
             // 
             this.cbPostinro.DataSource = this.postiBindingSource;
@@ -367,43 +413,6 @@ namespace Mokkivarausjarjestelma2._0
             // postiTableAdapter
             // 
             this.postiTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnPoista
-            // 
-            this.btnPoista.Location = new System.Drawing.Point(604, 276);
-            this.btnPoista.Name = "btnPoista";
-            this.btnPoista.Size = new System.Drawing.Size(98, 23);
-            this.btnPoista.TabIndex = 5;
-            this.btnPoista.Text = "Poista";
-            this.btnPoista.UseVisualStyleBackColor = true;
-            this.btnPoista.Click += new System.EventHandler(this.btnPoista_Click);
-            // 
-            // btnMuokkaa
-            // 
-            this.btnMuokkaa.Location = new System.Drawing.Point(500, 275);
-            this.btnMuokkaa.Name = "btnMuokkaa";
-            this.btnMuokkaa.Size = new System.Drawing.Size(98, 23);
-            this.btnMuokkaa.TabIndex = 6;
-            this.btnMuokkaa.Text = "Muokkaa";
-            this.btnMuokkaa.UseVisualStyleBackColor = true;
-            this.btnMuokkaa.Click += new System.EventHandler(this.btnMuokkaa_Click);
-            // 
-            // lbAsiakasID
-            // 
-            this.lbAsiakasID.AutoSize = true;
-            this.lbAsiakasID.Location = new System.Drawing.Point(18, 34);
-            this.lbAsiakasID.Name = "lbAsiakasID";
-            this.lbAsiakasID.Size = new System.Drawing.Size(58, 13);
-            this.lbAsiakasID.TabIndex = 14;
-            this.lbAsiakasID.Text = "Asiakas ID";
-            // 
-            // tbAsiakasID
-            // 
-            this.tbAsiakasID.Location = new System.Drawing.Point(104, 31);
-            this.tbAsiakasID.Name = "tbAsiakasID";
-            this.tbAsiakasID.ReadOnly = true;
-            this.tbAsiakasID.Size = new System.Drawing.Size(100, 20);
-            this.tbAsiakasID.TabIndex = 15;
             // 
             // Asiakashallinta
             // 
