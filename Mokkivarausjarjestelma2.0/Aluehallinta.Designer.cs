@@ -74,6 +74,7 @@ namespace Mokkivarausjarjestelma2._0
             this.dgridAlueet.Location = new System.Drawing.Point(10, 16);
             this.dgridAlueet.Margin = new System.Windows.Forms.Padding(2);
             this.dgridAlueet.Name = "dgridAlueet";
+            this.dgridAlueet.ReadOnly = true;
             this.dgridAlueet.RowTemplate.Height = 28;
             this.dgridAlueet.Size = new System.Drawing.Size(398, 309);
             this.dgridAlueet.TabIndex = 20;
@@ -131,7 +132,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPeruuta.Margin = new System.Windows.Forms.Padding(2);
             this.btnPeruuta.Name = "btnPeruuta";
             this.btnPeruuta.Size = new System.Drawing.Size(83, 25);
-            this.btnPeruuta.TabIndex = 27;
+            this.btnPeruuta.TabIndex = 4;
             this.btnPeruuta.Text = "Peruuta";
             this.btnPeruuta.UseVisualStyleBackColor = true;
             this.btnPeruuta.Click += new System.EventHandler(this.btnPeruuta_Click);
@@ -166,7 +167,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnTallenna.Margin = new System.Windows.Forms.Padding(2);
             this.btnTallenna.Name = "btnTallenna";
             this.btnTallenna.Size = new System.Drawing.Size(83, 25);
-            this.btnTallenna.TabIndex = 4;
+            this.btnTallenna.TabIndex = 3;
             this.btnTallenna.Text = "Tallenna";
             this.btnTallenna.UseVisualStyleBackColor = true;
             this.btnTallenna.Click += new System.EventHandler(this.btnTallenna_Click);
