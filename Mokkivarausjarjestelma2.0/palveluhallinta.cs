@@ -20,12 +20,13 @@ namespace Mokkivarausjarjestelma2._0
             populateDGV();
         }
 
-       private MySqlConnection connection = new MySqlConnection(
-            "datasource=localhost;port=3307;Initial Catalog='vn';username=root;Password=root");
+        private MySqlConnection connection = new MySqlConnection(
+             "datasource=localhost;port=3307;Initial Catalog='vn';username=root;Password=root");
 
         private string queryPalvelu = "SELECT * FROM palvelu";
 
-        
+
+
         private void palveluhallinta_Load(object sender, EventArgs e)
         {
             // toiminta-alueen datan tuonti
@@ -44,6 +45,7 @@ namespace Mokkivarausjarjestelma2._0
             cbTyyppi.DisplayMember = "tyyppi";
             cbTyyppi.DataSource = dscombo.Tables["palvelu"];
 
+
         }
 
         public void populateDGV()
@@ -56,6 +58,8 @@ namespace Mokkivarausjarjestelma2._0
             dgridPalvelut.DataSource = table;
 
         }
+
+        //SQL yhteyden avaus ja sulkeminen
         public void OpenConnection()
         {
             if (connection.State == ConnectionState.Closed)
@@ -69,14 +73,10 @@ namespace Mokkivarausjarjestelma2._0
         }
 
 
+        //clearataan valinnat
         private void btnPeruuta_Click(object sender, EventArgs e)
         {
-            numAlv.ResetText();
-            numHinta.ResetText();
-            tbKuvaus.Clear();
-            tbNimi.Clear();
-            lblHinta.Text = "";
-            lblPalID.Text = "";
+            RecursiveClearTextBoxes(this.Controls);
         }
 
         private void btnPoista_Click(object sender, EventArgs e)
@@ -85,20 +85,26 @@ namespace Mokkivarausjarjestelma2._0
             Validate();
             kaikkidataBindingSource.EndEdit();
             palveluTableAdapter.Update(this.kaikkidata);
-            palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
-                    int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Text), double.Parse(numAlv.Text));
-            populateDGV();
+            try
+            {
+                palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
+                        int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
+                populateDGV(); MessageBox.Show("Poisto onnistui", "Palvelut");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
 
-            numAlv.ResetText();
-            numHinta.ResetText();
-            tbKuvaus.Clear();
-            tbNimi.Clear();
+            RecursiveClearTextBoxes(this.Controls);
         }
 
         private void btnMuokkaa_Click(object sender, EventArgs e)
         {
             //vaihdetaan sivulle Lisää
             tabControl1.SelectedIndex = 0;
+            lblPalID.Visible = true;
         }
 
         private void dgridPalvelut_MouseClick(object sender, MouseEventArgs e)
@@ -138,23 +144,36 @@ namespace Mokkivarausjarjestelma2._0
         private void btnTallenna_Click(object sender, EventArgs e)
         {
             //uuden rivin lisäys
-            
             Validate();
             kaikkidataBindingSource.EndEdit();
-            palveluTableAdapter.Update(this.kaikkidata);
-            //TODO: tämä on ongelma---------------------
-            palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
-                    int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Text), double.Parse(numAlv.Text));
-            populateDGV();
+            int rivimaara = dgridPalvelut.Rows.Count;
+            //TODO: sql ongelma
+            try
+            {
+                for (int i = 0; i < rivimaara; i++)
+                {
+                    lblPalID.Visible = true;
+                    lblPalID.Text = rivimaara.ToString();
+                }
 
-            //RecursiveClearTextBoxes(this.Controls); 
+                palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
+                    int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
+                palveluTableAdapter.Update(this.kaikkidata);
+                populateDGV();
+                MessageBox.Show("Lisäys onnistui", "Palvelut");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            RecursiveClearTextBoxes(this.Controls);
             // palveluID(long), toimalueID(long), Nimi, Tyyppi(int), kuvaus, hinta(double), alv(double)
         }
 
         private void numHinta_ValueChanged(object sender, EventArgs e)
         {
-            lblPalID.Text = cbTyyppi.Text;
-            lblPalID.Visible = true;
             try
             {
                 if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
@@ -181,13 +200,16 @@ namespace Mokkivarausjarjestelma2._0
                 TextBox tb = ctrl as TextBox;
 
                 if (tb != null)
-
                     tb.Clear();
                 else
-
                     RecursiveClearTextBoxes(ctrl.Controls);
             }
         }
 
+        private void cbToimAlue_SelectedValueChanged(object sender, EventArgs e)
+        {
+            lblToimAlue.Visible = true;
+            lblToimAlue.Text = cbToimAlue.SelectedItem.ToString();
+        }
     }
 }

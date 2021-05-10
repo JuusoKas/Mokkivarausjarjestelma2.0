@@ -53,6 +53,7 @@ namespace Mokkivarausjarjestelma2._0
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.numAlv = new System.Windows.Forms.NumericUpDown();
             this.numHinta = new System.Windows.Forms.NumericUpDown();
             this.lblToimAlue = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -61,7 +62,7 @@ namespace Mokkivarausjarjestelma2._0
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.palveluTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.palveluTableAdapter();
             this.toimintaalueTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.toimintaalueTableAdapter();
-            this.numAlv = new System.Windows.Forms.NumericUpDown();
+            this.toimintaalueBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).BeginInit();
@@ -69,10 +70,11 @@ namespace Mokkivarausjarjestelma2._0
             ((System.ComponentModel.ISupportInitialize)(this.dgridPalvelut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidataBindingSource)).BeginInit();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numAlv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHinta)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numAlv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHinta
@@ -88,7 +90,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnPeruuta
             // 
-            this.btnPeruuta.Location = new System.Drawing.Point(579, 222);
+            this.btnPeruuta.Location = new System.Drawing.Point(579, 146);
             this.btnPeruuta.Margin = new System.Windows.Forms.Padding(2);
             this.btnPeruuta.Name = "btnPeruuta";
             this.btnPeruuta.Size = new System.Drawing.Size(74, 25);
@@ -99,7 +101,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnTallenna
             // 
-            this.btnTallenna.Location = new System.Drawing.Point(489, 222);
+            this.btnTallenna.Location = new System.Drawing.Point(489, 146);
             this.btnTallenna.Margin = new System.Windows.Forms.Padding(2);
             this.btnTallenna.Name = "btnTallenna";
             this.btnTallenna.Size = new System.Drawing.Size(74, 25);
@@ -125,7 +127,7 @@ namespace Mokkivarausjarjestelma2._0
             // cbToimAlue
             // 
             this.cbToimAlue.DataSource = this.toimintaalueBindingSource;
-            this.cbToimAlue.DisplayMember = "nimi";
+            this.cbToimAlue.DisplayMember = "toimintaalue_id";
             this.cbToimAlue.FormattingEnabled = true;
             this.cbToimAlue.Location = new System.Drawing.Point(164, 49);
             this.cbToimAlue.Margin = new System.Windows.Forms.Padding(2);
@@ -133,6 +135,7 @@ namespace Mokkivarausjarjestelma2._0
             this.cbToimAlue.Size = new System.Drawing.Size(77, 21);
             this.cbToimAlue.TabIndex = 1;
             this.cbToimAlue.ValueMember = "toimintaalue_id";
+            this.cbToimAlue.SelectedValueChanged += new System.EventHandler(this.cbToimAlue_SelectedValueChanged);
             // 
             // toimintaalueBindingSource
             // 
@@ -314,6 +317,20 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1.Text = "Lisää Palvelu";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // numAlv
+            // 
+            this.numAlv.DecimalPlaces = 2;
+            this.numAlv.Location = new System.Drawing.Point(562, 83);
+            this.numAlv.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numAlv.Name = "numAlv";
+            this.numAlv.Size = new System.Drawing.Size(59, 20);
+            this.numAlv.TabIndex = 6;
+            this.numAlv.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
+            // 
             // numHinta
             // 
             this.numHinta.DecimalPlaces = 2;
@@ -336,7 +353,7 @@ namespace Mokkivarausjarjestelma2._0
             // lblToimAlue
             // 
             this.lblToimAlue.AutoSize = true;
-            this.lblToimAlue.Location = new System.Drawing.Point(259, 52);
+            this.lblToimAlue.Location = new System.Drawing.Point(281, 52);
             this.lblToimAlue.Name = "lblToimAlue";
             this.lblToimAlue.Size = new System.Drawing.Size(98, 13);
             this.lblToimAlue.TabIndex = 20;
@@ -391,19 +408,10 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.toimintaalueTableAdapter.ClearBeforeFill = true;
             // 
-            // numAlv
+            // toimintaalueBindingSource1
             // 
-            this.numAlv.DecimalPlaces = 2;
-            this.numAlv.Location = new System.Drawing.Point(562, 83);
-            this.numAlv.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numAlv.Name = "numAlv";
-            this.numAlv.Size = new System.Drawing.Size(59, 20);
-            this.numAlv.TabIndex = 6;
-            this.numAlv.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
+            this.toimintaalueBindingSource1.DataMember = "toimintaalue";
+            this.toimintaalueBindingSource1.DataSource = this.kaikkidata;
             // 
             // palveluhallinta
             // 
@@ -422,10 +430,11 @@ namespace Mokkivarausjarjestelma2._0
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidataBindingSource)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numAlv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHinta)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numAlv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -463,5 +472,6 @@ namespace Mokkivarausjarjestelma2._0
         private KaikkidataTableAdapters.toimintaalueTableAdapter toimintaalueTableAdapter;
         private System.Windows.Forms.NumericUpDown numHinta;
         private System.Windows.Forms.NumericUpDown numAlv;
+        private System.Windows.Forms.BindingSource toimintaalueBindingSource1;
     }
 }
