@@ -21,7 +21,7 @@ namespace Mokkivarausjarjestelma2._0
             populateDGV();
             populateComboboxes();
 
-            
+
         }
 
         MySqlConnection connection = new MySqlConnection("datasource=localhost;port=3307;Initial Catalog=vn;username=root;Password=root");
@@ -44,7 +44,7 @@ namespace Mokkivarausjarjestelma2._0
 
             MySqlDataAdapter adapter2 = new MySqlDataAdapter(queryToiminta, connection);
             DataSet dsCombobox = new DataSet();
-            adapter2.Fill(dsCombobox,"toimintaalue");
+            adapter2.Fill(dsCombobox, "toimintaalue");
             cbToiminta.DisplayMember = "nimi";
             cbToiminta.DataSource = dsCombobox.Tables["toimintaalue"];
 
@@ -140,6 +140,7 @@ namespace Mokkivarausjarjestelma2._0
             mokkiBindingSource.EndEdit();
             mokkiTableAdapter.Update(this.dataSet1);
             mokkiTableAdapter.Insert(long.Parse(lbToimintanimi.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
+
             populateDGV();
             RecursiveClearTextBoxes(this.Controls);
 
@@ -204,6 +205,40 @@ namespace Mokkivarausjarjestelma2._0
         private void cbToiminta_TextChanged(object sender, EventArgs e)
         {
             lbToimintanimi.Text = cbToiminta.SelectedValue.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string cmdText = @"UPDATE mokki
+                 SET toimintaalue_id = @toimintaalue_id,
+                     postinro = @postinro,
+                     mokkinimi = @mokkinimi,
+                     katuosoite = @katuosoite,
+                    kuvaus = @kuvaus,
+                    henkilomaara = @henkilomaara,
+                    varustelu = @varustelu
+                 WHERE mokki_id = @mokki_id";
+
+            using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
+            {
+                connection.Open();
+                cmd.Parameters.AddWithValue("@toimintaalue_id", int.Parse(lbToimintanimi.Text));
+                cmd.Parameters.AddWithValue("@postinro", cbPosti.Text);
+                cmd.Parameters.AddWithValue("@mokkinimi", tbMokinnimi.Text);
+                cmd.Parameters.AddWithValue("@katuosoite", tbKatuosoite.Text);
+                cmd.Parameters.AddWithValue("@kuvaus", tbKuvaus.Text);
+                cmd.Parameters.AddWithValue("@henkilomaara", int.Parse(tbHenkilomaara.Text));
+                cmd.Parameters.AddWithValue("@varustelu", tbKuvaus.Text);
+                cmd.Parameters.AddWithValue("@mokki_id", int.Parse(tbMokkiID.Text));
+
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated > 0)
+                {
+
+                    populateDGV();
+
+                }
+            }
         }
     }
 }

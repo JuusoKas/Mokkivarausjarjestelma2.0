@@ -68,6 +68,7 @@ namespace Mokkivarausjarjestelma2._0
             this.asiakasTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.asiakasTableAdapter();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.postiTableAdapter();
+            this.btnPaivitaasiakas = new System.Windows.Forms.Button();
             this.tabAsiakkaat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsiakkaat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asiakasBindingSource)).BeginInit();
@@ -205,9 +206,9 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnPeru
             // 
-            this.btnPeru.Location = new System.Drawing.Point(171, 243);
+            this.btnPeru.Location = new System.Drawing.Point(191, 243);
             this.btnPeru.Name = "btnPeru";
-            this.btnPeru.Size = new System.Drawing.Size(90, 36);
+            this.btnPeru.Size = new System.Drawing.Size(77, 30);
             this.btnPeru.TabIndex = 11;
             this.btnPeru.Text = "Peruuta";
             this.btnPeru.UseVisualStyleBackColor = true;
@@ -217,9 +218,9 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.btnTallenna.Location = new System.Drawing.Point(21, 243);
             this.btnTallenna.Name = "btnTallenna";
-            this.btnTallenna.Size = new System.Drawing.Size(90, 36);
+            this.btnTallenna.Size = new System.Drawing.Size(74, 30);
             this.btnTallenna.TabIndex = 10;
-            this.btnTallenna.Text = "Tallenna";
+            this.btnTallenna.Text = "Uusi";
             this.btnTallenna.UseVisualStyleBackColor = true;
             this.btnTallenna.Click += new System.EventHandler(this.btnTallenna_Click);
             // 
@@ -325,6 +326,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tabUusi
             // 
+            this.tabUusi.Controls.Add(this.btnPaivitaasiakas);
             this.tabUusi.Controls.Add(this.tbAsiakasID);
             this.tabUusi.Controls.Add(this.lbAsiakasID);
             this.tabUusi.Controls.Add(this.cbPostinro);
@@ -414,6 +416,16 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.postiTableAdapter.ClearBeforeFill = true;
             // 
+            // btnPaivitaasiakas
+            // 
+            this.btnPaivitaasiakas.Location = new System.Drawing.Point(104, 243);
+            this.btnPaivitaasiakas.Name = "btnPaivitaasiakas";
+            this.btnPaivitaasiakas.Size = new System.Drawing.Size(81, 30);
+            this.btnPaivitaasiakas.TabIndex = 25;
+            this.btnPaivitaasiakas.Text = "Päivitä";
+            this.btnPaivitaasiakas.UseVisualStyleBackColor = true;
+            this.btnPaivitaasiakas.Click += new System.EventHandler(this.btnPaivitaasiakas_Click);
+            // 
             // Asiakashallinta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,5 +490,6 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.Button btnMuokkaa;
         private System.Windows.Forms.TextBox tbAsiakasID;
         private System.Windows.Forms.Label lbAsiakasID;
+        private System.Windows.Forms.Button btnPaivitaasiakas;
     }
 }

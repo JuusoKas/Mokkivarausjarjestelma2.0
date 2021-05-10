@@ -161,5 +161,37 @@ namespace Mokkivarausjarjestelma2._0
             tabControl1.SelectedIndex = 0;
             tabControl1.SelectedTab = tabUusi;
         }
+
+        private void btnPaivitaasiakas_Click(object sender, EventArgs e)
+        {
+            string cmdText = @"UPDATE asiakas
+                 SET postinro = @postinro,
+                     etunimi = @etunimi,
+                     sukunimi = @sukunimi,
+                     lahiosoite = @lahiosoite,
+                    email = @email,
+                    puhelinnro = @puhelinnro
+                 WHERE asiakas_id = @asiakas_id";
+
+            using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
+            {
+                connection.Open();
+                cmd.Parameters.AddWithValue("@postinro", cbPostinro.Text);
+                cmd.Parameters.AddWithValue("@etunimi", tbEtunimi.Text);
+                cmd.Parameters.AddWithValue("@sukunimi", tbSukunimi.Text);
+                cmd.Parameters.AddWithValue("@lahiosoite", tbLahiosoite.Text);
+                cmd.Parameters.AddWithValue("@email", tbSahkoposti.Text);
+                cmd.Parameters.AddWithValue("@puhelinnro", tbPuhnro.Text);
+                cmd.Parameters.AddWithValue("@asiakas_id", int.Parse(tbAsiakasID.Text));
+
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated > 0)
+                {
+
+                    populateDGV();
+
+                }
+            }
+        }
     }
 }

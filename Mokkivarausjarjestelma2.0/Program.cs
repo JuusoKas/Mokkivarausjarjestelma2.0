@@ -19,7 +19,7 @@ namespace Mokkivarausjarjestelma2._0
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Mokinvaraaminen());
+            Application.Run(new Asiakashallinta());
         }
     }
 }
