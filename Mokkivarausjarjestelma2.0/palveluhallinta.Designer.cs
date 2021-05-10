@@ -356,6 +356,7 @@ namespace Mokkivarausjarjestelma2._0
             this.numAlv.Size = new System.Drawing.Size(59, 20);
             this.numAlv.TabIndex = 6;
             this.numAlv.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
+            this.numAlv.Leave += new System.EventHandler(this.numHinta_ValueChanged);
             // 
             // numHinta
             // 
@@ -375,6 +376,7 @@ namespace Mokkivarausjarjestelma2._0
             this.numHinta.Size = new System.Drawing.Size(91, 20);
             this.numHinta.TabIndex = 5;
             this.numHinta.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
+            this.numHinta.Leave += new System.EventHandler(this.numHinta_ValueChanged);
             // 
             // label8
             // 

@@ -44,8 +44,6 @@ namespace Mokkivarausjarjestelma2._0
             adapter2.Fill(dscombo, "palvelu");
             cbTyyppi.DisplayMember = "tyyppi";
             cbTyyppi.DataSource = dscombo.Tables["palvelu"];
-            
-
 
         }
 
@@ -110,8 +108,7 @@ namespace Mokkivarausjarjestelma2._0
 
         private void dgridPalvelut_MouseClick(object sender, MouseEventArgs e)
         {
-            // palveluID(long), toimalueID(long), Nimi, Tyyppi(int), kuvaus, hinta(double), alv(double)
-            //rivivalinta
+            //rivivalinta tallennetaan textboxeihin
             lblPalID.Text = dgridPalvelut.CurrentRow.Cells[0].Value.ToString();
             cbToimAlue.Text = dgridPalvelut.CurrentRow.Cells[1].Value.ToString();
             tbNimi.Text = dgridPalvelut.CurrentRow.Cells[2].Value.ToString();
@@ -120,27 +117,6 @@ namespace Mokkivarausjarjestelma2._0
             numHinta.Text = dgridPalvelut.CurrentRow.Cells[5].Value.ToString();
             numAlv.Text = dgridPalvelut.CurrentRow.Cells[6].Value.ToString();
         }
-        /*
-        private void lblHinta_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
-                {
-                    double hinta = (double.Parse(numHinta.Text) * (1 + (int.Parse(numAlv.Text) / 100)));
-                    lblHinta.Text = hinta.ToString();
-                    lblHinta.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-            //TODO tarkista toimiiko oikein
-            
-        }
-        */
 
         private void btnTallenna_Click(object sender, EventArgs e)
         {
@@ -148,7 +124,7 @@ namespace Mokkivarausjarjestelma2._0
             Validate();
             kaikkidataBindingSource.EndEdit();
             int rivimaara = dgridPalvelut.Rows.Count;
-            //TODO: sql ongelma
+            
             try
             {
                 for (int i = 0; i < rivimaara; i++)
@@ -168,16 +144,13 @@ namespace Mokkivarausjarjestelma2._0
                 MessageBox.Show(ex.Message);
                 throw;
             }
-
             RecursiveClearTextBoxes(this.Controls);
-            // palveluID(long), toimalueID(long), Nimi, Tyyppi(int), kuvaus, hinta(double), alv(double)
         }
 
         //päivitetään koko hinta samalla kun arvoja muutetaan
         private void numHinta_ValueChanged(object sender, EventArgs e)
         {
-            try
-            {
+            
                 if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
                 {
                     lblHinta.Visible = true;
@@ -185,12 +158,6 @@ namespace Mokkivarausjarjestelma2._0
                     lblHinta.Text = hinta.ToString() + " euroa";
                     hinta = 0;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
         }
 
 
@@ -207,6 +174,10 @@ namespace Mokkivarausjarjestelma2._0
                     RecursiveClearTextBoxes(ctrl.Controls);
             }
         }
+
+
+
+
 
     }
 }
