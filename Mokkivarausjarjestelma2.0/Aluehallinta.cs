@@ -32,7 +32,7 @@ namespace Mokkivarausjarjestelma2._0
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
             adapter.Fill(table);
             dgridAlueet.DataSource = table;
-
+            dgridAlueet.Sort(dgridAlueet.Columns[0], ListSortDirection.Ascending);
         }
 
 
@@ -58,9 +58,19 @@ namespace Mokkivarausjarjestelma2._0
         {
             //Valmiista esimerkistä muutoksen tekeminen
             Validate();
-            aluedata1BindingSource.EndEdit();
-            toimintaalueTableAdapter.Update(this.aluedata1);
-            toimintaalueTableAdapter.Insert(tbAlueNimi.Text);
+            try
+            {
+                aluedata1BindingSource.EndEdit();
+                toimintaalueTableAdapter.Update(this.aluedata1);
+                toimintaalueTableAdapter.Insert(tbAlueNimi.Text);
+                MessageBox.Show("Päivitys onnistui", "Toiminta-alue");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            
 
             //päivityksenä toimii uudelleentäyttäminen
             populateDGV();
@@ -80,9 +90,17 @@ namespace Mokkivarausjarjestelma2._0
         {
             //rivin poisto
             Validate();
-            aluedata1BindingSource.EndEdit();
-            toimintaalueTableAdapter.Update(this.aluedata1);
-            toimintaalueTableAdapter.Delete(long.Parse(tbIDnro.Text), tbAlueNimi.Text);
+            try
+            {
+                aluedata1BindingSource.EndEdit();
+                toimintaalueTableAdapter.Update(this.aluedata1);
+                toimintaalueTableAdapter.Delete(long.Parse(tbIDnro.Text), tbAlueNimi.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
             populateDGV();
             tbAlueNimi.Clear();
             tbIDnro.Clear();
@@ -97,16 +115,24 @@ namespace Mokkivarausjarjestelma2._0
             
         }
 
-        private void btnLisaa_Click(object sender, EventArgs e)
+
+
+        private void RecursiveClearTextBoxes(Control.ControlCollection cc)
         {
-            //uuden rivin lisäys
-            Validate();
-            aluedata1BindingSource.EndEdit();
-            toimintaalueTableAdapter.Update(this.aluedata1);
-            toimintaalueTableAdapter.Insert(tbAlueNimi.Text);
-            populateDGV();
-            tbAlueNimi.Clear();
-            tbIDnro.Clear();
+            foreach (Control ctrl in cc)
+            {
+                TextBox tb = ctrl as TextBox;
+                if (tb != null)
+                    tb.Clear();
+                else
+                    RecursiveClearTextBoxes(ctrl.Controls);
+            }
+
+        }
+
+        private void btnPeruuta_Click(object sender, EventArgs e)
+        {
+            RecursiveClearTextBoxes(this.Controls);
         }
     }
 }

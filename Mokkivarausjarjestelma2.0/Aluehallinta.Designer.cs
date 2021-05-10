@@ -36,7 +36,7 @@ namespace Mokkivarausjarjestelma2._0
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabLisaa = new System.Windows.Forms.TabPage();
-            this.btnLisaa = new System.Windows.Forms.Button();
+            this.btnPeruuta = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tbIDnro = new System.Windows.Forms.TextBox();
             this.toimintaalueBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
@@ -68,6 +68,8 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // dgridAlueet
             // 
+            this.dgridAlueet.AllowUserToAddRows = false;
+            this.dgridAlueet.AllowUserToOrderColumns = true;
             this.dgridAlueet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgridAlueet.Location = new System.Drawing.Point(10, 16);
             this.dgridAlueet.Margin = new System.Windows.Forms.Padding(2);
@@ -108,7 +110,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tabLisaa
             // 
-            this.tabLisaa.Controls.Add(this.btnLisaa);
+            this.tabLisaa.Controls.Add(this.btnPeruuta);
             this.tabLisaa.Controls.Add(this.label3);
             this.tabLisaa.Controls.Add(this.tbIDnro);
             this.tabLisaa.Controls.Add(this.btnTallenna);
@@ -123,16 +125,16 @@ namespace Mokkivarausjarjestelma2._0
             this.tabLisaa.Text = "Lisää alue";
             this.tabLisaa.UseVisualStyleBackColor = true;
             // 
-            // btnLisaa
+            // btnPeruuta
             // 
-            this.btnLisaa.Location = new System.Drawing.Point(156, 264);
-            this.btnLisaa.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLisaa.Name = "btnLisaa";
-            this.btnLisaa.Size = new System.Drawing.Size(83, 25);
-            this.btnLisaa.TabIndex = 3;
-            this.btnLisaa.Text = "Lisää";
-            this.btnLisaa.UseVisualStyleBackColor = true;
-            this.btnLisaa.Click += new System.EventHandler(this.btnLisaa_Click);
+            this.btnPeruuta.Location = new System.Drawing.Point(252, 275);
+            this.btnPeruuta.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPeruuta.Name = "btnPeruuta";
+            this.btnPeruuta.Size = new System.Drawing.Size(83, 25);
+            this.btnPeruuta.TabIndex = 27;
+            this.btnPeruuta.Text = "Peruuta";
+            this.btnPeruuta.UseVisualStyleBackColor = true;
+            this.btnPeruuta.Click += new System.EventHandler(this.btnPeruuta_Click);
             // 
             // label3
             // 
@@ -160,7 +162,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnTallenna
             // 
-            this.btnTallenna.Location = new System.Drawing.Point(267, 264);
+            this.btnTallenna.Location = new System.Drawing.Point(156, 275);
             this.btnTallenna.Margin = new System.Windows.Forms.Padding(2);
             this.btnTallenna.Name = "btnTallenna";
             this.btnTallenna.Size = new System.Drawing.Size(83, 25);
@@ -304,6 +306,6 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.BindingSource toimintaalueBindingSource2;
         private System.Windows.Forms.BindingSource toimintaalueBindingSource1;
         private System.Windows.Forms.BindingSource toimintaalueBindingSource3;
-        private System.Windows.Forms.Button btnLisaa;
+        private System.Windows.Forms.Button btnPeruuta;
     }
 }
