@@ -172,6 +172,7 @@ namespace Mokkivarausjarjestelma2._0
             // palveluID(long), toimalueID(long), Nimi, Tyyppi(int), kuvaus, hinta(double), alv(double)
         }
 
+        //päivitetään koko hinta samalla kun arvoja muutetaan
         private void numHinta_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -206,10 +207,10 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
-        private void cbToimAlue_SelectedValueChanged(object sender, EventArgs e)
+        private void cbToimAlue_TextChanged(object sender, EventArgs e)
         {
-            lblToimAlue.Visible = true;
-            lblToimAlue.Text = cbToimAlue.SelectedItem.ToString();
+            lblToimalue.Visible = true;
+            lblToimalue.Text = cbToimAlue.SelectedValue.ToString();
         }
     }
 }

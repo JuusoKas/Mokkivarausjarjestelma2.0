@@ -55,7 +55,6 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.numAlv = new System.Windows.Forms.NumericUpDown();
             this.numHinta = new System.Windows.Forms.NumericUpDown();
-            this.lblToimAlue = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblPalID = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -63,6 +62,7 @@ namespace Mokkivarausjarjestelma2._0
             this.palveluTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.palveluTableAdapter();
             this.toimintaalueTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.toimintaalueTableAdapter();
             this.toimintaalueBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.lblToimalue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).BeginInit();
@@ -134,8 +134,8 @@ namespace Mokkivarausjarjestelma2._0
             this.cbToimAlue.Name = "cbToimAlue";
             this.cbToimAlue.Size = new System.Drawing.Size(77, 21);
             this.cbToimAlue.TabIndex = 1;
-            this.cbToimAlue.ValueMember = "toimintaalue_id";
-            this.cbToimAlue.SelectedValueChanged += new System.EventHandler(this.cbToimAlue_SelectedValueChanged);
+            this.cbToimAlue.ValueMember = "nimi";
+            this.cbToimAlue.TextChanged += new System.EventHandler(this.cbToimAlue_TextChanged);
             // 
             // toimintaalueBindingSource
             // 
@@ -289,9 +289,9 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblToimalue);
             this.tabPage1.Controls.Add(this.numAlv);
             this.tabPage1.Controls.Add(this.numHinta);
-            this.tabPage1.Controls.Add(this.lblToimAlue);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.lblPalID);
             this.tabPage1.Controls.Add(this.lblHinta);
@@ -350,16 +350,6 @@ namespace Mokkivarausjarjestelma2._0
             this.numHinta.TabIndex = 5;
             this.numHinta.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
             // 
-            // lblToimAlue
-            // 
-            this.lblToimAlue.AutoSize = true;
-            this.lblToimAlue.Location = new System.Drawing.Point(281, 52);
-            this.lblToimAlue.Name = "lblToimAlue";
-            this.lblToimAlue.Size = new System.Drawing.Size(98, 13);
-            this.lblToimAlue.TabIndex = 20;
-            this.lblToimAlue.Text = "ToimintaAlue tähän";
-            this.lblToimAlue.Visible = false;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -412,6 +402,16 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.toimintaalueBindingSource1.DataMember = "toimintaalue";
             this.toimintaalueBindingSource1.DataSource = this.kaikkidata;
+            // 
+            // lblToimalue
+            // 
+            this.lblToimalue.AutoSize = true;
+            this.lblToimalue.Location = new System.Drawing.Point(258, 57);
+            this.lblToimalue.Name = "lblToimalue";
+            this.lblToimalue.Size = new System.Drawing.Size(66, 13);
+            this.lblToimalue.TabIndex = 20;
+            this.lblToimalue.Text = "toiminta alue";
+            this.lblToimalue.Visible = false;
             // 
             // palveluhallinta
             // 
@@ -467,11 +467,11 @@ namespace Mokkivarausjarjestelma2._0
         private KaikkidataTableAdapters.palveluTableAdapter palveluTableAdapter;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblPalID;
-        private System.Windows.Forms.Label lblToimAlue;
         private System.Windows.Forms.BindingSource toimintaalueBindingSource;
         private KaikkidataTableAdapters.toimintaalueTableAdapter toimintaalueTableAdapter;
         private System.Windows.Forms.NumericUpDown numHinta;
         private System.Windows.Forms.NumericUpDown numAlv;
         private System.Windows.Forms.BindingSource toimintaalueBindingSource1;
+        private System.Windows.Forms.Label lblToimalue;
     }
 }
