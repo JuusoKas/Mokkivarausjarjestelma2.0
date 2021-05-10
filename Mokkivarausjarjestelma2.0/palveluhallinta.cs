@@ -44,6 +44,7 @@ namespace Mokkivarausjarjestelma2._0
             adapter2.Fill(dscombo, "palvelu");
             cbTyyppi.DisplayMember = "tyyppi";
             cbTyyppi.DataSource = dscombo.Tables["palvelu"];
+            
 
 
         }
@@ -89,7 +90,7 @@ namespace Mokkivarausjarjestelma2._0
             {
                 palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
                         int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
-                populateDGV(); MessageBox.Show("Poisto onnistui", "Palvelut");
+                
             }
             catch (Exception ex)
             {
@@ -207,10 +208,5 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
-        private void cbToimAlue_TextChanged(object sender, EventArgs e)
-        {
-            lblToimalue.Visible = true;
-            lblToimalue.Text = cbToimAlue.SelectedValue.ToString();
-        }
     }
 }
