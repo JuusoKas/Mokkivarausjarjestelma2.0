@@ -59,16 +59,16 @@ namespace Mokkivarausjarjestelma2._0
             this.lbPuhelin = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabUusi = new System.Windows.Forms.TabPage();
+            this.btnPaivitaasiakas = new System.Windows.Forms.Button();
             this.tbAsiakasID = new System.Windows.Forms.TextBox();
             this.lbAsiakasID = new System.Windows.Forms.Label();
             this.cbPostinro = new System.Windows.Forms.ComboBox();
             this.postiBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbPostinro = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupbox1 = new System.Windows.Forms.GroupBox();
             this.asiakasTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.asiakasTableAdapter();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.DataSet1TableAdapters.postiTableAdapter();
-            this.btnPaivitaasiakas = new System.Windows.Forms.Button();
             this.tabAsiakkaat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsiakkaat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asiakasBindingSource)).BeginInit();
@@ -76,7 +76,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tabControl1.SuspendLayout();
             this.tabUusi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.postiBindingSource)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.groupbox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -352,6 +352,16 @@ namespace Mokkivarausjarjestelma2._0
             this.tabUusi.Text = "Uusi asiakas";
             this.tabUusi.UseVisualStyleBackColor = true;
             // 
+            // btnPaivitaasiakas
+            // 
+            this.btnPaivitaasiakas.Location = new System.Drawing.Point(104, 243);
+            this.btnPaivitaasiakas.Name = "btnPaivitaasiakas";
+            this.btnPaivitaasiakas.Size = new System.Drawing.Size(81, 30);
+            this.btnPaivitaasiakas.TabIndex = 25;
+            this.btnPaivitaasiakas.Text = "Päivitä";
+            this.btnPaivitaasiakas.UseVisualStyleBackColor = true;
+            this.btnPaivitaasiakas.Click += new System.EventHandler(this.btnPaivitaasiakas_Click);
+            // 
             // tbAsiakasID
             // 
             this.tbAsiakasID.Location = new System.Drawing.Point(104, 31);
@@ -393,15 +403,17 @@ namespace Mokkivarausjarjestelma2._0
             this.lbPostinro.TabIndex = 12;
             this.lbPostinro.Text = "Postinumero";
             // 
-            // groupBox1
+            // groupbox1
             // 
-            this.groupBox1.Controls.Add(this.tabControl1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 40);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(717, 352);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupbox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupbox1.Controls.Add(this.tabControl1);
+            this.groupbox1.Location = new System.Drawing.Point(12, 40);
+            this.groupbox1.Name = "groupbox1";
+            this.groupbox1.Size = new System.Drawing.Size(717, 352);
+            this.groupbox1.TabIndex = 4;
+            this.groupbox1.TabStop = false;
+            this.groupbox1.Text = "  ";
             // 
             // asiakasTableAdapter
             // 
@@ -416,22 +428,12 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.postiTableAdapter.ClearBeforeFill = true;
             // 
-            // btnPaivitaasiakas
-            // 
-            this.btnPaivitaasiakas.Location = new System.Drawing.Point(104, 243);
-            this.btnPaivitaasiakas.Name = "btnPaivitaasiakas";
-            this.btnPaivitaasiakas.Size = new System.Drawing.Size(81, 30);
-            this.btnPaivitaasiakas.TabIndex = 25;
-            this.btnPaivitaasiakas.Text = "Päivitä";
-            this.btnPaivitaasiakas.UseVisualStyleBackColor = true;
-            this.btnPaivitaasiakas.Click += new System.EventHandler(this.btnPaivitaasiakas_Click);
-            // 
             // Asiakashallinta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupbox1);
             this.Name = "Asiakashallinta";
             this.Text = "Asiakashallinta";
             this.Load += new System.EventHandler(this.Asiakashallinta_Load);
@@ -444,7 +446,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tabUusi.ResumeLayout(false);
             this.tabUusi.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.postiBindingSource)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            this.groupbox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -470,7 +472,7 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.Label lbPuhelin;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabUusi;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupbox1;
         private DataSet1 AsiakkaatdataSet;
         private System.Windows.Forms.BindingSource asiakasBindingSource;
         private DataSet1TableAdapters.asiakasTableAdapter asiakasTableAdapter;

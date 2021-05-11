@@ -130,7 +130,7 @@ namespace Mokkivarausjarjestelma2._0
         {
 
 
-       
+
 
             Validate();
 
@@ -190,7 +190,7 @@ namespace Mokkivarausjarjestelma2._0
                 dtpUloskirjautuminen.Value = DateTime.Today.Date;
 
             }
-            if(dtpUloskirjautuminen.Value < dtpSisaankirjautuminen.Value)
+            if (dtpUloskirjautuminen.Value < dtpSisaankirjautuminen.Value)
             {
                 MessageBox.Show("Uloskirjautuminen ei voi olla aiemmin, kuin sisäänkirjautuminen!");
                 dtpSisaankirjautuminen.Value = DateTime.Today.Date;
@@ -244,17 +244,17 @@ namespace Mokkivarausjarjestelma2._0
             this.palveluTableAdapter.Fill(this.dataSet1.palvelu);
             // TODO: This line of code loads data into the 'dataSet1.asiakas' table. You can move, or remove it, as needed.
             this.asiakasTableAdapter.Fill(this.dataSet1.asiakas);
-    
+
         }
 
         private void textBox1_KeyPress_1(object sender, KeyPressEventArgs e)
         {
 
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-            
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
         }
 
         private void btnLisaa_Click(object sender, EventArgs e)
@@ -278,6 +278,38 @@ namespace Mokkivarausjarjestelma2._0
             varauksen_palvelutTableAdapter.Update(this.dataSet1);
             varauksen_palvelutTableAdapter.Delete(long.Parse(cbVarausID.Text), long.Parse(lbPalvelu.Text), int.Parse(tbLukumaara.Text));
             populateDGV();
+        }
+
+        private void btnMuokkaavarausta_Click(object sender, EventArgs e)
+        {
+            string cmdText = @"UPDATE varaus
+                 SET asiakas_id = @asiakas_id,
+                     mokki_mokki_id = @mokki_mokki_id,
+                     varattu_pvm = @varattu_pvm,
+                     vahvistus_pvm = @vahvistus_pvm,
+                    varattu_alkupvm = @varattu_alkupvm,
+                    varattu_loppupvm = @varattu_loppupvm
+                 WHERE varaus_id = @varaus_id";
+
+            using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
+            {
+                connection.Open();
+                cmd.Parameters.AddWithValue("@asiakas_id", lbAsiakasID.Text);
+                cmd.Parameters.AddWithValue("@mokki_mokki_id", lbMokkiID.Text);
+                cmd.Parameters.AddWithValue("@varattu_pvm", dtpVarauspaiva.Value);
+                cmd.Parameters.AddWithValue("@vahvistus_pvm", dtpVahvistuspaiva.Value);
+                cmd.Parameters.AddWithValue("@varattu_alkupvm", dtpSisaankirjautuminen.Value);
+                cmd.Parameters.AddWithValue("@varattu_loppupvm", dtpUloskirjautuminen.Value);
+                cmd.Parameters.AddWithValue("@varaus_id", int.Parse(tbVarausID.Text));
+
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated > 0)
+                {
+
+                    populateDGV();
+
+                }
+            }
         }
     }
 }
