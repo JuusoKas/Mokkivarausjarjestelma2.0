@@ -542,7 +542,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnLisaa
             // 
-            this.btnLisaa.Location = new System.Drawing.Point(8, 154);
+            this.btnLisaa.Location = new System.Drawing.Point(9, 154);
             this.btnLisaa.Name = "btnLisaa";
             this.btnLisaa.Size = new System.Drawing.Size(69, 31);
             this.btnLisaa.TabIndex = 46;

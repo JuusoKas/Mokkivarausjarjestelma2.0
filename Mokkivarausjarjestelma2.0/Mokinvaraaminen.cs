@@ -128,21 +128,34 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnCheckin_Click(object sender, EventArgs e) // Tässä tehdään varaus
         {
+            connection.Open();
 
+            string cmdText2 = "SELECT COUNT(*) FROM varaus WHERE varattu_alkupvm BETWEEN '" + dtpSisaankirjautuminen.Value.ToString("yyyy'/'MM'/'dd") + "' AND '" + dtpUloskirjautuminen.Value.ToString("yyyy'/'MM'/'dd") + "' AND mokki_mokki_id = " + lbMokkiID.Text;
 
+            MySqlCommand mySqlCmd = connection.CreateCommand();
+            mySqlCmd.CommandText = cmdText2;
 
+            int returnValue = Convert.ToInt32(mySqlCmd.ExecuteScalar());
 
-            Validate();
+            connection.Close();
 
-            varausBindingSource.EndEdit();
-            varausTableAdapter.Update(this.dataSet1);
-            varausTableAdapter.Insert(long.Parse(lbAsiakasID.Text), long.Parse(lbMokkiID.Text), dtpVarauspaiva.Value, DateTime.Now, dtpSisaankirjautuminen.Value, dtpUloskirjautuminen.Value);
-            populateDGV();
-            RecursiveClearTextBoxes(this.Controls);
-            dtpSisaankirjautuminen.Value = DateTime.Today.Date;
-            dtpUloskirjautuminen.Value = DateTime.Today.Date;
-            lbMokkiID.Text = "";
-            lbAsiakasID.Text = "";
+            if (returnValue == 0)
+            {
+
+                Validate();
+
+                varausBindingSource.EndEdit();
+                varausTableAdapter.Update(this.dataSet1);
+                varausTableAdapter.Insert(long.Parse(lbAsiakasID.Text), long.Parse(lbMokkiID.Text), dtpVarauspaiva.Value, DateTime.Now, dtpSisaankirjautuminen.Value, dtpUloskirjautuminen.Value);
+                populateDGV();
+                RecursiveClearTextBoxes(this.Controls);
+                dtpSisaankirjautuminen.Value = DateTime.Today.Date;
+                dtpUloskirjautuminen.Value = DateTime.Today.Date;
+                lbMokkiID.Text = "";
+                lbAsiakasID.Text = "";
+            }
+            else
+                MessageBox.Show("Varaus tälle mökille, ja tälle päivälle on jo olemassa! Vaihda mökki tai päivämäärä!");
         }
 
         private void btnAsiakas_Click(object sender, EventArgs e) // avataan uusi asiakas välilehti, josta tehdään valinta varaukselle
@@ -259,6 +272,7 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnLisaa_Click(object sender, EventArgs e)
         {
+
             Validate();
             varauksenpalvelutBindingSource.EndEdit();
             varauksen_palvelutTableAdapter.Update(this.dataSet1);
@@ -280,7 +294,7 @@ namespace Mokkivarausjarjestelma2._0
             populateDGV();
         }
 
-        private void btnMuokkaavarausta_Click(object sender, EventArgs e)
+        private void btnMuokkaavarausta_Click(object sender, EventArgs e) // varauksen muutosten päivitys
         {
             string cmdText = @"UPDATE varaus
                  SET asiakas_id = @asiakas_id,
@@ -311,5 +325,6 @@ namespace Mokkivarausjarjestelma2._0
                 }
             }
         }
+
     }
 }

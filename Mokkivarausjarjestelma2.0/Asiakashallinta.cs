@@ -162,7 +162,7 @@ namespace Mokkivarausjarjestelma2._0
             tabControl1.SelectedTab = tabUusi;
         }
 
-        private void btnPaivitaasiakas_Click(object sender, EventArgs e)
+        private void btnPaivitaasiakas_Click(object sender, EventArgs e) // asiakkaan muutosten päivitys
         {
             string cmdText = @"UPDATE asiakas
                  SET postinro = @postinro,
