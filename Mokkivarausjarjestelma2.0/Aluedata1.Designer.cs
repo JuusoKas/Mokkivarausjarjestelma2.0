@@ -4414,7 +4414,7 @@ namespace Mokkivarausjarjestelma2._0.Aluedata1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.AlueString;
+            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.VNpalveluString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4864,7 +4864,7 @@ namespace Mokkivarausjarjestelma2._0.Aluedata1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.AlueString;
+            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.VNpalveluString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5207,7 +5207,7 @@ namespace Mokkivarausjarjestelma2._0.Aluedata1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.AlueString;
+            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.VNpalveluString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5660,7 +5660,7 @@ namespace Mokkivarausjarjestelma2._0.Aluedata1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.AlueString;
+            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.VNpalveluString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6027,7 +6027,7 @@ namespace Mokkivarausjarjestelma2._0.Aluedata1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.AlueString;
+            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.VNpalveluString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6367,7 +6367,7 @@ namespace Mokkivarausjarjestelma2._0.Aluedata1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.AlueString;
+            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.VNpalveluString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6683,7 +6683,7 @@ namespace Mokkivarausjarjestelma2._0.Aluedata1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.AlueString;
+            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.VNpalveluString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7015,7 +7015,7 @@ namespace Mokkivarausjarjestelma2._0.Aluedata1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.AlueString;
+            this._connection.ConnectionString = global::Mokkivarausjarjestelma2._0.Properties.Settings.Default.VNpalveluString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
