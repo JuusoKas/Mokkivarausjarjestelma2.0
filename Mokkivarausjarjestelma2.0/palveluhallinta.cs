@@ -44,7 +44,6 @@ namespace Mokkivarausjarjestelma2._0
             adapter2.Fill(dscombo, "palvelu");
             cbTyyppi.DisplayMember = "tyyppi";
             cbTyyppi.DataSource = dscombo.Tables["palvelu"];
-
         }
 
         public void populateDGV()
@@ -88,7 +87,7 @@ namespace Mokkivarausjarjestelma2._0
             {
                 palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
                         int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
-                
+
             }
             catch (Exception ex)
             {
@@ -98,6 +97,8 @@ namespace Mokkivarausjarjestelma2._0
 
             RecursiveClearTextBoxes(this.Controls);
         }
+
+
 
         private void btnMuokkaa_Click(object sender, EventArgs e)
         {
@@ -124,14 +125,11 @@ namespace Mokkivarausjarjestelma2._0
             Validate();
             kaikkidataBindingSource.EndEdit();
             int rivimaara = dgridPalvelut.Rows.Count;
-            
+            rivimaara++;
+            lblPalID.Text = rivimaara.ToString();
+            rivimaara = 0;
             try
             {
-                for (int i = 0; i < rivimaara; i++)
-                {
-                    lblPalID.Visible = true;
-                    lblPalID.Text = rivimaara.ToString();
-                }
 
                 palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
                     int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
@@ -150,14 +148,14 @@ namespace Mokkivarausjarjestelma2._0
         //päivitetään koko hinta samalla kun arvoja muutetaan
         private void numHinta_ValueChanged(object sender, EventArgs e)
         {
-            
-                if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
-                {
-                    lblHinta.Visible = true;
-                    double hinta = (double.Parse(numHinta.Text) * (1 + (double.Parse(numAlv.Text) / 100)));
-                    lblHinta.Text = hinta.ToString() + " euroa";
-                    hinta = 0;
-                }
+
+            if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
+            {
+                lblHinta.Visible = true;
+                double hinta = (double.Parse(numHinta.Text) * (1 + (double.Parse(numAlv.Text) / 100)));
+                lblHinta.Text = hinta.ToString() + " euroa";
+                hinta = 0;
+            }
         }
 
 
@@ -175,9 +173,39 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
+        //muokkaustoiminto
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string cmdText = @"UPDATE palvelu
+                 SET toimintaalue_id = @toimintaalue_id,
+                     nimi = @nimi,
+                     tyyppi = @tyyppi,
+                     kuvaus = @kuvaus,
+                     hinta = @hinta,
+                     alv = @alv
+                 WHERE palvelu_id = @palvelu_id";
+
+            using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
+            {
+                connection.Open();
+                cmd.Parameters.AddWithValue("@toimintaalue_id", int.Parse(lblToimalue.Text));
+                cmd.Parameters.AddWithValue("@nimi", tbNimi.Text);
+                cmd.Parameters.AddWithValue("@tyyppi", int.Parse(cbTyyppi.Text));
+                cmd.Parameters.AddWithValue("@kuvaus", tbKuvaus.Text);
+                cmd.Parameters.AddWithValue("@hinta", double.Parse(numHinta.Text));
+                cmd.Parameters.AddWithValue("@alv", double.Parse(numAlv.Text));
+                cmd.Parameters.AddWithValue("@palvelu_id", int.Parse(lblPalID.Text));
+
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated > 0)
+                {
+                    populateDGV();
+                }
+            }
 
 
 
 
+        }
     }
 }
