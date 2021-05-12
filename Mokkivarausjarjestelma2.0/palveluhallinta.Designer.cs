@@ -144,7 +144,6 @@ namespace Mokkivarausjarjestelma2._0
             this.cbToimAlue.Size = new System.Drawing.Size(77, 21);
             this.cbToimAlue.TabIndex = 1;
             this.cbToimAlue.ValueMember = "toimintaalue_id";
-            this.cbToimAlue.TextChanged += new System.EventHandler(this.cbToimAlue_TextChanged);
             // 
             // toimintaalueBindingSource
             // 

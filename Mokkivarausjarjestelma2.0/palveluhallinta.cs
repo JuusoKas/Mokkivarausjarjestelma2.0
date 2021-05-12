@@ -1,5 +1,5 @@
 ﻿
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,10 +23,6 @@ namespace Mokkivarausjarjestelma2._0
         private MySqlConnection connection = new MySqlConnection(
              "datasource=localhost;port=3307;Initial Catalog='vn';username=root;Password=root");
 
-        private string queryPalvelu = "SELECT * FROM palvelu";
-
-
-
         private void palveluhallinta_Load(object sender, EventArgs e)
         {
             // toiminta-alueen datan tuonti
@@ -45,8 +41,6 @@ namespace Mokkivarausjarjestelma2._0
             adapter2.Fill(dscombo, "palvelu");
             cbTyyppi.DisplayMember = "tyyppi";
             cbTyyppi.DataSource = dscombo.Tables["palvelu"];
-
-
         }
 
         public void populateDGV()
@@ -113,6 +107,7 @@ namespace Mokkivarausjarjestelma2._0
 
         private void dgridPalvelut_MouseClick(object sender, MouseEventArgs e)
         {
+            //rivivalinta tallennetaan textboxeihin
             lblPalID.Text = dgridPalvelut.CurrentRow.Cells[0].Value.ToString();
             cbToimAlue.Text = dgridPalvelut.CurrentRow.Cells[1].Value.ToString();
             tbNimi.Text = dgridPalvelut.CurrentRow.Cells[2].Value.ToString();
@@ -121,41 +116,20 @@ namespace Mokkivarausjarjestelma2._0
             numHinta.Text = dgridPalvelut.CurrentRow.Cells[5].Value.ToString();
             numAlv.Text = dgridPalvelut.CurrentRow.Cells[6].Value.ToString();
         }
-        /*
-        private void lblHinta_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
-                {
-                    double hinta = (double.Parse(numHinta.Text) * (1 + (int.Parse(numAlv.Text) / 100)));
-                    lblHinta.Text = hinta.ToString();
-                    lblHinta.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-            //TODO tarkista toimiiko oikein
-
-        }
-        */
 
         private void btnTallenna_Click(object sender, EventArgs e)
         {
+            //uuden rivin
             Validate();
             kaikkidataBindingSource.EndEdit();
             int rivimaara = dgridPalvelut.Rows.Count;
+            rivimaara++;
+            lblPalID.Text = rivimaara.ToString();
+            rivimaara = 0;
             try
             {
-                for (int i = 0; i < rivimaara; i++)
-                {
-                    lblPalID.Visible = true;
-                    lblPalID.Text = rivimaara.ToString();
-                }
 
+                palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
                     int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
                 palveluTableAdapter.Update(this.kaikkidata);
                 populateDGV();
@@ -166,26 +140,19 @@ namespace Mokkivarausjarjestelma2._0
                 MessageBox.Show(ex.Message);
                 throw;
             }
-
             RecursiveClearTextBoxes(this.Controls);
-            // palveluID(long), toimalueID(long), Nimi, Tyyppi(int), kuvaus, hinta(double), alv(double)
         }
 
         //päivitetään koko hinta samalla kun arvoja muutetaan
         private void numHinta_ValueChanged(object sender, EventArgs e)
         {
+
             if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
             {
                 lblHinta.Visible = true;
                 double hinta = (double.Parse(numHinta.Text) * (1 + (double.Parse(numAlv.Text) / 100)));
                 lblHinta.Text = hinta.ToString() + " euroa";
                 hinta = 0;
-            }
-        }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
             }
         }
 
@@ -204,7 +171,50 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
+        //Päivitetään olemassa olevat tiedot
+        private void Paivita_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string cmdText = @"UPDATE palvelu
+                 SET toimintaalue_id = @toimintaalue_id,
+                     nimi = @nimi,
+                     tyyppi = @tyyppi,
+                     kuvaus = @kuvaus,
+                     hinta = @hinta,
+                     alv = @alv
+                 WHERE palvelu_id = @palvelu_id";
+
+                using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.AddWithValue("@toimintaalue_id", int.Parse(cbToimAlue.Text));
+                    cmd.Parameters.AddWithValue("@nimi", tbNimi.Text);
+                    cmd.Parameters.AddWithValue("@tyyppi", int.Parse(cbTyyppi.Text));
+                    cmd.Parameters.AddWithValue("@kuvaus", tbKuvaus.Text);
+                    cmd.Parameters.AddWithValue("@hinta", double.Parse(numHinta.Text));
+                    cmd.Parameters.AddWithValue("@alv", double.Parse(numAlv.Text));
+                    cmd.Parameters.AddWithValue("@palvelu_id", int.Parse(lblPalID.Text));
+
+                    int rowsUpdated = cmd.ExecuteNonQuery();
+                    if (rowsUpdated > 0)
+                    {
+                        populateDGV();
+                    }
+                }
+                populateDGV();
+                MessageBox.Show("Päivitys onnistui", "Palvelut");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        private void numHinta_Leave(object sender, EventArgs e)
+        {
+            numHinta_ValueChanged(sender, e);
         }
     }
 }

@@ -87,6 +87,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aluedata1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Aluedata1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Aluehallinta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aluehallinta.Designer.cs">
+      <DependentUpon>Aluehallinta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kaikkidata.cs">
       <DependentUpon>Kaikkidata.xsd</DependentUpon>
     </Compile>
@@ -94,6 +105,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Kaikkidata.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="paavalikko.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="paavalikko.Designer.cs">
+      <DependentUpon>paavalikko.cs</DependentUpon>
     </Compile>
     <Compile Include="palveluhallinta.cs">
       <SubType>Form</SubType>
@@ -103,6 +120,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Aluehallinta.resx">
+      <DependentUpon>Aluehallinta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="paavalikko.resx">
+      <DependentUpon>paavalikko.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="palveluhallinta.resx">
       <DependentUpon>palveluhallinta.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +138,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Aluedata1.xsc">
+      <DependentUpon>Aluedata1.xsd</DependentUpon>
+    </None>
+    <None Include="Aluedata1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Aluedata1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Aluedata1.xss">
+      <DependentUpon>Aluedata1.xsd</DependentUpon>
+    </None>
     <None Include="Kaikkidata.xsc">
       <DependentUpon>Kaikkidata.xsd</DependentUpon>
     </None>
