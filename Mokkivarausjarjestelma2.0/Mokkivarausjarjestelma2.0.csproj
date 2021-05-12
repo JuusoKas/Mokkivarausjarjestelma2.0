@@ -48,11 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="raportointi.cs">
+    <Compile Include="raportti.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="raportointi.Designer.cs">
-      <DependentUpon>raportointi.cs</DependentUpon>
+    <Compile Include="raportti.Designer.cs">
+      <DependentUpon>raportti.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,8 +65,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="raportointi.resx">
-      <DependentUpon>raportointi.cs</DependentUpon>
+    <EmbeddedResource Include="raportti.resx">
+      <DependentUpon>raportti.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
