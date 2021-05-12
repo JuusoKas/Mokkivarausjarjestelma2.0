@@ -27,9 +27,9 @@ namespace Mokkivarausjarjestelma2._0.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Dsn=Village Newbies;uid=root")]
-        public string VNpalveluString {
+        public string ConnectionString {
             get {
-                return ((string)(this["VNpalveluString"]));
+                return ((string)(this["ConnectionString"]));
             }
         }
     }

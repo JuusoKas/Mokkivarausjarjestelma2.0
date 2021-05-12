@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
 
 namespace Mokkivarausjarjestelma2._0
 {
@@ -16,7 +19,7 @@ namespace Mokkivarausjarjestelma2._0
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new paavalikko());
+            Application.Run(new Mokinvaraaminen());
         }
     }
 }
