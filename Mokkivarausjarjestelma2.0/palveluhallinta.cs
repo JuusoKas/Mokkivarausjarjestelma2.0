@@ -39,6 +39,7 @@ namespace Mokkivarausjarjestelma2._0
             lblPalID.Visible = true;
 
             //täytetään tyyppi-combobox
+            string queryPalvelu = "SELECT * FROM palvelu";
             MySqlDataAdapter adapter2 = new MySqlDataAdapter(queryPalvelu, connection);
             DataSet dscombo = new DataSet();
             adapter2.Fill(dscombo, "palvelu");
@@ -77,6 +78,7 @@ namespace Mokkivarausjarjestelma2._0
         private void btnPeruuta_Click(object sender, EventArgs e)
         {
             RecursiveClearTextBoxes(this.Controls);
+            lblHinta.Text = "";
         }
 
         private void btnPoista_Click(object sender, EventArgs e)
@@ -87,9 +89,9 @@ namespace Mokkivarausjarjestelma2._0
             palveluTableAdapter.Update(this.kaikkidata);
             try
             {
-                palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(lblToimalue.Text), tbNimi.Text,
+                palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
                         int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
-                populateDGV(); MessageBox.Show("Poisto onnistui", "Palvelut");
+                populateDGV();
             }
             catch (Exception ex)
             {
@@ -100,6 +102,8 @@ namespace Mokkivarausjarjestelma2._0
             RecursiveClearTextBoxes(this.Controls);
         }
 
+
+
         private void btnMuokkaa_Click(object sender, EventArgs e)
         {
             //vaihdetaan sivulle Lisää
@@ -109,8 +113,6 @@ namespace Mokkivarausjarjestelma2._0
 
         private void dgridPalvelut_MouseClick(object sender, MouseEventArgs e)
         {
-            // palveluID(long), toimalueID(long), Nimi, Tyyppi(int), kuvaus, hinta(double), alv(double)
-            //rivivalinta
             lblPalID.Text = dgridPalvelut.CurrentRow.Cells[0].Value.ToString();
             cbToimAlue.Text = dgridPalvelut.CurrentRow.Cells[1].Value.ToString();
             tbNimi.Text = dgridPalvelut.CurrentRow.Cells[2].Value.ToString();
@@ -137,17 +139,15 @@ namespace Mokkivarausjarjestelma2._0
                 throw;
             }
             //TODO tarkista toimiiko oikein
-            
+
         }
         */
 
         private void btnTallenna_Click(object sender, EventArgs e)
         {
-            //uuden rivin lisäys
             Validate();
             kaikkidataBindingSource.EndEdit();
             int rivimaara = dgridPalvelut.Rows.Count;
-            //TODO: sql ongelma
             try
             {
                 for (int i = 0; i < rivimaara; i++)
@@ -156,7 +156,6 @@ namespace Mokkivarausjarjestelma2._0
                     lblPalID.Text = rivimaara.ToString();
                 }
 
-                palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(lblToimalue.Text), tbNimi.Text,
                     int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
                 palveluTableAdapter.Update(this.kaikkidata);
                 populateDGV();
@@ -175,16 +174,14 @@ namespace Mokkivarausjarjestelma2._0
         //päivitetään koko hinta samalla kun arvoja muutetaan
         private void numHinta_ValueChanged(object sender, EventArgs e)
         {
-            try
+            if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
             {
-                if (numHinta.Text.Length > 0 && numAlv.Text.Length > 0)
-                {
-                    lblHinta.Visible = true;
-                    double hinta = (double.Parse(numHinta.Text) * (1 + (double.Parse(numAlv.Text) / 100)));
-                    lblHinta.Text = hinta.ToString() + " euroa";
-                    hinta = 0;
-                }
+                lblHinta.Visible = true;
+                double hinta = (double.Parse(numHinta.Text) * (1 + (double.Parse(numAlv.Text) / 100)));
+                lblHinta.Text = hinta.ToString() + " euroa";
+                hinta = 0;
             }
+        }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -207,10 +204,7 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
-        private void cbToimAlue_TextChanged(object sender, EventArgs e)
         {
-            lblToimalue.Visible = true;
-            lblToimalue.Text = cbToimAlue.SelectedValue.ToString();
         }
     }
 }

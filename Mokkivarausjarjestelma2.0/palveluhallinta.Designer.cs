@@ -49,10 +49,19 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPoista = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgridPalvelut = new System.Windows.Forms.DataGridView();
+            this.palveluidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toimintaalueidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nimiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tyyppiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kuvausDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hintaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alvDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kaikkidataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblToimalue = new System.Windows.Forms.Label();
             this.numAlv = new System.Windows.Forms.NumericUpDown();
             this.numHinta = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
@@ -253,9 +262,17 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // dgridPalvelut
             // 
-            this.dgridPalvelut.AllowUserToAddRows = false;
-            this.dgridPalvelut.AllowUserToOrderColumns = true;
+            this.dgridPalvelut.AutoGenerateColumns = false;
             this.dgridPalvelut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgridPalvelut.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.palveluidDataGridViewTextBoxColumn,
+            this.toimintaalueidDataGridViewTextBoxColumn,
+            this.nimiDataGridViewTextBoxColumn,
+            this.tyyppiDataGridViewTextBoxColumn,
+            this.kuvausDataGridViewTextBoxColumn,
+            this.hintaDataGridViewTextBoxColumn,
+            this.alvDataGridViewTextBoxColumn});
+            this.dgridPalvelut.DataSource = this.palveluBindingSource;
             this.dgridPalvelut.Location = new System.Drawing.Point(2, 2);
             this.dgridPalvelut.Margin = new System.Windows.Forms.Padding(2);
             this.dgridPalvelut.Name = "dgridPalvelut";
@@ -264,6 +281,48 @@ namespace Mokkivarausjarjestelma2._0
             this.dgridPalvelut.Size = new System.Drawing.Size(751, 221);
             this.dgridPalvelut.TabIndex = 0;
             this.dgridPalvelut.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgridPalvelut_MouseClick);
+            // 
+            // palveluidDataGridViewTextBoxColumn
+            // 
+            this.palveluidDataGridViewTextBoxColumn.DataPropertyName = "palvelu_id";
+            this.palveluidDataGridViewTextBoxColumn.HeaderText = "palvelu_id";
+            this.palveluidDataGridViewTextBoxColumn.Name = "palveluidDataGridViewTextBoxColumn";
+            // 
+            // toimintaalueidDataGridViewTextBoxColumn
+            // 
+            this.toimintaalueidDataGridViewTextBoxColumn.DataPropertyName = "toimintaalue_id";
+            this.toimintaalueidDataGridViewTextBoxColumn.HeaderText = "toimintaalue_id";
+            this.toimintaalueidDataGridViewTextBoxColumn.Name = "toimintaalueidDataGridViewTextBoxColumn";
+            // 
+            // nimiDataGridViewTextBoxColumn
+            // 
+            this.nimiDataGridViewTextBoxColumn.DataPropertyName = "nimi";
+            this.nimiDataGridViewTextBoxColumn.HeaderText = "nimi";
+            this.nimiDataGridViewTextBoxColumn.Name = "nimiDataGridViewTextBoxColumn";
+            // 
+            // tyyppiDataGridViewTextBoxColumn
+            // 
+            this.tyyppiDataGridViewTextBoxColumn.DataPropertyName = "tyyppi";
+            this.tyyppiDataGridViewTextBoxColumn.HeaderText = "tyyppi";
+            this.tyyppiDataGridViewTextBoxColumn.Name = "tyyppiDataGridViewTextBoxColumn";
+            // 
+            // kuvausDataGridViewTextBoxColumn
+            // 
+            this.kuvausDataGridViewTextBoxColumn.DataPropertyName = "kuvaus";
+            this.kuvausDataGridViewTextBoxColumn.HeaderText = "kuvaus";
+            this.kuvausDataGridViewTextBoxColumn.Name = "kuvausDataGridViewTextBoxColumn";
+            // 
+            // hintaDataGridViewTextBoxColumn
+            // 
+            this.hintaDataGridViewTextBoxColumn.DataPropertyName = "hinta";
+            this.hintaDataGridViewTextBoxColumn.HeaderText = "hinta";
+            this.hintaDataGridViewTextBoxColumn.Name = "hintaDataGridViewTextBoxColumn";
+            // 
+            // alvDataGridViewTextBoxColumn
+            // 
+            this.alvDataGridViewTextBoxColumn.DataPropertyName = "alv";
+            this.alvDataGridViewTextBoxColumn.HeaderText = "alv";
+            this.alvDataGridViewTextBoxColumn.Name = "alvDataGridViewTextBoxColumn";
             // 
             // kaikkidataBindingSource
             // 
@@ -292,6 +351,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.lblToimalue);
             this.tabPage1.Controls.Add(this.numAlv);
             this.tabPage1.Controls.Add(this.numHinta);
@@ -320,6 +380,26 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1.Text = "Lisää Palvelu";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(562, 194);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(74, 25);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Päivitä";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Paivita_Click);
+            // 
+            // lblToimalue
+            // 
+            this.lblToimalue.AutoSize = true;
+            this.lblToimalue.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.toimintaalueBindingSource, "nimi", true));
+            this.lblToimalue.Location = new System.Drawing.Point(258, 57);
+            this.lblToimalue.Name = "lblToimalue";
+            this.lblToimalue.Size = new System.Drawing.Size(66, 13);
+            this.lblToimalue.TabIndex = 20;
+            this.lblToimalue.Text = "toiminta alue";
+            // 
             // numAlv
             // 
             this.numAlv.DecimalPlaces = 2;
@@ -330,9 +410,9 @@ namespace Mokkivarausjarjestelma2._0
             0,
             0});
             this.numAlv.Name = "numAlv";
-            this.numAlv.Size = new System.Drawing.Size(59, 20);
             this.numAlv.TabIndex = 6;
             this.numAlv.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
+            this.numAlv.Leave += new System.EventHandler(this.numHinta_Leave);
             // 
             // numHinta
             // 
@@ -349,14 +429,13 @@ namespace Mokkivarausjarjestelma2._0
             0,
             0});
             this.numHinta.Name = "numHinta";
-            this.numHinta.Size = new System.Drawing.Size(91, 20);
             this.numHinta.TabIndex = 5;
             this.numHinta.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
+            this.numHinta.Leave += new System.EventHandler(this.numHinta_Leave);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(323, 110);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 13);
             this.label8.TabIndex = 19;
@@ -365,7 +444,6 @@ namespace Mokkivarausjarjestelma2._0
             // lblPalID
             // 
             this.lblPalID.AutoSize = true;
-            this.lblPalID.Location = new System.Drawing.Point(385, 110);
             this.lblPalID.Name = "lblPalID";
             this.lblPalID.Size = new System.Drawing.Size(18, 13);
             this.lblPalID.TabIndex = 3;
@@ -476,5 +554,13 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.NumericUpDown numAlv;
         private System.Windows.Forms.BindingSource toimintaalueBindingSource1;
         private System.Windows.Forms.Label lblToimalue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn palveluidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn toimintaalueidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nimiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tyyppiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kuvausDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hintaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alvDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button1;
     }
 }
