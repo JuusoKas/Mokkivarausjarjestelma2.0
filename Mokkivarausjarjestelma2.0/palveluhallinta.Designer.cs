@@ -60,6 +60,7 @@ namespace Mokkivarausjarjestelma2._0
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.lblToimalue = new System.Windows.Forms.Label();
             this.numAlv = new System.Windows.Forms.NumericUpDown();
             this.numHinta = new System.Windows.Forms.NumericUpDown();
@@ -70,7 +71,6 @@ namespace Mokkivarausjarjestelma2._0
             this.palveluTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.palveluTableAdapter();
             this.toimintaalueTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.toimintaalueTableAdapter();
             this.toimintaalueBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toimintaalueBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).BeginInit();
@@ -98,7 +98,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnPeruuta
             // 
-            this.btnPeruuta.Location = new System.Drawing.Point(579, 222);
+            this.btnPeruuta.Location = new System.Drawing.Point(667, 222);
             this.btnPeruuta.Margin = new System.Windows.Forms.Padding(2);
             this.btnPeruuta.Name = "btnPeruuta";
             this.btnPeruuta.Size = new System.Drawing.Size(74, 25);
@@ -109,12 +109,12 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnTallenna
             // 
-            this.btnTallenna.Location = new System.Drawing.Point(490, 222);
+            this.btnTallenna.Location = new System.Drawing.Point(562, 222);
             this.btnTallenna.Margin = new System.Windows.Forms.Padding(2);
             this.btnTallenna.Name = "btnTallenna";
             this.btnTallenna.Size = new System.Drawing.Size(74, 25);
             this.btnTallenna.TabIndex = 7;
-            this.btnTallenna.Text = "Tallenna";
+            this.btnTallenna.Text = "Lisää";
             this.btnTallenna.UseVisualStyleBackColor = true;
             this.btnTallenna.Click += new System.EventHandler(this.btnTallenna_Click);
             // 
@@ -377,6 +377,16 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1.Text = "Lisää Palvelu";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(562, 194);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(74, 25);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Päivitä";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Paivita_Click);
+            // 
             // lblToimalue
             // 
             this.lblToimalue.AutoSize = true;
@@ -397,10 +407,10 @@ namespace Mokkivarausjarjestelma2._0
             0,
             0});
             this.numAlv.Name = "numAlv";
-            this.numAlv.Size = new System.Drawing.Size(59, 20);
+            this.numAlv.Size = new System.Drawing.Size(74, 20);
             this.numAlv.TabIndex = 6;
             this.numAlv.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
-            this.numAlv.Leave += new System.EventHandler(this.numHinta_ValueChanged);
+            this.numAlv.Leave += new System.EventHandler(this.numHinta_Leave);
             // 
             // numHinta
             // 
@@ -417,10 +427,10 @@ namespace Mokkivarausjarjestelma2._0
             0,
             0});
             this.numHinta.Name = "numHinta";
-            this.numHinta.Size = new System.Drawing.Size(91, 20);
+            this.numHinta.Size = new System.Drawing.Size(74, 20);
             this.numHinta.TabIndex = 5;
             this.numHinta.ValueChanged += new System.EventHandler(this.numHinta_ValueChanged);
-            this.numHinta.Leave += new System.EventHandler(this.numHinta_ValueChanged);
+            this.numHinta.Leave += new System.EventHandler(this.numHinta_Leave);
             // 
             // label8
             // 
@@ -474,15 +484,6 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.toimintaalueBindingSource1.DataMember = "toimintaalue";
             this.toimintaalueBindingSource1.DataSource = this.kaikkidata;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(579, 185);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // palveluhallinta
             // 

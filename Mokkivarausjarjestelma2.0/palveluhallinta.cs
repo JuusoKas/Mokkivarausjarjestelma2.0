@@ -23,10 +23,6 @@ namespace Mokkivarausjarjestelma2._0
         private MySqlConnection connection = new MySqlConnection(
              "datasource=localhost;port=3307;Initial Catalog='vn';username=root;Password=root");
 
-        private string queryPalvelu = "SELECT * FROM palvelu";
-
-
-
         private void palveluhallinta_Load(object sender, EventArgs e)
         {
             // toiminta-alueen datan tuonti
@@ -39,6 +35,7 @@ namespace Mokkivarausjarjestelma2._0
             lblPalID.Visible = true;
 
             //täytetään tyyppi-combobox
+            string queryPalvelu = "SELECT * FROM palvelu";
             MySqlDataAdapter adapter2 = new MySqlDataAdapter(queryPalvelu, connection);
             DataSet dscombo = new DataSet();
             adapter2.Fill(dscombo, "palvelu");
@@ -75,6 +72,7 @@ namespace Mokkivarausjarjestelma2._0
         private void btnPeruuta_Click(object sender, EventArgs e)
         {
             RecursiveClearTextBoxes(this.Controls);
+            lblHinta.Text = "";
         }
 
         private void btnPoista_Click(object sender, EventArgs e)
@@ -87,7 +85,7 @@ namespace Mokkivarausjarjestelma2._0
             {
                 palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
                         int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
-
+                populateDGV();
             }
             catch (Exception ex)
             {
@@ -121,7 +119,7 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnTallenna_Click(object sender, EventArgs e)
         {
-            //uuden rivin lisäys
+            //uuden rivin
             Validate();
             kaikkidataBindingSource.EndEdit();
             int rivimaara = dgridPalvelut.Rows.Count;
@@ -173,10 +171,12 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
-        //muokkaustoiminto
-        private void button1_Click(object sender, EventArgs e)
+        //Päivitetään olemassa olevat tiedot
+        private void Paivita_Click(object sender, EventArgs e)
         {
-            string cmdText = @"UPDATE palvelu
+            try
+            {
+                string cmdText = @"UPDATE palvelu
                  SET toimintaalue_id = @toimintaalue_id,
                      nimi = @nimi,
                      tyyppi = @tyyppi,
@@ -185,27 +185,36 @@ namespace Mokkivarausjarjestelma2._0
                      alv = @alv
                  WHERE palvelu_id = @palvelu_id";
 
-            using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
-            {
-                connection.Open();
-                cmd.Parameters.AddWithValue("@toimintaalue_id", int.Parse(lblToimalue.Text));
-                cmd.Parameters.AddWithValue("@nimi", tbNimi.Text);
-                cmd.Parameters.AddWithValue("@tyyppi", int.Parse(cbTyyppi.Text));
-                cmd.Parameters.AddWithValue("@kuvaus", tbKuvaus.Text);
-                cmd.Parameters.AddWithValue("@hinta", double.Parse(numHinta.Text));
-                cmd.Parameters.AddWithValue("@alv", double.Parse(numAlv.Text));
-                cmd.Parameters.AddWithValue("@palvelu_id", int.Parse(lblPalID.Text));
-
-                int rowsUpdated = cmd.ExecuteNonQuery();
-                if (rowsUpdated > 0)
+                using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
                 {
-                    populateDGV();
+                    connection.Open();
+                    cmd.Parameters.AddWithValue("@toimintaalue_id", int.Parse(cbToimAlue.Text));
+                    cmd.Parameters.AddWithValue("@nimi", tbNimi.Text);
+                    cmd.Parameters.AddWithValue("@tyyppi", int.Parse(cbTyyppi.Text));
+                    cmd.Parameters.AddWithValue("@kuvaus", tbKuvaus.Text);
+                    cmd.Parameters.AddWithValue("@hinta", double.Parse(numHinta.Text));
+                    cmd.Parameters.AddWithValue("@alv", double.Parse(numAlv.Text));
+                    cmd.Parameters.AddWithValue("@palvelu_id", int.Parse(lblPalID.Text));
+
+                    int rowsUpdated = cmd.ExecuteNonQuery();
+                    if (rowsUpdated > 0)
+                    {
+                        populateDGV();
+                    }
                 }
+                populateDGV();
+                MessageBox.Show("Päivitys onnistui", "Palvelut");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
 
-
-
-
+        private void numHinta_Leave(object sender, EventArgs e)
+        {
+            numHinta_ValueChanged(sender, e);
         }
     }
 }
