@@ -15,9 +15,9 @@ using MySql.Data.MySqlClient;
 
 namespace Mokkivarausjarjestelma2._0
 {
-    public partial class raportointi : Form
+    public partial class raportti : Form
     {
-        public raportointi()
+        public raportti()
         {
             InitializeComponent();
             this.dateTimePicker1.Value = DateTime.Now;
@@ -25,26 +25,17 @@ namespace Mokkivarausjarjestelma2._0
 
         private void raportointi_Load(object sender, EventArgs e)
         {
-            populateDGV();
             populateComboboxes();
+            btnLataa.PerformClick();
         }
 
-        MySqlConnection connection = new MySqlConnection("datasource=localhost;port=3308;Initial Catalog='vn';username=root;password=asdlol");
-
-        public void populateDGV()
-        {
-            string majoitus_query = "SELECT varaus_id AS 'ID', varattu_alkupvm AS Varattu, nimi AS 'Toiminta-alue',asiakas.sukunimi,asiakas.etunimi FROM varaus INNER JOIN mokki ON varaus.mokki_mokki_id = mokki.mokki_id INNER JOIN toimintaalue ON toimintaalue.toimintaalue_id = mokki.toimintaalue_id INNER JOIN asiakas ON asiakas.asiakas_id = varaus.asiakas_id WHERE toimintaalue.nimi = '" + cbToimialueet.Text + "' AND MONTH(varattu_alkupvm) = '" + dateTimePicker1.Value.Month + "' AND YEAR(varattu_alkupvm) = '" + dateTimePicker1.Value.Year + "' GROUP BY varaus.varaus_id";
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter(majoitus_query, connection);
-            adapter.Fill(table);
-            dataGridView1.DataSource = table;
-        }
-
+        // Yhteys käytettävään MYSQL tietokantaan
+        MySqlConnection connection = new MySqlConnection("datasource=localhost; port=3308; Initial Catalog='vn'; username=root; password=asdlol");
+        
+        // Alustetaan dropdownmenun toiminta-alueet
         public void populateComboboxes()
         {
-
             string queryToiminta = "SELECT * FROM toimintaalue";
-
             MySqlDataAdapter adapter2 = new MySqlDataAdapter(queryToiminta, connection);
             DataSet dsCombobox = new DataSet();
             adapter2.Fill(dsCombobox, "toimintaalue");
@@ -54,10 +45,16 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnLataa_Click(object sender, EventArgs e)
         {
-
+            // Jos Majoitus nappi on valittuna, suoritetaan seuraava SQL query
             if (!rbMajoitukset.Checked)
             {
-                string palvelu_query = "SELECT varauksen_palvelut.palvelu_id AS ID, toimintaalue.nimi AS 'Toiminta-alue',palvelu.nimi,SUM(lkm) AS Asiakkaita,SUM(lkm * palvelu.hinta) AS 'Yhteensa' FROM varauksen_palvelut INNER JOIN varaus ON varauksen_palvelut.varaus_id = varaus.varaus_id INNER JOIN palvelu ON varauksen_palvelut.palvelu_id = palvelu.palvelu_id INNER JOIN toimintaalue ON toimintaalue.toimintaalue_id = palvelu.toimintaalue_id INNER JOIN asiakas ON asiakas.asiakas_id = varaus.asiakas_id WHERE toimintaalue.nimi = '" + cbToimialueet.Text + "' AND MONTH(varattu_alkupvm) = '" + dateTimePicker1.Value.Month + "' AND YEAR(varattu_alkupvm) = '" + dateTimePicker1.Value.Year + "' GROUP BY varauksen_palvelut.palvelu_id";
+                string  palvelu_query =  "SELECT varauksen_palvelut.palvelu_id AS ID, toimintaalue.nimi AS 'Toiminta-alue',palvelu.nimi,SUM(lkm) AS Asiakkaita,SUM(lkm * palvelu.hinta) AS 'Yhteensa' FROM varauksen_palvelut ";
+                        palvelu_query += "INNER JOIN varaus ON varauksen_palvelut.varaus_id = varaus.varaus_id ";
+                        palvelu_query += "INNER JOIN palvelu ON varauksen_palvelut.palvelu_id = palvelu.palvelu_id ";
+                        palvelu_query += "INNER JOIN toimintaalue ON toimintaalue.toimintaalue_id = palvelu.toimintaalue_id ";
+                        palvelu_query += "INNER JOIN asiakas ON asiakas.asiakas_id = varaus.asiakas_id ";
+                        palvelu_query += "WHERE toimintaalue.nimi = '" + cbToimialueet.Text + "' AND MONTH(varattu_alkupvm) = '" + dateTimePicker1.Value.Month + "' AND YEAR(varattu_alkupvm) = '" + dateTimePicker1.Value.Year + "' GROUP BY varauksen_palvelut.palvelu_id";
+
                 DataTable table = new DataTable();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(palvelu_query, connection);
                 adapter.Fill(table);
@@ -74,8 +71,6 @@ namespace Mokkivarausjarjestelma2._0
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-
-                    //chartBpComplaince.Series.Clear();
                     A.Points.AddXY(row.Cells[2].Value.ToString(), row.Cells[4].Value.ToString());
                     A.ChartType = SeriesChartType.Column;
                     A.IsValueShownAsLabel = true;
@@ -85,9 +80,15 @@ namespace Mokkivarausjarjestelma2._0
                 }
             }
 
+            // Jos Majoitus nappi ei ole valittuna, suoritetaan seuraava SQL query
             else
             {
-                string majoitus_query = "SELECT mokki_mokki_id AS ID, nimi AS 'Toiminta-alue',mokki.mokkinimi,COUNT(mokki.mokki_id) AS varauksia,SUM(mokki.mokki_id * mokki.hinta) AS tuotto FROM varaus INNER JOIN mokki ON varaus.mokki_mokki_id = mokki.mokki_id INNER JOIN toimintaalue ON toimintaalue.toimintaalue_id = mokki.toimintaalue_id INNER JOIN asiakas ON asiakas.asiakas_id = varaus.asiakas_id WHERE toimintaalue.nimi = '" + cbToimialueet.Text + "' AND MONTH(varattu_alkupvm) = '" + dateTimePicker1.Value.Month + "' AND YEAR(varattu_alkupvm) = '" + dateTimePicker1.Value.Year + "' GROUP BY varaus.mokki_mokki_id";
+                string  majoitus_query = "SELECT mokki_mokki_id AS ID, nimi AS 'Toiminta-alue',mokki.mokkinimi,COUNT(mokki.mokki_id) AS varauksia,SUM(mokki.mokki_id * mokki.hinta) AS tuotto FROM varaus ";
+                        majoitus_query += "INNER JOIN mokki ON varaus.mokki_mokki_id = mokki.mokki_id ";
+                        majoitus_query += "INNER JOIN toimintaalue ON toimintaalue.toimintaalue_id = mokki.toimintaalue_id ";
+                        majoitus_query += "INNER JOIN asiakas ON asiakas.asiakas_id = varaus.asiakas_id ";
+                        majoitus_query += "WHERE toimintaalue.nimi = '" + cbToimialueet.Text + "' AND MONTH(varattu_alkupvm) = '" + dateTimePicker1.Value.Month + "' AND YEAR(varattu_alkupvm) = '" + dateTimePicker1.Value.Year + "' GROUP BY varaus.mokki_mokki_id";
+                
                 DataTable table = new DataTable();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(majoitus_query, connection);
                 adapter.Fill(table);
@@ -104,8 +105,6 @@ namespace Mokkivarausjarjestelma2._0
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-
-                    //chartBpComplaince.Series.Clear();
                     A.Points.AddXY(row.Cells[2].Value.ToString(), row.Cells[4].Value.ToString());
                     A.ChartType = SeriesChartType.Column;
                     A.IsValueShownAsLabel = true;
@@ -113,9 +112,9 @@ namespace Mokkivarausjarjestelma2._0
                     S.ChartType = SeriesChartType.Column;
                     S.IsValueShownAsLabel = true;
                 }
-
             }
 
+            // Jos valitulle aikajaksolle ei löydy tuloksia, annetaan tieto käyttäjälle
             if (dataGridView1.Rows.Count == 0)
             {
                 if (!rbMajoitukset.Checked)

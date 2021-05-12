@@ -1,6 +1,6 @@
 ﻿namespace Mokkivarausjarjestelma2._0
 {
-    partial class raportointi
+    partial class raportti
     {
         /// <summary>
         /// Required designer variable.
