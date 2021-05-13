@@ -138,10 +138,19 @@ namespace Mokkivarausjarjestelma2._0
             Validate();
 
             mokkiBindingSource.EndEdit();
-            mokkiTableAdapter.Update(this.kaikkidata);
-            mokkiTableAdapter.Insert(long.Parse(lbToimintanimi.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
 
-            populateDGV();
+            try
+            {
+                mokkiTableAdapter.Update(this.kaikkidata);
+                mokkiTableAdapter.Insert(long.Parse(lbToimintanimi.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
+
+                populateDGV();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Tallennus epäonnistui!");
+                throw;
+            }
             RecursiveClearTextBoxes(this.Controls);
 
         }
@@ -202,12 +211,12 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
-        private void cbToiminta_TextChanged(object sender, EventArgs e)
+        private void cbToiminta_TextChanged(object sender, EventArgs e) // Päivitetään ID label vastaamaan nimikenttää
         {
             lbToimintanimi.Text = cbToiminta.SelectedValue.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // Päivitetään mökki
         {
             string cmdText = @"UPDATE mokki
                  SET toimintaalue_id = @toimintaalue_id,
@@ -219,25 +228,33 @@ namespace Mokkivarausjarjestelma2._0
                     varustelu = @varustelu
                  WHERE mokki_id = @mokki_id";
 
-            using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
+            try
             {
-                connection.Open();
-                cmd.Parameters.AddWithValue("@toimintaalue_id", int.Parse(lbToimintanimi.Text));
-                cmd.Parameters.AddWithValue("@postinro", cbPosti.Text);
-                cmd.Parameters.AddWithValue("@mokkinimi", tbMokinnimi.Text);
-                cmd.Parameters.AddWithValue("@katuosoite", tbKatuosoite.Text);
-                cmd.Parameters.AddWithValue("@kuvaus", tbKuvaus.Text);
-                cmd.Parameters.AddWithValue("@henkilomaara", int.Parse(tbHenkilomaara.Text));
-                cmd.Parameters.AddWithValue("@varustelu", tbKuvaus.Text);
-                cmd.Parameters.AddWithValue("@mokki_id", int.Parse(tbMokkiID.Text));
-
-                int rowsUpdated = cmd.ExecuteNonQuery();
-                if (rowsUpdated > 0)
+                using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
                 {
+                    connection.Open();
+                    cmd.Parameters.AddWithValue("@toimintaalue_id", int.Parse(lbToimintanimi.Text));
+                    cmd.Parameters.AddWithValue("@postinro", cbPosti.Text);
+                    cmd.Parameters.AddWithValue("@mokkinimi", tbMokinnimi.Text);
+                    cmd.Parameters.AddWithValue("@katuosoite", tbKatuosoite.Text);
+                    cmd.Parameters.AddWithValue("@kuvaus", tbKuvaus.Text);
+                    cmd.Parameters.AddWithValue("@henkilomaara", int.Parse(tbHenkilomaara.Text));
+                    cmd.Parameters.AddWithValue("@varustelu", tbKuvaus.Text);
+                    cmd.Parameters.AddWithValue("@mokki_id", int.Parse(tbMokkiID.Text));
 
-                    populateDGV();
+                    int rowsUpdated = cmd.ExecuteNonQuery();
+                    if (rowsUpdated > 0)
+                    {
 
+                        populateDGV();
+                        MessageBox.Show("Päivitys onnistui!");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Päivitys epäonnistui");
+                throw;
             }
         }
 

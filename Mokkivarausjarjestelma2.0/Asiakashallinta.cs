@@ -106,12 +106,27 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnTallenna_Click(object sender, EventArgs e) // Tallennetaan asiakas
         {
+
+
             Validate();
 
             asiakasBindingSource.EndEdit();
-            asiakasTableAdapter.Update(this.kaikkidata);
-            asiakasTableAdapter.Insert(cbPostinro.Text, tbEtunimi.Text, tbSukunimi.Text, tbLahiosoite.Text, tbSahkoposti.Text, tbPuhnro.Text);
-            populateDGV();
+
+            try
+            {
+                asiakasTableAdapter.Update(this.kaikkidata);
+                asiakasTableAdapter.Insert(cbPostinro.Text, tbEtunimi.Text, tbSukunimi.Text, tbLahiosoite.Text, tbSahkoposti.Text, tbPuhnro.Text);
+                populateDGV();
+
+                MessageBox.Show("Asiakkaan lisäys onnistui!");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Tarkista syötteet!");
+                throw;
+
+            }
             RecursiveClearTextBoxes(this.Controls);
         }
 
@@ -164,25 +179,35 @@ namespace Mokkivarausjarjestelma2._0
                     puhelinnro = @puhelinnro
                  WHERE asiakas_id = @asiakas_id";
 
-            using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
+
+            try
             {
-                connection.Open();
-                cmd.Parameters.AddWithValue("@postinro", cbPostinro.Text);
-                cmd.Parameters.AddWithValue("@etunimi", tbEtunimi.Text);
-                cmd.Parameters.AddWithValue("@sukunimi", tbSukunimi.Text);
-                cmd.Parameters.AddWithValue("@lahiosoite", tbLahiosoite.Text);
-                cmd.Parameters.AddWithValue("@email", tbSahkoposti.Text);
-                cmd.Parameters.AddWithValue("@puhelinnro", tbPuhnro.Text);
-                cmd.Parameters.AddWithValue("@asiakas_id", int.Parse(tbAsiakasID.Text));
-
-                int rowsUpdated = cmd.ExecuteNonQuery();
-                if (rowsUpdated > 0)
+                using (MySqlCommand cmd = new MySqlCommand(cmdText, connection))
                 {
+                    connection.Open();
+                    cmd.Parameters.AddWithValue("@postinro", cbPostinro.Text);
+                    cmd.Parameters.AddWithValue("@etunimi", tbEtunimi.Text);
+                    cmd.Parameters.AddWithValue("@sukunimi", tbSukunimi.Text);
+                    cmd.Parameters.AddWithValue("@lahiosoite", tbLahiosoite.Text);
+                    cmd.Parameters.AddWithValue("@email", tbSahkoposti.Text);
+                    cmd.Parameters.AddWithValue("@puhelinnro", tbPuhnro.Text);
+                    cmd.Parameters.AddWithValue("@asiakas_id", int.Parse(tbAsiakasID.Text));
 
-                    populateDGV();
+                    int rowsUpdated = cmd.ExecuteNonQuery();
+                    if (rowsUpdated > 0)
+                    {
+                        MessageBox.Show("Päivitys onnistui!");
+                        populateDGV();
 
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Tarkista syötteet");
+                throw;
+            }
+            RecursiveClearTextBoxes(this.Controls);
         }
 
         private void Asiakashallinta_Load_1(object sender, EventArgs e)
@@ -194,7 +219,7 @@ namespace Mokkivarausjarjestelma2._0
 
         }
 
-        private void tbPuhnro_KeyPress(object sender, KeyPressEventArgs e)
+        private void tbPuhnro_KeyPress(object sender, KeyPressEventArgs e) // Tällä varmistetaan että puhelinnumeroon syötetään vain numeroita
         {
             {
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
