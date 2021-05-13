@@ -83,7 +83,7 @@ namespace Mokkivarausjarjestelma2._0
             palveluTableAdapter.Update(this.kaikkidata);
             try
             {
-                palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
+                palveluTableAdapter.Delete(long.Parse(lblPalID.Text), long.Parse(lblToimalue.Text), tbNimi.Text,
                         int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
                 populateDGV();
             }
@@ -109,7 +109,7 @@ namespace Mokkivarausjarjestelma2._0
         {
             //rivivalinta tallennetaan textboxeihin
             lblPalID.Text = dgridPalvelut.CurrentRow.Cells[0].Value.ToString();
-            cbToimAlue.Text = dgridPalvelut.CurrentRow.Cells[1].Value.ToString();
+            lblToimalue.Text = dgridPalvelut.CurrentRow.Cells[1].Value.ToString();
             tbNimi.Text = dgridPalvelut.CurrentRow.Cells[2].Value.ToString();
             cbTyyppi.Text = dgridPalvelut.CurrentRow.Cells[3].Value.ToString();
             tbKuvaus.Text = dgridPalvelut.CurrentRow.Cells[4].Value.ToString();
@@ -129,7 +129,7 @@ namespace Mokkivarausjarjestelma2._0
             try
             {
 
-                palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(cbToimAlue.Text), tbNimi.Text,
+                palveluTableAdapter.Insert(long.Parse(lblPalID.Text), long.Parse(lblToimalue.Text), tbNimi.Text,
                     int.Parse(cbTyyppi.Text), tbKuvaus.Text, double.Parse(numHinta.Value.ToString()), double.Parse(numAlv.Value.ToString()));
                 palveluTableAdapter.Update(this.kaikkidata);
                 populateDGV();

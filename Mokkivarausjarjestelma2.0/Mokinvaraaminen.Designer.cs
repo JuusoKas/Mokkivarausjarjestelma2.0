@@ -110,7 +110,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnMuokkaavarausta
             // 
-            this.btnMuokkaavarausta.Location = new System.Drawing.Point(103, 228);
+            this.btnMuokkaavarausta.Location = new System.Drawing.Point(567, 262);
             this.btnMuokkaavarausta.Name = "btnMuokkaavarausta";
             this.btnMuokkaavarausta.Size = new System.Drawing.Size(79, 32);
             this.btnMuokkaavarausta.TabIndex = 45;
@@ -204,14 +204,14 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPalvelut.Location = new System.Drawing.Point(4, 22);
             this.tabPalvelut.Name = "tabPalvelut";
             this.tabPalvelut.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPalvelut.Size = new System.Drawing.Size(766, 310);
+            this.tabPalvelut.Size = new System.Drawing.Size(753, 310);
             this.tabPalvelut.TabIndex = 2;
             this.tabPalvelut.Text = "Palvelut";
             this.tabPalvelut.UseVisualStyleBackColor = true;
             // 
             // btnPoistapalvelu
             // 
-            this.btnPoistapalvelu.Location = new System.Drawing.Point(83, 154);
+            this.btnPoistapalvelu.Location = new System.Drawing.Point(110, 264);
             this.btnPoistapalvelu.Name = "btnPoistapalvelu";
             this.btnPoistapalvelu.Size = new System.Drawing.Size(69, 31);
             this.btnPoistapalvelu.TabIndex = 48;
@@ -223,16 +223,17 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.dgvVarauksenpalvelut.AllowUserToAddRows = false;
             this.dgvVarauksenpalvelut.AutoGenerateColumns = false;
+            this.dgvVarauksenpalvelut.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVarauksenpalvelut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVarauksenpalvelut.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.varausidDataGridViewTextBoxColumn1,
             this.palveluidDataGridViewTextBoxColumn,
             this.lkmDataGridViewTextBoxColumn});
             this.dgvVarauksenpalvelut.DataSource = this.varauksenpalvelutBindingSource;
-            this.dgvVarauksenpalvelut.Location = new System.Drawing.Point(222, 21);
+            this.dgvVarauksenpalvelut.Location = new System.Drawing.Point(222, 6);
             this.dgvVarauksenpalvelut.Name = "dgvVarauksenpalvelut";
             this.dgvVarauksenpalvelut.ReadOnly = true;
-            this.dgvVarauksenpalvelut.Size = new System.Drawing.Size(694, 289);
+            this.dgvVarauksenpalvelut.Size = new System.Drawing.Size(525, 289);
             this.dgvVarauksenpalvelut.TabIndex = 47;
             // 
             // varausidDataGridViewTextBoxColumn1
@@ -268,7 +269,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnLisaa
             // 
-            this.btnLisaa.Location = new System.Drawing.Point(9, 154);
+            this.btnLisaa.Location = new System.Drawing.Point(36, 264);
             this.btnLisaa.Name = "btnLisaa";
             this.btnLisaa.Size = new System.Drawing.Size(69, 31);
             this.btnLisaa.TabIndex = 46;
@@ -412,9 +413,9 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(766, 310);
+            this.tabPage1.Size = new System.Drawing.Size(753, 310);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Mökin varaus";
+            this.tabPage1.Text = "Varaus";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // lbID2
@@ -437,7 +438,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnPeruuta
             // 
-            this.btnPeruuta.Location = new System.Drawing.Point(196, 228);
+            this.btnPeruuta.Location = new System.Drawing.Point(660, 262);
             this.btnPeruuta.Name = "btnPeruuta";
             this.btnPeruuta.Size = new System.Drawing.Size(79, 32);
             this.btnPeruuta.TabIndex = 14;
@@ -447,7 +448,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnCheckin
             // 
-            this.btnCheckin.Location = new System.Drawing.Point(9, 228);
+            this.btnCheckin.Location = new System.Drawing.Point(473, 262);
             this.btnCheckin.Name = "btnCheckin";
             this.btnCheckin.Size = new System.Drawing.Size(79, 32);
             this.btnCheckin.TabIndex = 13;
@@ -540,9 +541,9 @@ namespace Mokkivarausjarjestelma2._0
             this.label1.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 25);
+            this.label1.Size = new System.Drawing.Size(102, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Varauskaavake";
+            this.label1.Text = "Uusi varaus";
             // 
             // tabPage2
             // 
@@ -556,7 +557,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(766, 310);
+            this.tabPage2.Size = new System.Drawing.Size(753, 310);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Varaukset";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -564,7 +565,7 @@ namespace Mokkivarausjarjestelma2._0
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(138, 270);
+            this.label2.Location = new System.Drawing.Point(6, 269);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(175, 13);
             this.label2.TabIndex = 10;
@@ -598,6 +599,7 @@ namespace Mokkivarausjarjestelma2._0
             // dgvVaraukset
             // 
             this.dgvVaraukset.AutoGenerateColumns = false;
+            this.dgvVaraukset.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVaraukset.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVaraukset.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.varausidDataGridViewTextBoxColumn,
@@ -657,7 +659,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnMuokkaa
             // 
-            this.btnMuokkaa.Location = new System.Drawing.Point(530, 281);
+            this.btnMuokkaa.Location = new System.Drawing.Point(545, 269);
             this.btnMuokkaa.Name = "btnMuokkaa";
             this.btnMuokkaa.Size = new System.Drawing.Size(98, 23);
             this.btnMuokkaa.TabIndex = 4;
@@ -667,7 +669,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnPoista
             // 
-            this.btnPoista.Location = new System.Drawing.Point(634, 281);
+            this.btnPoista.Location = new System.Drawing.Point(649, 269);
             this.btnPoista.Name = "btnPoista";
             this.btnPoista.Size = new System.Drawing.Size(98, 23);
             this.btnPoista.TabIndex = 3;
@@ -677,15 +679,13 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPalvelut);
-            this.tabControl1.Location = new System.Drawing.Point(12, 57);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(774, 336);
+            this.tabControl1.Size = new System.Drawing.Size(761, 336);
             this.tabControl1.TabIndex = 2;
             // 
             // varausTableAdapter
@@ -709,7 +709,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 450);
+            this.ClientSize = new System.Drawing.Size(785, 355);
             this.Controls.Add(this.tabControl1);
             this.Name = "Mokinvaraaminen";
             this.Text = "Mokinvaraaminen";
