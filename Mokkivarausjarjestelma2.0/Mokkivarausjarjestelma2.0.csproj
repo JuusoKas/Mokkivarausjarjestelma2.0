@@ -170,6 +170,12 @@
     <Compile Include="Asiakashallinta.Designer.cs">
       <DependentUpon>Asiakashallinta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Asiakaslista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Asiakaslista.Designer.cs">
+      <DependentUpon>Asiakaslista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kaikkidata.cs">
       <DependentUpon>Kaikkidata.xsd</DependentUpon>
     </Compile>
@@ -183,6 +189,18 @@
     </Compile>
     <Compile Include="Mokinluominen.Designer.cs">
       <DependentUpon>Mokinluominen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mokinvaraaminen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mokinvaraaminen.Designer.cs">
+      <DependentUpon>Mokinvaraaminen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mokkilista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mokkilista.Designer.cs">
+      <DependentUpon>Mokkilista.cs</DependentUpon>
     </Compile>
     <Compile Include="paavalikko.cs">
       <SubType>Form</SubType>
@@ -210,8 +228,17 @@
     <EmbeddedResource Include="Asiakashallinta.resx">
       <DependentUpon>Asiakashallinta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Asiakaslista.resx">
+      <DependentUpon>Asiakaslista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mokinluominen.resx">
       <DependentUpon>Mokinluominen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mokinvaraaminen.resx">
+      <DependentUpon>Mokinvaraaminen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mokkilista.resx">
+      <DependentUpon>Mokkilista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="paavalikko.resx">
       <DependentUpon>paavalikko.cs</DependentUpon>

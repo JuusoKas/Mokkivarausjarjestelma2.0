@@ -41,12 +41,17 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnVaraus_Click(object sender, EventArgs e)
         {
+            Mokinvaraaminen mokinvaraaminenform = new Mokinvaraaminen();
+            mokinvaraaminenform.Show();
             //tänne Varausikkunan formi
         }
 
         private void btnAsiakas_Click(object sender, EventArgs e)
         {
-            //asiakkasmuokkauksen formi
+            Asiakashallinta asiakashallintaform = new Asiakashallinta();
+            asiakashallintaform.Show();
+
+                //asiakkasmuokkauksen formi
         }
 
         private void btnRaportti_Click(object sender, EventArgs e)
