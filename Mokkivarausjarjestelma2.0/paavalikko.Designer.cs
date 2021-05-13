@@ -99,31 +99,31 @@ namespace Mokkivarausjarjestelma2._0
             this.tsmi_toimintaalue.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmi_toimintaalue.Name = "tsmi_toimintaalue";
             this.tsmi_toimintaalue.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tsmi_toimintaalue.Size = new System.Drawing.Size(212, 24);
+            this.tsmi_toimintaalue.Size = new System.Drawing.Size(287, 34);
             this.tsmi_toimintaalue.Text = "Toiminta-alue";
             this.tsmi_toimintaalue.Click += new System.EventHandler(this.tsmi_toimintaalue_Click);
             // 
             // tsmi_toimintaalue_uusi
             // 
             this.tsmi_toimintaalue_uusi.Name = "tsmi_toimintaalue_uusi";
-            this.tsmi_toimintaalue_uusi.Size = new System.Drawing.Size(239, 24);
+            this.tsmi_toimintaalue_uusi.Size = new System.Drawing.Size(328, 34);
             this.tsmi_toimintaalue_uusi.Text = "Uusi Toiminta-alue";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(325, 6);
             // 
             // tsmi_toimintaalue_poista
             // 
             this.tsmi_toimintaalue_poista.Name = "tsmi_toimintaalue_poista";
-            this.tsmi_toimintaalue_poista.Size = new System.Drawing.Size(239, 24);
+            this.tsmi_toimintaalue_poista.Size = new System.Drawing.Size(328, 34);
             this.tsmi_toimintaalue_poista.Text = "Poista Toiminta-alue";
             // 
             // tsmi_toimintaalue_muokkaa
             // 
             this.tsmi_toimintaalue_muokkaa.Name = "tsmi_toimintaalue_muokkaa";
-            this.tsmi_toimintaalue_muokkaa.Size = new System.Drawing.Size(239, 24);
+            this.tsmi_toimintaalue_muokkaa.Size = new System.Drawing.Size(328, 34);
             this.tsmi_toimintaalue_muokkaa.Text = "Muokkaa Toiminta-aluetta";
             // 
             // tsmi_palvelu
@@ -134,31 +134,31 @@ namespace Mokkivarausjarjestelma2._0
             this.tsmi_palvelu_poista,
             this.tsmi_palvelu_muokkaa});
             this.tsmi_palvelu.Name = "tsmi_palvelu";
-            this.tsmi_palvelu.Size = new System.Drawing.Size(212, 24);
+            this.tsmi_palvelu.Size = new System.Drawing.Size(287, 34);
             this.tsmi_palvelu.Text = "Palvelu";
             this.tsmi_palvelu.Click += new System.EventHandler(this.tsmi_palvelu_Click);
             // 
             // tsmi_palvelu_uusi
             // 
             this.tsmi_palvelu_uusi.Name = "tsmi_palvelu_uusi";
-            this.tsmi_palvelu_uusi.Size = new System.Drawing.Size(189, 24);
+            this.tsmi_palvelu_uusi.Size = new System.Drawing.Size(253, 34);
             this.tsmi_palvelu_uusi.Text = "Uusi Palvelu";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(250, 6);
             // 
             // tsmi_palvelu_poista
             // 
             this.tsmi_palvelu_poista.Name = "tsmi_palvelu_poista";
-            this.tsmi_palvelu_poista.Size = new System.Drawing.Size(189, 24);
+            this.tsmi_palvelu_poista.Size = new System.Drawing.Size(253, 34);
             this.tsmi_palvelu_poista.Text = "Poista Palvelu";
             // 
             // tsmi_palvelu_muokkaa
             // 
             this.tsmi_palvelu_muokkaa.Name = "tsmi_palvelu_muokkaa";
-            this.tsmi_palvelu_muokkaa.Size = new System.Drawing.Size(189, 24);
+            this.tsmi_palvelu_muokkaa.Size = new System.Drawing.Size(253, 34);
             this.tsmi_palvelu_muokkaa.Text = "Muokkaa Palvelua";
             // 
             // tsmi_mokki
@@ -169,31 +169,32 @@ namespace Mokkivarausjarjestelma2._0
             this.tsmi_mokki_poista,
             this.tsmi_mokki_muokkaa});
             this.tsmi_mokki.Name = "tsmi_mokki";
-            this.tsmi_mokki.Size = new System.Drawing.Size(212, 24);
+            this.tsmi_mokki.Size = new System.Drawing.Size(287, 34);
             this.tsmi_mokki.Text = "Mökki";
             this.tsmi_mokki.Click += new System.EventHandler(this.tsmi_mokki_Click);
             // 
             // tsmi_mokki_uusi
             // 
             this.tsmi_mokki_uusi.Name = "tsmi_mokki_uusi";
-            this.tsmi_mokki_uusi.Size = new System.Drawing.Size(184, 24);
+            this.tsmi_mokki_uusi.Size = new System.Drawing.Size(244, 34);
             this.tsmi_mokki_uusi.Text = "Uusi Mökki";
+            this.tsmi_mokki_uusi.Click += new System.EventHandler(this.tsmi_mokki_uusi_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(241, 6);
             // 
             // tsmi_mokki_poista
             // 
             this.tsmi_mokki_poista.Name = "tsmi_mokki_poista";
-            this.tsmi_mokki_poista.Size = new System.Drawing.Size(184, 24);
+            this.tsmi_mokki_poista.Size = new System.Drawing.Size(244, 34);
             this.tsmi_mokki_poista.Text = "Poista Mökki";
             // 
             // tsmi_mokki_muokkaa
             // 
             this.tsmi_mokki_muokkaa.Name = "tsmi_mokki_muokkaa";
-            this.tsmi_mokki_muokkaa.Size = new System.Drawing.Size(184, 24);
+            this.tsmi_mokki_muokkaa.Size = new System.Drawing.Size(244, 34);
             this.tsmi_mokki_muokkaa.Text = "Muokkaa Mökkiä";
             // 
             // btnAsiakas

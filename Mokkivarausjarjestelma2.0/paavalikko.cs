@@ -60,5 +60,11 @@ namespace Mokkivarausjarjestelma2._0
             raportti raporttiform = new raportti();
             raporttiform.Show();
         }
+
+        private void tsmi_mokki_uusi_Click(object sender, EventArgs e)
+        {
+            Mokinluominen mokinluominenform = new Mokinluominen();
+            mokinluominenform.Show();
+        }
     }
 }
