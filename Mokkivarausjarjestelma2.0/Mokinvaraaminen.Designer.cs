@@ -42,14 +42,21 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPalvelut = new System.Windows.Forms.TabPage();
             this.btnPoistapalvelu = new System.Windows.Forms.Button();
             this.dgvVarauksenpalvelut = new System.Windows.Forms.DataGridView();
+            this.varausidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.palveluidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lkmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.varauksenpalvelutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kaikkidata = new Mokkivarausjarjestelma2._0.Kaikkidata();
             this.btnLisaa = new System.Windows.Forms.Button();
             this.lb = new System.Windows.Forms.Label();
             this.tbLukumaara = new System.Windows.Forms.TextBox();
             this.lbLukumaara = new System.Windows.Forms.Label();
             this.lbPalvelu = new System.Windows.Forms.Label();
+            this.palveluBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cbPalveluID = new System.Windows.Forms.ComboBox();
             this.lbPalveluID = new System.Windows.Forms.Label();
             this.cbVarausID = new System.Windows.Forms.ComboBox();
+            this.varausBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbVaraus = new System.Windows.Forms.Label();
             this.lbMokkiID = new System.Windows.Forms.Label();
             this.tbAsiakas = new System.Windows.Forms.TextBox();
@@ -70,12 +77,6 @@ namespace Mokkivarausjarjestelma2._0
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvVaraukset = new System.Windows.Forms.DataGridView();
-            this.btnMuokkaa = new System.Windows.Forms.Button();
-            this.btnPoista = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.kaikkidata = new Mokkivarausjarjestelma2._0.Kaikkidata();
-            this.varausBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.varausTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.varausTableAdapter();
             this.varausidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asiakasidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mokkimokkiidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,25 +84,28 @@ namespace Mokkivarausjarjestelma2._0
             this.vahvistuspvmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.varattualkupvmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.varattuloppupvmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnMuokkaa = new System.Windows.Forms.Button();
+            this.btnPoista = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.varausTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.varausTableAdapter();
             this.aluedata1 = new Mokkivarausjarjestelma2._0.Aluedata1();
-            this.varauksenpalvelutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.varauksen_palvelutTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.varauksen_palvelutTableAdapter();
-            this.varausidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.palveluidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lkmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.palveluBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.palveluTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.palveluTableAdapter();
+            this.cbSuodata = new System.Windows.Forms.CheckBox();
+            this.dtpSuodataaloitus = new System.Windows.Forms.DateTimePicker();
+            this.dtpSuodatalopetus = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabPalvelut.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVarauksenpalvelut)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.varauksenpalvelutBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVaraukset)).BeginInit();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aluedata1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.varauksenpalvelutBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMuokkaavarausta
@@ -231,6 +235,37 @@ namespace Mokkivarausjarjestelma2._0
             this.dgvVarauksenpalvelut.Size = new System.Drawing.Size(694, 289);
             this.dgvVarauksenpalvelut.TabIndex = 47;
             // 
+            // varausidDataGridViewTextBoxColumn1
+            // 
+            this.varausidDataGridViewTextBoxColumn1.DataPropertyName = "varaus_id";
+            this.varausidDataGridViewTextBoxColumn1.HeaderText = "varaus_id";
+            this.varausidDataGridViewTextBoxColumn1.Name = "varausidDataGridViewTextBoxColumn1";
+            this.varausidDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // palveluidDataGridViewTextBoxColumn
+            // 
+            this.palveluidDataGridViewTextBoxColumn.DataPropertyName = "palvelu_id";
+            this.palveluidDataGridViewTextBoxColumn.HeaderText = "palvelu_id";
+            this.palveluidDataGridViewTextBoxColumn.Name = "palveluidDataGridViewTextBoxColumn";
+            this.palveluidDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // lkmDataGridViewTextBoxColumn
+            // 
+            this.lkmDataGridViewTextBoxColumn.DataPropertyName = "lkm";
+            this.lkmDataGridViewTextBoxColumn.HeaderText = "lkm";
+            this.lkmDataGridViewTextBoxColumn.Name = "lkmDataGridViewTextBoxColumn";
+            this.lkmDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // varauksenpalvelutBindingSource
+            // 
+            this.varauksenpalvelutBindingSource.DataMember = "varauksen_palvelut";
+            this.varauksenpalvelutBindingSource.DataSource = this.kaikkidata;
+            // 
+            // kaikkidata
+            // 
+            this.kaikkidata.DataSetName = "Kaikkidata";
+            this.kaikkidata.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // btnLisaa
             // 
             this.btnLisaa.Location = new System.Drawing.Point(9, 154);
@@ -277,6 +312,11 @@ namespace Mokkivarausjarjestelma2._0
             this.lbPalvelu.TabIndex = 42;
             this.lbPalvelu.Text = "         ";
             // 
+            // palveluBindingSource
+            // 
+            this.palveluBindingSource.DataMember = "palvelu";
+            this.palveluBindingSource.DataSource = this.kaikkidata;
+            // 
             // cbPalveluID
             // 
             this.cbPalveluID.DataSource = this.palveluBindingSource;
@@ -307,6 +347,11 @@ namespace Mokkivarausjarjestelma2._0
             this.cbVarausID.Name = "cbVarausID";
             this.cbVarausID.Size = new System.Drawing.Size(86, 21);
             this.cbVarausID.TabIndex = 39;
+            // 
+            // varausBindingSource
+            // 
+            this.varausBindingSource.DataMember = "varaus";
+            this.varausBindingSource.DataSource = this.kaikkidata;
             // 
             // lbVaraus
             // 
@@ -501,6 +546,10 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.dtpSuodatalopetus);
+            this.tabPage2.Controls.Add(this.dtpSuodataaloitus);
+            this.tabPage2.Controls.Add(this.cbSuodata);
             this.tabPage2.Controls.Add(this.dgvVaraukset);
             this.tabPage2.Controls.Add(this.btnMuokkaa);
             this.tabPage2.Controls.Add(this.btnPoista);
@@ -527,55 +576,8 @@ namespace Mokkivarausjarjestelma2._0
             this.dgvVaraukset.DataSource = this.varausBindingSource;
             this.dgvVaraukset.Location = new System.Drawing.Point(3, 3);
             this.dgvVaraukset.Name = "dgvVaraukset";
-            this.dgvVaraukset.Size = new System.Drawing.Size(746, 272);
+            this.dgvVaraukset.Size = new System.Drawing.Size(746, 258);
             this.dgvVaraukset.TabIndex = 5;
-            // 
-            // btnMuokkaa
-            // 
-            this.btnMuokkaa.Location = new System.Drawing.Point(530, 281);
-            this.btnMuokkaa.Name = "btnMuokkaa";
-            this.btnMuokkaa.Size = new System.Drawing.Size(98, 23);
-            this.btnMuokkaa.TabIndex = 4;
-            this.btnMuokkaa.Text = "Muokkaa";
-            this.btnMuokkaa.UseVisualStyleBackColor = true;
-            this.btnMuokkaa.Click += new System.EventHandler(this.btnMuokkaa_Click);
-            // 
-            // btnPoista
-            // 
-            this.btnPoista.Location = new System.Drawing.Point(634, 281);
-            this.btnPoista.Name = "btnPoista";
-            this.btnPoista.Size = new System.Drawing.Size(98, 23);
-            this.btnPoista.TabIndex = 3;
-            this.btnPoista.Text = "Poista";
-            this.btnPoista.UseVisualStyleBackColor = true;
-            this.btnPoista.Click += new System.EventHandler(this.btnPoista_Click);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPalvelut);
-            this.tabControl1.Location = new System.Drawing.Point(12, 57);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(774, 336);
-            this.tabControl1.TabIndex = 2;
-            // 
-            // kaikkidata
-            // 
-            this.kaikkidata.DataSetName = "Kaikkidata";
-            this.kaikkidata.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // varausBindingSource
-            // 
-            this.varausBindingSource.DataMember = "varaus";
-            this.varausBindingSource.DataSource = this.kaikkidata;
-            // 
-            // varausTableAdapter
-            // 
-            this.varausTableAdapter.ClearBeforeFill = true;
             // 
             // varausidDataGridViewTextBoxColumn
             // 
@@ -619,49 +621,89 @@ namespace Mokkivarausjarjestelma2._0
             this.varattuloppupvmDataGridViewTextBoxColumn.HeaderText = "varattu_loppupvm";
             this.varattuloppupvmDataGridViewTextBoxColumn.Name = "varattuloppupvmDataGridViewTextBoxColumn";
             // 
+            // btnMuokkaa
+            // 
+            this.btnMuokkaa.Location = new System.Drawing.Point(530, 281);
+            this.btnMuokkaa.Name = "btnMuokkaa";
+            this.btnMuokkaa.Size = new System.Drawing.Size(98, 23);
+            this.btnMuokkaa.TabIndex = 4;
+            this.btnMuokkaa.Text = "Muokkaa";
+            this.btnMuokkaa.UseVisualStyleBackColor = true;
+            this.btnMuokkaa.Click += new System.EventHandler(this.btnMuokkaa_Click);
+            // 
+            // btnPoista
+            // 
+            this.btnPoista.Location = new System.Drawing.Point(634, 281);
+            this.btnPoista.Name = "btnPoista";
+            this.btnPoista.Size = new System.Drawing.Size(98, 23);
+            this.btnPoista.TabIndex = 3;
+            this.btnPoista.Text = "Poista";
+            this.btnPoista.UseVisualStyleBackColor = true;
+            this.btnPoista.Click += new System.EventHandler(this.btnPoista_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPalvelut);
+            this.tabControl1.Location = new System.Drawing.Point(12, 57);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(774, 336);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // varausTableAdapter
+            // 
+            this.varausTableAdapter.ClearBeforeFill = true;
+            // 
             // aluedata1
             // 
             this.aluedata1.DataSetName = "Aluedata1";
             this.aluedata1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // varauksenpalvelutBindingSource
-            // 
-            this.varauksenpalvelutBindingSource.DataMember = "varauksen_palvelut";
-            this.varauksenpalvelutBindingSource.DataSource = this.kaikkidata;
-            // 
             // varauksen_palvelutTableAdapter
             // 
             this.varauksen_palvelutTableAdapter.ClearBeforeFill = true;
             // 
-            // varausidDataGridViewTextBoxColumn1
-            // 
-            this.varausidDataGridViewTextBoxColumn1.DataPropertyName = "varaus_id";
-            this.varausidDataGridViewTextBoxColumn1.HeaderText = "varaus_id";
-            this.varausidDataGridViewTextBoxColumn1.Name = "varausidDataGridViewTextBoxColumn1";
-            this.varausidDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // palveluidDataGridViewTextBoxColumn
-            // 
-            this.palveluidDataGridViewTextBoxColumn.DataPropertyName = "palvelu_id";
-            this.palveluidDataGridViewTextBoxColumn.HeaderText = "palvelu_id";
-            this.palveluidDataGridViewTextBoxColumn.Name = "palveluidDataGridViewTextBoxColumn";
-            this.palveluidDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // lkmDataGridViewTextBoxColumn
-            // 
-            this.lkmDataGridViewTextBoxColumn.DataPropertyName = "lkm";
-            this.lkmDataGridViewTextBoxColumn.HeaderText = "lkm";
-            this.lkmDataGridViewTextBoxColumn.Name = "lkmDataGridViewTextBoxColumn";
-            this.lkmDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // palveluBindingSource
-            // 
-            this.palveluBindingSource.DataMember = "palvelu";
-            this.palveluBindingSource.DataSource = this.kaikkidata;
-            // 
             // palveluTableAdapter
             // 
             this.palveluTableAdapter.ClearBeforeFill = true;
+            // 
+            // cbSuodata
+            // 
+            this.cbSuodata.AutoSize = true;
+            this.cbSuodata.Location = new System.Drawing.Point(418, 287);
+            this.cbSuodata.Name = "cbSuodata";
+            this.cbSuodata.Size = new System.Drawing.Size(66, 17);
+            this.cbSuodata.TabIndex = 7;
+            this.cbSuodata.Text = "Suodata";
+            this.cbSuodata.UseVisualStyleBackColor = true;
+            this.cbSuodata.CheckedChanged += new System.EventHandler(this.cbSuodata_CheckedChanged);
+            // 
+            // dtpSuodataaloitus
+            // 
+            this.dtpSuodataaloitus.Location = new System.Drawing.Point(6, 286);
+            this.dtpSuodataaloitus.Name = "dtpSuodataaloitus";
+            this.dtpSuodataaloitus.Size = new System.Drawing.Size(200, 20);
+            this.dtpSuodataaloitus.TabIndex = 8;
+            // 
+            // dtpSuodatalopetus
+            // 
+            this.dtpSuodatalopetus.Location = new System.Drawing.Point(212, 286);
+            this.dtpSuodatalopetus.Name = "dtpSuodatalopetus";
+            this.dtpSuodatalopetus.Size = new System.Drawing.Size(200, 20);
+            this.dtpSuodatalopetus.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(138, 270);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(175, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Suodata välillä (varauspäivämäärä):";
             // 
             // Mokinvaraaminen
             // 
@@ -675,16 +717,17 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPalvelut.ResumeLayout(false);
             this.tabPalvelut.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVarauksenpalvelut)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.varauksenpalvelutBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVaraukset)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aluedata1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.varauksenpalvelutBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -752,5 +795,9 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.DataGridViewTextBoxColumn lkmDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource palveluBindingSource;
         private KaikkidataTableAdapters.palveluTableAdapter palveluTableAdapter;
+        private System.Windows.Forms.CheckBox cbSuodata;
+        private System.Windows.Forms.DateTimePicker dtpSuodatalopetus;
+        private System.Windows.Forms.DateTimePicker dtpSuodataaloitus;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -323,5 +323,18 @@ namespace Mokkivarausjarjestelma2._0
             }
         }
 
+        private void cbSuodata_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbSuodata.Checked == true)
+            {
+
+
+                varausBindingSource.Filter = string.Format("varattu_pvm >= #{0:yyyy/MM/dd}# And varattu_pvm <= #{1:yyyy/MM/dd}#", dtpSuodataaloitus.Value, dtpSuodatalopetus.Value);
+                dgvVaraukset.DataSource = varausBindingSource;
+            }
+            else
+            this.varausBindingSource.Filter = null;
+            
+        }
     }
 }
