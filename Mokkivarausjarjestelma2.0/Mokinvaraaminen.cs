@@ -238,7 +238,7 @@ namespace Mokkivarausjarjestelma2._0
         private void btnPoista_Click(object sender, EventArgs e) // Poistonappi varaukselle. Poistaa tiedot valitun rivin tiedot datagridistä ja databasesta.
         {
 
-            tbVarausID.Text = dgvVaraukset.CurrentRow.Cells[0].Value.ToString();
+            tbVarausID.Text = dgvVaraukset.CurrentRow.Cells[0].Value.ToString(); 
             lbAsiakasID.Text = dgvVaraukset.CurrentRow.Cells[1].Value.ToString();
             lbMokkiID.Text = dgvVaraukset.CurrentRow.Cells[2].Value.ToString();
             dtpVarauspaiva.Value = Convert.ToDateTime(dgvVaraukset.CurrentRow.Cells[3].Value.ToString());
@@ -281,7 +281,7 @@ namespace Mokkivarausjarjestelma2._0
         private void btnPoistapalvelu_Click(object sender, EventArgs e)
         {
             cbVarausID.Text = dgvVarauksenpalvelut.CurrentRow.Cells[0].Value.ToString();
-            cbPalveluID.Text = dgvVarauksenpalvelut.CurrentRow.Cells[1].Value.ToString();
+            lbPalvelu.Text = dgvVarauksenpalvelut.CurrentRow.Cells[1].Value.ToString();
             tbLukumaara.Text = dgvVarauksenpalvelut.CurrentRow.Cells[2].Value.ToString();
 
             Validate();

@@ -76,6 +76,10 @@ namespace Mokkivarausjarjestelma2._0
             this.lbAsiakas = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpSuodatalopetus = new System.Windows.Forms.DateTimePicker();
+            this.dtpSuodataaloitus = new System.Windows.Forms.DateTimePicker();
+            this.cbSuodata = new System.Windows.Forms.CheckBox();
             this.dgvVaraukset = new System.Windows.Forms.DataGridView();
             this.varausidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asiakasidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,10 +95,6 @@ namespace Mokkivarausjarjestelma2._0
             this.aluedata1 = new Mokkivarausjarjestelma2._0.Aluedata1();
             this.varauksen_palvelutTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.varauksen_palvelutTableAdapter();
             this.palveluTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.palveluTableAdapter();
-            this.cbSuodata = new System.Windows.Forms.CheckBox();
-            this.dtpSuodataaloitus = new System.Windows.Forms.DateTimePicker();
-            this.dtpSuodatalopetus = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabPalvelut.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVarauksenpalvelut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.varauksenpalvelutBindingSource)).BeginInit();
@@ -217,7 +217,7 @@ namespace Mokkivarausjarjestelma2._0
             this.btnPoistapalvelu.TabIndex = 48;
             this.btnPoistapalvelu.Text = "Poista";
             this.btnPoistapalvelu.UseVisualStyleBackColor = true;
-            this.btnPoistapalvelu.Click += new System.EventHandler(this.btnPoista_Click);
+            this.btnPoistapalvelu.Click += new System.EventHandler(this.btnPoistapalvelu_Click);
             // 
             // dgvVarauksenpalvelut
             // 
@@ -561,6 +561,40 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage2.Text = "Varaukset";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(138, 270);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(175, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Suodata välillä (varauspäivämäärä):";
+            // 
+            // dtpSuodatalopetus
+            // 
+            this.dtpSuodatalopetus.Location = new System.Drawing.Point(212, 286);
+            this.dtpSuodatalopetus.Name = "dtpSuodatalopetus";
+            this.dtpSuodatalopetus.Size = new System.Drawing.Size(200, 20);
+            this.dtpSuodatalopetus.TabIndex = 9;
+            // 
+            // dtpSuodataaloitus
+            // 
+            this.dtpSuodataaloitus.Location = new System.Drawing.Point(6, 286);
+            this.dtpSuodataaloitus.Name = "dtpSuodataaloitus";
+            this.dtpSuodataaloitus.Size = new System.Drawing.Size(200, 20);
+            this.dtpSuodataaloitus.TabIndex = 8;
+            // 
+            // cbSuodata
+            // 
+            this.cbSuodata.AutoSize = true;
+            this.cbSuodata.Location = new System.Drawing.Point(418, 287);
+            this.cbSuodata.Name = "cbSuodata";
+            this.cbSuodata.Size = new System.Drawing.Size(66, 17);
+            this.cbSuodata.TabIndex = 7;
+            this.cbSuodata.Text = "Suodata";
+            this.cbSuodata.UseVisualStyleBackColor = true;
+            this.cbSuodata.CheckedChanged += new System.EventHandler(this.cbSuodata_CheckedChanged);
+            // 
             // dgvVaraukset
             // 
             this.dgvVaraukset.AutoGenerateColumns = false;
@@ -670,40 +704,6 @@ namespace Mokkivarausjarjestelma2._0
             // palveluTableAdapter
             // 
             this.palveluTableAdapter.ClearBeforeFill = true;
-            // 
-            // cbSuodata
-            // 
-            this.cbSuodata.AutoSize = true;
-            this.cbSuodata.Location = new System.Drawing.Point(418, 287);
-            this.cbSuodata.Name = "cbSuodata";
-            this.cbSuodata.Size = new System.Drawing.Size(66, 17);
-            this.cbSuodata.TabIndex = 7;
-            this.cbSuodata.Text = "Suodata";
-            this.cbSuodata.UseVisualStyleBackColor = true;
-            this.cbSuodata.CheckedChanged += new System.EventHandler(this.cbSuodata_CheckedChanged);
-            // 
-            // dtpSuodataaloitus
-            // 
-            this.dtpSuodataaloitus.Location = new System.Drawing.Point(6, 286);
-            this.dtpSuodataaloitus.Name = "dtpSuodataaloitus";
-            this.dtpSuodataaloitus.Size = new System.Drawing.Size(200, 20);
-            this.dtpSuodataaloitus.TabIndex = 8;
-            // 
-            // dtpSuodatalopetus
-            // 
-            this.dtpSuodatalopetus.Location = new System.Drawing.Point(212, 286);
-            this.dtpSuodatalopetus.Name = "dtpSuodatalopetus";
-            this.dtpSuodatalopetus.Size = new System.Drawing.Size(200, 20);
-            this.dtpSuodatalopetus.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(138, 270);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(175, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Suodata välillä (varauspäivämäärä):";
             // 
             // Mokinvaraaminen
             // 

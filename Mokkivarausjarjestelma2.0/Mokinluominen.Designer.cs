@@ -76,6 +76,8 @@ namespace Mokkivarausjarjestelma2._0
             this.toimintaalueTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.toimintaalueTableAdapter();
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.postiTableAdapter();
             this.mokkiTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.mokkiTableAdapter();
+            this.tbHinta = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnMokki.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.postiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
@@ -89,6 +91,8 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // pnMokki
             // 
+            this.pnMokki.Controls.Add(this.label3);
+            this.pnMokki.Controls.Add(this.tbHinta);
             this.pnMokki.Controls.Add(this.button1);
             this.pnMokki.Controls.Add(this.label1);
             this.pnMokki.Controls.Add(this.lbToimintanimi);
@@ -114,7 +118,7 @@ namespace Mokkivarausjarjestelma2._0
             this.pnMokki.Controls.Add(this.lbNimi);
             this.pnMokki.Location = new System.Drawing.Point(13, 56);
             this.pnMokki.Name = "pnMokki";
-            this.pnMokki.Size = new System.Drawing.Size(421, 284);
+            this.pnMokki.Size = new System.Drawing.Size(607, 284);
             this.pnMokki.TabIndex = 1;
             // 
             // button1
@@ -496,11 +500,28 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.mokkiTableAdapter.ClearBeforeFill = true;
             // 
+            // tbHinta
+            // 
+            this.tbHinta.Location = new System.Drawing.Point(470, 40);
+            this.tbHinta.Name = "tbHinta";
+            this.tbHinta.Size = new System.Drawing.Size(100, 20);
+            this.tbHinta.TabIndex = 3;
+            this.tbHinta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHenkilomaara_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(361, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Mökin hinta: ";
+            // 
             // Mokinluominen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(872, 450);
+            this.ClientSize = new System.Drawing.Size(884, 450);
             this.Controls.Add(this.tabControl1);
             this.Name = "Mokinluominen";
             this.Text = "Mokinluominen";
@@ -568,5 +589,7 @@ namespace Mokkivarausjarjestelma2._0
         private System.Windows.Forms.DataGridViewTextBoxColumn kuvausDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn henkilomaaraDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn varusteluDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbHinta;
     }
 }
