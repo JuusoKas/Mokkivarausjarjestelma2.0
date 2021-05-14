@@ -127,8 +127,8 @@ namespace Mokkivarausjarjestelma2._0
             this.dtpVahvistuspaiva.Enabled = false;
             this.dtpVahvistuspaiva.Location = new System.Drawing.Point(128, 163);
             this.dtpVahvistuspaiva.Name = "dtpVahvistuspaiva";
-            this.dtpVahvistuspaiva.Size = new System.Drawing.Size(188, 20);
-            this.dtpVahvistuspaiva.TabIndex = 44;
+            this.dtpVahvistuspaiva.Size = new System.Drawing.Size(211, 20);
+            this.dtpVahvistuspaiva.TabIndex = 3;
             // 
             // lbVahvistus
             // 
@@ -143,8 +143,8 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.dtpVarauspaiva.Location = new System.Drawing.Point(128, 193);
             this.dtpVarauspaiva.Name = "dtpVarauspaiva";
-            this.dtpVarauspaiva.Size = new System.Drawing.Size(188, 20);
-            this.dtpVarauspaiva.TabIndex = 42;
+            this.dtpVarauspaiva.Size = new System.Drawing.Size(211, 20);
+            this.dtpVarauspaiva.TabIndex = 4;
             // 
             // label4
             // 
@@ -199,12 +199,12 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPalvelut.Controls.Add(this.lb);
             this.tabPalvelut.Controls.Add(this.tbLukumaara);
             this.tabPalvelut.Controls.Add(this.lbLukumaara);
-            this.tabPalvelut.Controls.Add(this.lbPalvelu);
             this.tabPalvelut.Controls.Add(this.cbPalveluID);
             this.tabPalvelut.Controls.Add(this.lbPalveluID);
             this.tabPalvelut.Controls.Add(this.cbVarausID);
             this.tabPalvelut.Controls.Add(this.lbVaraus);
             this.tabPalvelut.Controls.Add(this.lbPalvelut);
+            this.tabPalvelut.Controls.Add(this.lbPalvelu);
             this.tabPalvelut.Location = new System.Drawing.Point(4, 22);
             this.tabPalvelut.Name = "tabPalvelut";
             this.tabPalvelut.Padding = new System.Windows.Forms.Padding(3);
@@ -276,7 +276,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // btnLisaa
             // 
-            this.btnLisaa.Location = new System.Drawing.Point(63, 169);
+            this.btnLisaa.Location = new System.Drawing.Point(66, 169);
             this.btnLisaa.Name = "btnLisaa";
             this.btnLisaa.Size = new System.Drawing.Size(65, 26);
             this.btnLisaa.TabIndex = 46;
@@ -315,12 +315,11 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.lbPalvelu.AutoSize = true;
             this.lbPalvelu.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.palveluBindingSource, "palvelu_id", true));
-            this.lbPalvelu.Location = new System.Drawing.Point(168, 45);
+            this.lbPalvelu.Location = new System.Drawing.Point(94, 176);
             this.lbPalvelu.Name = "lbPalvelu";
             this.lbPalvelu.Size = new System.Drawing.Size(34, 13);
             this.lbPalvelu.TabIndex = 42;
             this.lbPalvelu.Text = "         ";
-            this.lbPalvelu.Visible = false;
             // 
             // palveluBindingSource
             // 
@@ -390,7 +389,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tbAsiakas.Name = "tbAsiakas";
             this.tbAsiakas.ReadOnly = true;
             this.tbAsiakas.Size = new System.Drawing.Size(188, 20);
-            this.tbAsiakas.TabIndex = 36;
+            this.tbAsiakas.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -479,10 +478,12 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // dtpUloskirjautuminen
             // 
+            this.dtpUloskirjautuminen.CustomFormat = "dddd dd MMMM yyyy";
+            this.dtpUloskirjautuminen.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpUloskirjautuminen.Location = new System.Drawing.Point(128, 253);
             this.dtpUloskirjautuminen.Name = "dtpUloskirjautuminen";
-            this.dtpUloskirjautuminen.Size = new System.Drawing.Size(188, 20);
-            this.dtpUloskirjautuminen.TabIndex = 12;
+            this.dtpUloskirjautuminen.Size = new System.Drawing.Size(211, 20);
+            this.dtpUloskirjautuminen.TabIndex = 6;
             this.dtpUloskirjautuminen.Leave += new System.EventHandler(this.dtpSisaankirjautuminen_ValueChanged);
             // 
             // lbCheckout
@@ -496,10 +497,12 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // dtpSisaankirjautuminen
             // 
+            this.dtpSisaankirjautuminen.CustomFormat = "dddd dd MMMM yyyy";
+            this.dtpSisaankirjautuminen.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpSisaankirjautuminen.Location = new System.Drawing.Point(128, 223);
             this.dtpSisaankirjautuminen.Name = "dtpSisaankirjautuminen";
-            this.dtpSisaankirjautuminen.Size = new System.Drawing.Size(188, 20);
-            this.dtpSisaankirjautuminen.TabIndex = 10;
+            this.dtpSisaankirjautuminen.Size = new System.Drawing.Size(211, 20);
+            this.dtpSisaankirjautuminen.TabIndex = 5;
             // 
             // lbCheckin
             // 
@@ -526,7 +529,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tbMokki.Name = "tbMokki";
             this.tbMokki.ReadOnly = true;
             this.tbMokki.Size = new System.Drawing.Size(188, 20);
-            this.tbMokki.TabIndex = 5;
+            this.tbMokki.TabIndex = 2;
             // 
             // lbMokki
             // 
@@ -600,19 +603,24 @@ namespace Mokkivarausjarjestelma2._0
             this.dtpSuodatalopetus.Name = "dtpSuodatalopetus";
             this.dtpSuodatalopetus.Size = new System.Drawing.Size(200, 20);
             this.dtpSuodatalopetus.TabIndex = 9;
+            this.dtpSuodatalopetus.CloseUp += new System.EventHandler(this.cbSuodata_CheckedChanged);
             // 
             // dtpSuodataaloitus
             // 
             this.dtpSuodataaloitus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpSuodataaloitus.Checked = false;
             this.dtpSuodataaloitus.Location = new System.Drawing.Point(9, 295);
             this.dtpSuodataaloitus.Name = "dtpSuodataaloitus";
             this.dtpSuodataaloitus.Size = new System.Drawing.Size(200, 20);
             this.dtpSuodataaloitus.TabIndex = 8;
+            this.dtpSuodataaloitus.CloseUp += new System.EventHandler(this.cbSuodata_CheckedChanged);
             // 
             // cbSuodata
             // 
             this.cbSuodata.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSuodata.AutoSize = true;
+            this.cbSuodata.Checked = true;
+            this.cbSuodata.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSuodata.Location = new System.Drawing.Point(421, 298);
             this.cbSuodata.Name = "cbSuodata";
             this.cbSuodata.Size = new System.Drawing.Size(66, 17);
@@ -623,6 +631,7 @@ namespace Mokkivarausjarjestelma2._0
             // 
             // dgvVaraukset
             // 
+            this.dgvVaraukset.AllowUserToAddRows = false;
             this.dgvVaraukset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -640,6 +649,7 @@ namespace Mokkivarausjarjestelma2._0
             this.dgvVaraukset.DataSource = this.varausBindingSource;
             this.dgvVaraukset.Location = new System.Drawing.Point(-4, 0);
             this.dgvVaraukset.Name = "dgvVaraukset";
+            this.dgvVaraukset.ReadOnly = true;
             this.dgvVaraukset.Size = new System.Drawing.Size(785, 261);
             this.dgvVaraukset.TabIndex = 5;
             // 

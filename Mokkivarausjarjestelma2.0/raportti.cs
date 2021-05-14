@@ -91,7 +91,7 @@ namespace Mokkivarausjarjestelma2._0
                 
                 DataTable table = new DataTable();
                 MySqlDataAdapter adapter = new MySqlDataAdapter(majoitus_query, connection);
-                adapter.Fill(table); //TODO
+                adapter.Fill(table); 
                 dataGridView1.DataSource = table;
                 chart1.Series.Clear();
 

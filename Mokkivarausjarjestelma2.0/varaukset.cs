@@ -20,6 +20,8 @@ namespace Mokkivarausjarjestelma2._0
             InitializeComponent();
 
             populateDGV();
+            dtpSisaankirjautuminen.Value = DateTime.Parse(DateTime.Today.ToString("dddd dd MMMM yyyy"));
+            dtpUloskirjautuminen.Value = DateTime.Parse(DateTime.Today.ToString("dddd dd MMMM yyyy"));
 
         }
 
@@ -110,7 +112,10 @@ namespace Mokkivarausjarjestelma2._0
             // TODO: This line of code loads data into the 'dataSet1.varaus' table. You can move, or remove it, as needed.
             this.varausTableAdapter.Fill(this.kaikkidata.varaus);
 
+            cbSuodata_CheckedChanged(sender, e);
         }
+
+
         private void RecursiveClearTextBoxes(Control.ControlCollection cc)
 
         {
@@ -135,7 +140,7 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnCheckin_Click(object sender, EventArgs e) // Tässä tehdään varaus
         {
-            connection.Open();//TODO
+            connection.Open();
 
             string cmdText2 = "SELECT COUNT(*) FROM varaus WHERE varattu_alkupvm BETWEEN '" + dtpSisaankirjautuminen.Value.ToString("yyyy'/'MM'/'dd") + "' AND '" + dtpUloskirjautuminen.Value.ToString("yyyy'/'MM'/'dd") + "' AND mokki_mokki_id = " + lbMokkiID.Text;
 
@@ -154,17 +159,19 @@ namespace Mokkivarausjarjestelma2._0
 
                 varausBindingSource.EndEdit();
                 varausTableAdapter.Update(this.kaikkidata);
-                varausTableAdapter.Insert(long.Parse(lbAsiakasID.Text), long.Parse(lbMokkiID.Text), dtpVarauspaiva.Value, DateTime.Now, dtpSisaankirjautuminen.Value, dtpUloskirjautuminen.Value);
+                varausTableAdapter.Insert(long.Parse(lbAsiakasID.Text), long.Parse(lbMokkiID.Text), dtpVarauspaiva.Value, 
+                    DateTime.Now, dtpSisaankirjautuminen.Value, dtpUloskirjautuminen.Value);
                 populateDGV();
-                RecursiveClearTextBoxes(this.Controls);
-                dtpSisaankirjautuminen.Value = DateTime.Today.Date;
-                dtpUloskirjautuminen.Value = DateTime.Today.Date;
+                
+                dtpSisaankirjautuminen.Value = DateTime.Parse(DateTime.Today.ToString("dddd dd MMMM yyyy"));
+                dtpUloskirjautuminen.Value = DateTime.Parse(DateTime.Today.ToString("dddd dd MMMM yyyy"));
                 lbMokkiID.Text = "";
                 lbAsiakasID.Text = "";
+                RecursiveClearTextBoxes(this.Controls);
                 MessageBox.Show("Varaus lisätty", "Varaukset");
             }
             else
-                MessageBox.Show("Varaus tälle mökille, ja tälle päivälle on jo olemassa! Vaihda mökki tai päivämäärä!");
+                MessageBox.Show("Varaus tälle mökille, ja tälle päivälle on jo olemassa! \nVaihda mökki tai päivämäärä!", "Virhe!");
         }
 
         private void btnAsiakas_Click(object sender, EventArgs e) // avataan uusi asiakas välilehti, josta tehdään valinta varaukselle
@@ -203,18 +210,18 @@ namespace Mokkivarausjarjestelma2._0
             DateTime today = DateTime.Today.Date;
             if (dtpSisaankirjautuminen.Value < today)
             {
-                MessageBox.Show("Päivä ei voi olla menneisyydessä!");
+                MessageBox.Show("Päivä ei voi olla menneisyydessä!", "Virhe!");
                 dtpSisaankirjautuminen.Value = DateTime.Today.Date;
             }
             if (dtpUloskirjautuminen.Value < today)
             {
-                MessageBox.Show("Päivä ei voi olla menneisyydessä!");
+                MessageBox.Show("Päivä ei voi olla menneisyydessä!", "Virhe!");
                 dtpUloskirjautuminen.Value = DateTime.Today.Date;
 
             }
             if (dtpUloskirjautuminen.Value < dtpSisaankirjautuminen.Value)
             {
-                MessageBox.Show("Uloskirjautuminen ei voi olla aiemmin, kuin sisäänkirjautuminen!");
+                MessageBox.Show("Uloskirjautuminen ei voi olla aiemmin, kuin sisäänkirjautuminen!", "Virhe!");
                 dtpSisaankirjautuminen.Value = DateTime.Today.Date;
                 dtpUloskirjautuminen.Value = DateTime.Today.Date;
             }
@@ -331,7 +338,8 @@ namespace Mokkivarausjarjestelma2._0
             {
 
 
-                varausBindingSource.Filter = string.Format("varattu_pvm >= #{0:yyyy/MM/dd}# And varattu_pvm <= #{1:yyyy/MM/dd}#", dtpSuodataaloitus.Value, dtpSuodatalopetus.Value);
+                varausBindingSource.Filter = string.Format("varattu_pvm >= #{0:yyyy/MM/dd}# And varattu_pvm <= #{1:yyyy/MM/dd}#", 
+                                                            dtpSuodataaloitus.Value, dtpSuodatalopetus.Value);
                 dgvVaraukset.DataSource = varausBindingSource;
             }
             else
