@@ -43,6 +43,18 @@ namespace Mokkivarausjarjestelma2._0
             adapter2.Fill(table2);
             dgvVarauksenpalvelut.DataSource = table2;
 
+            foreach (DataGridViewRow row in dgvVaraukset.Rows)
+            {
+                var now = DateTime.Now;
+                var alkupvm = DateTime.Parse(row.Cells[5].Value.ToString());
+                var loppupvm = DateTime.Parse(row.Cells[6].Value.ToString());
+
+                if (now >= alkupvm && now <= loppupvm)
+                {
+                    row.DefaultCellStyle.BackColor = Color.PaleGreen;
+                }
+            }
+
         }
 
 
@@ -111,8 +123,8 @@ namespace Mokkivarausjarjestelma2._0
 
             // TODO: This line of code loads data into the 'dataSet1.varaus' table. You can move, or remove it, as needed.
             this.varausTableAdapter.Fill(this.kaikkidata.varaus);
-
-            cbSuodata_CheckedChanged(sender, e);
+           
+          
         }
 
 
@@ -334,6 +346,17 @@ namespace Mokkivarausjarjestelma2._0
 
         private void cbSuodata_CheckedChanged(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgvVaraukset.Rows)
+            {
+                var now = DateTime.Now;
+                var alkupvm = DateTime.Parse(row.Cells[5].Value.ToString());
+                var loppupvm = DateTime.Parse(row.Cells[6].Value.ToString());
+
+                if (now >= alkupvm && now <= loppupvm)
+                {
+                    row.DefaultCellStyle.BackColor = Color.PaleGreen;
+                }
+            }
             if (cbSuodata.Checked == true)
             {
 

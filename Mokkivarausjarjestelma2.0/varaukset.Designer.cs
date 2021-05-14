@@ -52,13 +52,13 @@ namespace Mokkivarausjarjestelma2._0
             this.lb = new System.Windows.Forms.Label();
             this.tbLukumaara = new System.Windows.Forms.TextBox();
             this.lbLukumaara = new System.Windows.Forms.Label();
-            this.lbPalvelu = new System.Windows.Forms.Label();
-            this.palveluBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cbPalveluID = new System.Windows.Forms.ComboBox();
+            this.palveluBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbPalveluID = new System.Windows.Forms.Label();
             this.cbVarausID = new System.Windows.Forms.ComboBox();
             this.varausBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbVaraus = new System.Windows.Forms.Label();
+            this.lbPalvelu = new System.Windows.Forms.Label();
             this.lbMokkiID = new System.Windows.Forms.Label();
             this.tbAsiakas = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -311,21 +311,6 @@ namespace Mokkivarausjarjestelma2._0
             this.lbLukumaara.TabIndex = 43;
             this.lbLukumaara.Text = "Määrä";
             // 
-            // lbPalvelu
-            // 
-            this.lbPalvelu.AutoSize = true;
-            this.lbPalvelu.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.palveluBindingSource, "palvelu_id", true));
-            this.lbPalvelu.Location = new System.Drawing.Point(94, 176);
-            this.lbPalvelu.Name = "lbPalvelu";
-            this.lbPalvelu.Size = new System.Drawing.Size(34, 13);
-            this.lbPalvelu.TabIndex = 42;
-            this.lbPalvelu.Text = "         ";
-            // 
-            // palveluBindingSource
-            // 
-            this.palveluBindingSource.DataMember = "palvelu";
-            this.palveluBindingSource.DataSource = this.kaikkidata;
-            // 
             // cbPalveluID
             // 
             this.cbPalveluID.DataSource = this.palveluBindingSource;
@@ -337,14 +322,19 @@ namespace Mokkivarausjarjestelma2._0
             this.cbPalveluID.Size = new System.Drawing.Size(129, 21);
             this.cbPalveluID.TabIndex = 41;
             // 
+            // palveluBindingSource
+            // 
+            this.palveluBindingSource.DataMember = "palvelu";
+            this.palveluBindingSource.DataSource = this.kaikkidata;
+            // 
             // lbPalveluID
             // 
             this.lbPalveluID.AutoSize = true;
             this.lbPalveluID.Location = new System.Drawing.Point(13, 104);
             this.lbPalveluID.Name = "lbPalveluID";
-            this.lbPalveluID.Size = new System.Drawing.Size(56, 13);
+            this.lbPalveluID.Size = new System.Drawing.Size(42, 13);
             this.lbPalveluID.TabIndex = 40;
-            this.lbPalveluID.Text = "Palvelu ID";
+            this.lbPalveluID.Text = "Palvelu";
             // 
             // cbVarausID
             // 
@@ -370,6 +360,16 @@ namespace Mokkivarausjarjestelma2._0
             this.lbVaraus.Size = new System.Drawing.Size(54, 13);
             this.lbVaraus.TabIndex = 38;
             this.lbVaraus.Text = "Varaus ID";
+            // 
+            // lbPalvelu
+            // 
+            this.lbPalvelu.AutoSize = true;
+            this.lbPalvelu.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.palveluBindingSource, "palvelu_id", true));
+            this.lbPalvelu.Location = new System.Drawing.Point(94, 176);
+            this.lbPalvelu.Name = "lbPalvelu";
+            this.lbPalvelu.Size = new System.Drawing.Size(34, 13);
+            this.lbPalvelu.TabIndex = 42;
+            this.lbPalvelu.Text = "         ";
             // 
             // lbMokkiID
             // 
@@ -658,42 +658,49 @@ namespace Mokkivarausjarjestelma2._0
             this.varausidDataGridViewTextBoxColumn.DataPropertyName = "varaus_id";
             this.varausidDataGridViewTextBoxColumn.HeaderText = "varaus_id";
             this.varausidDataGridViewTextBoxColumn.Name = "varausidDataGridViewTextBoxColumn";
+            this.varausidDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // asiakasidDataGridViewTextBoxColumn
             // 
             this.asiakasidDataGridViewTextBoxColumn.DataPropertyName = "asiakas_id";
             this.asiakasidDataGridViewTextBoxColumn.HeaderText = "asiakas_id";
             this.asiakasidDataGridViewTextBoxColumn.Name = "asiakasidDataGridViewTextBoxColumn";
+            this.asiakasidDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // mokkimokkiidDataGridViewTextBoxColumn
             // 
             this.mokkimokkiidDataGridViewTextBoxColumn.DataPropertyName = "mokki_mokki_id";
             this.mokkimokkiidDataGridViewTextBoxColumn.HeaderText = "mokki_mokki_id";
             this.mokkimokkiidDataGridViewTextBoxColumn.Name = "mokkimokkiidDataGridViewTextBoxColumn";
+            this.mokkimokkiidDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // varattupvmDataGridViewTextBoxColumn
             // 
             this.varattupvmDataGridViewTextBoxColumn.DataPropertyName = "varattu_pvm";
             this.varattupvmDataGridViewTextBoxColumn.HeaderText = "varattu_pvm";
             this.varattupvmDataGridViewTextBoxColumn.Name = "varattupvmDataGridViewTextBoxColumn";
+            this.varattupvmDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // vahvistuspvmDataGridViewTextBoxColumn
             // 
             this.vahvistuspvmDataGridViewTextBoxColumn.DataPropertyName = "vahvistus_pvm";
             this.vahvistuspvmDataGridViewTextBoxColumn.HeaderText = "vahvistus_pvm";
             this.vahvistuspvmDataGridViewTextBoxColumn.Name = "vahvistuspvmDataGridViewTextBoxColumn";
+            this.vahvistuspvmDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // varattualkupvmDataGridViewTextBoxColumn
             // 
             this.varattualkupvmDataGridViewTextBoxColumn.DataPropertyName = "varattu_alkupvm";
             this.varattualkupvmDataGridViewTextBoxColumn.HeaderText = "varattu_alkupvm";
             this.varattualkupvmDataGridViewTextBoxColumn.Name = "varattualkupvmDataGridViewTextBoxColumn";
+            this.varattualkupvmDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // varattuloppupvmDataGridViewTextBoxColumn
             // 
             this.varattuloppupvmDataGridViewTextBoxColumn.DataPropertyName = "varattu_loppupvm";
             this.varattuloppupvmDataGridViewTextBoxColumn.HeaderText = "varattu_loppupvm";
             this.varattuloppupvmDataGridViewTextBoxColumn.Name = "varattuloppupvmDataGridViewTextBoxColumn";
+            this.varattuloppupvmDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // btnMuokkaa
             // 
