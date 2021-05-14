@@ -135,9 +135,10 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnCheckin_Click(object sender, EventArgs e) // Tässä tehdään varaus
         {
-            connection.Open();
+            connection.Open();//TODO
 
             string cmdText2 = "SELECT COUNT(*) FROM varaus WHERE varattu_alkupvm BETWEEN '" + dtpSisaankirjautuminen.Value.ToString("yyyy'/'MM'/'dd") + "' AND '" + dtpUloskirjautuminen.Value.ToString("yyyy'/'MM'/'dd") + "' AND mokki_mokki_id = " + lbMokkiID.Text;
+
 
             MySqlCommand mySqlCmd = connection.CreateCommand();
             mySqlCmd.CommandText = cmdText2;
@@ -160,6 +161,7 @@ namespace Mokkivarausjarjestelma2._0
                 dtpUloskirjautuminen.Value = DateTime.Today.Date;
                 lbMokkiID.Text = "";
                 lbAsiakasID.Text = "";
+                MessageBox.Show("Varaus lisätty", "Varaukset");
             }
             else
                 MessageBox.Show("Varaus tälle mökille, ja tälle päivälle on jo olemassa! Vaihda mökki tai päivämäärä!");

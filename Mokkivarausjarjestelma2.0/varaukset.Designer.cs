@@ -62,6 +62,7 @@ namespace Mokkivarausjarjestelma2._0
             this.lbMokkiID = new System.Windows.Forms.Label();
             this.tbAsiakas = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbID2 = new System.Windows.Forms.Label();
             this.lbID = new System.Windows.Forms.Label();
             this.btnPeruuta = new System.Windows.Forms.Button();
@@ -96,7 +97,6 @@ namespace Mokkivarausjarjestelma2._0
             this.aluedata1 = new Mokkivarausjarjestelma2._0.Aluedata1();
             this.varauksen_palvelutTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.varauksen_palvelutTableAdapter();
             this.palveluTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.palveluTableAdapter();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPalvelut.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVarauksenpalvelut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.varauksenpalvelutBindingSource)).BeginInit();
@@ -104,11 +104,11 @@ namespace Mokkivarausjarjestelma2._0
             ((System.ComponentModel.ISupportInitialize)(this.palveluBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).BeginInit();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVaraukset)).BeginInit();
             this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.aluedata1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMuokkaavarausta
@@ -427,6 +427,16 @@ namespace Mokkivarausjarjestelma2._0
             this.tabPage1.Text = "Varaus";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(523, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(220, 240);
+            this.pictureBox1.TabIndex = 46;
+            this.pictureBox1.TabStop = false;
+            // 
             // lbID2
             // 
             this.lbID2.AutoSize = true;
@@ -726,16 +736,6 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.palveluTableAdapter.ClearBeforeFill = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(523, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(220, 240);
-            this.pictureBox1.TabIndex = 46;
-            this.pictureBox1.TabStop = false;
-            // 
             // varaukset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -744,7 +744,7 @@ namespace Mokkivarausjarjestelma2._0
             this.Controls.Add(this.tabControl1);
             this.Name = "varaukset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Village Newbies - Varaus";
+            this.Text = "Village Newbies - Varaukset";
             this.Load += new System.EventHandler(this.Mokinvaraaminen_Load);
             this.tabPalvelut.ResumeLayout(false);
             this.tabPalvelut.PerformLayout();
@@ -755,12 +755,12 @@ namespace Mokkivarausjarjestelma2._0
             ((System.ComponentModel.ISupportInitialize)(this.varausBindingSource)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVaraukset)).EndInit();
             this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.aluedata1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

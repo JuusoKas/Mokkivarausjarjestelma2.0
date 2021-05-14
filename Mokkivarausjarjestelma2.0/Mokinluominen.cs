@@ -145,6 +145,7 @@ namespace Mokkivarausjarjestelma2._0
                 mokkiTableAdapter.Insert(long.Parse(lbToimintanimi.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
 
                 populateDGV();
+                MessageBox.Show("Tallennus onnistui!", "Mökit");
             }
             catch(Exception ex)
             {
@@ -158,21 +159,29 @@ namespace Mokkivarausjarjestelma2._0
         private void btnPoista_Click(object sender, EventArgs e) // Poistetaan asiakas
         {
 
-            tbMokkiID.ReadOnly = false;
-            tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
-            lbToimintanimi.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
-            cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
-            tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
-            tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
-            tbKuvaus.Text = dgvMokit.CurrentRow.Cells[5].Value.ToString();
-            tbHenkilomaara.Text = dgvMokit.CurrentRow.Cells[6].Value.ToString();
-            tbVarustelu.Text = dgvMokit.CurrentRow.Cells[7].Value.ToString();
+            try
+            {
+                tbMokkiID.ReadOnly = false;
+                tbMokkiID.Text = dgvMokit.CurrentRow.Cells[0].Value.ToString();
+                lbToimintanimi.Text = dgvMokit.CurrentRow.Cells[1].Value.ToString();
+                cbPosti.Text = dgvMokit.CurrentRow.Cells[2].Value.ToString();
+                tbMokinnimi.Text = dgvMokit.CurrentRow.Cells[3].Value.ToString();
+                tbKatuosoite.Text = dgvMokit.CurrentRow.Cells[4].Value.ToString();
+                tbKuvaus.Text = dgvMokit.CurrentRow.Cells[5].Value.ToString();
+                tbHenkilomaara.Text = dgvMokit.CurrentRow.Cells[6].Value.ToString();
+                tbVarustelu.Text = dgvMokit.CurrentRow.Cells[7].Value.ToString();
 
-            Validate();
-            mokkiBindingSource.EndEdit();
-            mokkiTableAdapter.Update(this.kaikkidata);
-            mokkiTableAdapter.Delete(long.Parse(tbMokkiID.Text), long.Parse(lbToimintanimi.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
-            populateDGV();
+                Validate();
+                mokkiBindingSource.EndEdit();
+                mokkiTableAdapter.Update(this.kaikkidata);
+                mokkiTableAdapter.Delete(long.Parse(tbMokkiID.Text), long.Parse(lbToimintanimi.Text), cbPosti.Text, tbMokinnimi.Text, tbKatuosoite.Text, tbKuvaus.Text, int.Parse(tbHenkilomaara.Text), tbVarustelu.Text);
+                populateDGV();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Poistaminen epäonnistui! \nPoista mökkiin kuuluvat varaukset." , "Mökit");
+                throw;
+            }
 
 
         }
@@ -247,7 +256,7 @@ namespace Mokkivarausjarjestelma2._0
                     {
 
                         populateDGV();
-                        MessageBox.Show("Päivitys onnistui!");
+                        MessageBox.Show("Muokkaus onnistui!");
                     }
                 }
             }
