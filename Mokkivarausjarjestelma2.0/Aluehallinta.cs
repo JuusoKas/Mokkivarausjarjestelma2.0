@@ -15,7 +15,7 @@ namespace Mokkivarausjarjestelma2._0
     public partial class Aluehallinta : Form
     {
         MySqlConnection connection = new MySqlConnection(
-            "datasource=localhost;port=3308;Initial Catalog='vn';username=root;Password=asdlol");
+            "datasource=localhost;port=3307 ;Initial Catalog='vn'; username=root; Password=root");
 
 
         public Aluehallinta()

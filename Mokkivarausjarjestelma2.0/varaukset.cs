@@ -23,7 +23,7 @@ namespace Mokkivarausjarjestelma2._0
 
         }
 
-        MySqlConnection connection = new MySqlConnection("datasource=localhost;port=3308;Initial Catalog='vn';username=root;Password=asdlol");
+        MySqlConnection connection = new MySqlConnection("datasource=localhost;port=3307 ;Initial Catalog='vn'; username=root; Password=root");
         MySqlCommand command;
 
         public void populateDGV()

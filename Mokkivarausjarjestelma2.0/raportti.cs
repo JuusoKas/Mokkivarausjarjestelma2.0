@@ -30,7 +30,7 @@ namespace Mokkivarausjarjestelma2._0
         }
 
         // Yhteys käytettävään MYSQL tietokantaan
-        MySqlConnection connection = new MySqlConnection("datasource=localhost; port=3308;Initial Catalog='vn';username=root;Password=asdlol");
+        MySqlConnection connection = new MySqlConnection("datasource=localhost; port=3307 ;Initial Catalog='vn'; username=root; Password=root");
         
         // Alustetaan dropdownmenun toiminta-alueet
         public void populateComboboxes()
