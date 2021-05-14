@@ -40,6 +40,7 @@ namespace Mokkivarausjarjestelma2._0
             this.kaikkidataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kaikkidata = new Mokkivarausjarjestelma2._0.Kaikkidata();
             this.tabUusi = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnPeru = new System.Windows.Forms.Button();
             this.btnTallenna = new System.Windows.Forms.Button();
             this.tbPuhnro = new System.Windows.Forms.TextBox();
@@ -68,16 +69,15 @@ namespace Mokkivarausjarjestelma2._0
             this.asiakasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.asiakasTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.asiakasTableAdapter();
             this.postiTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.postiTableAdapter();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.postiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
             this.tabUusi.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabAsiakkaat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsiakkaat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asiakasBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lbPostinro
@@ -92,7 +92,7 @@ namespace Mokkivarausjarjestelma2._0
             // btnPaivitaasiakas
             // 
             this.btnPaivitaasiakas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPaivitaasiakas.Location = new System.Drawing.Point(486, 276);
+            this.btnPaivitaasiakas.Location = new System.Drawing.Point(547, 283);
             this.btnPaivitaasiakas.Name = "btnPaivitaasiakas";
             this.btnPaivitaasiakas.Size = new System.Drawing.Size(72, 28);
             this.btnPaivitaasiakas.TabIndex = 8;
@@ -167,15 +167,25 @@ namespace Mokkivarausjarjestelma2._0
             this.tabUusi.Location = new System.Drawing.Point(4, 22);
             this.tabUusi.Name = "tabUusi";
             this.tabUusi.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUusi.Size = new System.Drawing.Size(683, 324);
+            this.tabUusi.Size = new System.Drawing.Size(744, 331);
             this.tabUusi.TabIndex = 0;
             this.tabUusi.Text = "Lisää Asiakas";
             this.tabUusi.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(478, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(228, 240);
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnPeru
             // 
             this.btnPeru.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPeru.Location = new System.Drawing.Point(564, 276);
+            this.btnPeru.Location = new System.Drawing.Point(625, 283);
             this.btnPeru.Name = "btnPeru";
             this.btnPeru.Size = new System.Drawing.Size(72, 28);
             this.btnPeru.TabIndex = 9;
@@ -186,7 +196,7 @@ namespace Mokkivarausjarjestelma2._0
             // btnTallenna
             // 
             this.btnTallenna.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTallenna.Location = new System.Drawing.Point(408, 276);
+            this.btnTallenna.Location = new System.Drawing.Point(469, 283);
             this.btnTallenna.Name = "btnTallenna";
             this.btnTallenna.Size = new System.Drawing.Size(72, 28);
             this.btnTallenna.TabIndex = 7;
@@ -293,7 +303,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(691, 350);
+            this.tabControl1.Size = new System.Drawing.Size(752, 357);
             this.tabControl1.TabIndex = 3;
             // 
             // tabAsiakkaat
@@ -304,7 +314,7 @@ namespace Mokkivarausjarjestelma2._0
             this.tabAsiakkaat.Location = new System.Drawing.Point(4, 22);
             this.tabAsiakkaat.Name = "tabAsiakkaat";
             this.tabAsiakkaat.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAsiakkaat.Size = new System.Drawing.Size(768, 324);
+            this.tabAsiakkaat.Size = new System.Drawing.Size(744, 331);
             this.tabAsiakkaat.TabIndex = 1;
             this.tabAsiakkaat.Text = "Asiakkaat";
             this.tabAsiakkaat.UseVisualStyleBackColor = true;
@@ -312,7 +322,7 @@ namespace Mokkivarausjarjestelma2._0
             // btnPoista
             // 
             this.btnPoista.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPoista.Location = new System.Drawing.Point(664, 288);
+            this.btnPoista.Location = new System.Drawing.Point(640, 295);
             this.btnPoista.Name = "btnPoista";
             this.btnPoista.Size = new System.Drawing.Size(98, 30);
             this.btnPoista.TabIndex = 5;
@@ -323,7 +333,7 @@ namespace Mokkivarausjarjestelma2._0
             // btnMuokkaa
             // 
             this.btnMuokkaa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMuokkaa.Location = new System.Drawing.Point(560, 288);
+            this.btnMuokkaa.Location = new System.Drawing.Point(536, 295);
             this.btnMuokkaa.Name = "btnMuokkaa";
             this.btnMuokkaa.Size = new System.Drawing.Size(98, 30);
             this.btnMuokkaa.TabIndex = 6;
@@ -353,7 +363,7 @@ namespace Mokkivarausjarjestelma2._0
             this.dgvAsiakkaat.Name = "dgvAsiakkaat";
             this.dgvAsiakkaat.ReadOnly = true;
             this.dgvAsiakkaat.RowTemplate.Height = 25;
-            this.dgvAsiakkaat.Size = new System.Drawing.Size(768, 280);
+            this.dgvAsiakkaat.Size = new System.Drawing.Size(741, 287);
             this.dgvAsiakkaat.TabIndex = 1;
             // 
             // asiakasidDataGridViewTextBoxColumn
@@ -418,21 +428,11 @@ namespace Mokkivarausjarjestelma2._0
             // 
             this.postiTableAdapter.ClearBeforeFill = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(417, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(228, 240);
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            // 
             // Asiakashallinta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 350);
+            this.ClientSize = new System.Drawing.Size(752, 357);
             this.Controls.Add(this.tabControl1);
             this.Name = "Asiakashallinta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -443,11 +443,11 @@ namespace Mokkivarausjarjestelma2._0
             ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).EndInit();
             this.tabUusi.ResumeLayout(false);
             this.tabUusi.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabAsiakkaat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsiakkaat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.asiakasBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

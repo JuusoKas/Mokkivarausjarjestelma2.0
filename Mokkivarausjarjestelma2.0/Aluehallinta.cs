@@ -83,7 +83,6 @@ namespace Mokkivarausjarjestelma2._0
         {
             //vaihdetaan sivulle Lisää
             tabControl1.SelectedIndex = 0;
-            tbIDnro.ReadOnly = false;
         }
         
         private void btnPoista_Click(object sender, EventArgs e)

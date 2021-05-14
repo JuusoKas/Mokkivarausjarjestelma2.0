@@ -137,20 +137,29 @@ namespace Mokkivarausjarjestelma2._0
 
         private void btnPoista_Click(object sender, EventArgs e) // Poistetaan asiakas
         {
-            tbAsiakasID.ReadOnly = false;
-            tbAsiakasID.Text = dgvAsiakkaat.CurrentRow.Cells[0].Value.ToString();
-            cbPostinro.Text = dgvAsiakkaat.CurrentRow.Cells[1].Value.ToString();
-            tbEtunimi.Text = dgvAsiakkaat.CurrentRow.Cells[2].Value.ToString();
-            tbSukunimi.Text = dgvAsiakkaat.CurrentRow.Cells[3].Value.ToString();
-            tbLahiosoite.Text = dgvAsiakkaat.CurrentRow.Cells[4].Value.ToString();
-            tbSahkoposti.Text = dgvAsiakkaat.CurrentRow.Cells[5].Value.ToString();
-            tbPuhnro.Text = dgvAsiakkaat.CurrentRow.Cells[6].Value.ToString();
+            try
+            {
+                tbAsiakasID.ReadOnly = false;
+                tbAsiakasID.Text = dgvAsiakkaat.CurrentRow.Cells[0].Value.ToString();
+                cbPostinro.Text = dgvAsiakkaat.CurrentRow.Cells[1].Value.ToString();
+                tbEtunimi.Text = dgvAsiakkaat.CurrentRow.Cells[2].Value.ToString();
+                tbSukunimi.Text = dgvAsiakkaat.CurrentRow.Cells[3].Value.ToString();
+                tbLahiosoite.Text = dgvAsiakkaat.CurrentRow.Cells[4].Value.ToString();
+                tbSahkoposti.Text = dgvAsiakkaat.CurrentRow.Cells[5].Value.ToString();
+                tbPuhnro.Text = dgvAsiakkaat.CurrentRow.Cells[6].Value.ToString();
 
-            Validate();
-            asiakasBindingSource.EndEdit();
-            asiakasTableAdapter.Update(this.kaikkidata);
-            asiakasTableAdapter.Delete(long.Parse(tbAsiakasID.Text), cbPostinro.Text, tbEtunimi.Text, tbSukunimi.Text, tbLahiosoite.Text, tbSahkoposti.Text, tbPuhnro.Text);
-            populateDGV();
+                Validate();
+                asiakasBindingSource.EndEdit();
+                asiakasTableAdapter.Update(this.kaikkidata);
+                asiakasTableAdapter.Delete(long.Parse(tbAsiakasID.Text), cbPostinro.Text, tbEtunimi.Text, tbSukunimi.Text, tbLahiosoite.Text, tbSahkoposti.Text, tbPuhnro.Text);
+                populateDGV();
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(" Poista ensin asiakkaan varaukset", "Virhe!");
+                throw;
+            }
         }
 
         private void btnMuokkaa_Click(object sender, EventArgs e) // muokataan asiakasta, eli datagridin kenttien tiedot tuodaan kaavakkeelle
