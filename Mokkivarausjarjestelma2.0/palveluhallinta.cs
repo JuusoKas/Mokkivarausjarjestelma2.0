@@ -21,7 +21,7 @@ namespace Mokkivarausjarjestelma2._0
         }
 
         private MySqlConnection connection = new MySqlConnection(
-             "datasource=localhost;port=3307;Initial Catalog='vn';username=root;Password=root");
+             "datasource=localhost;port=3308;Initial Catalog='vn';username=root;Password=asdlol");
 
         private void palveluhallinta_Load(object sender, EventArgs e)
         {

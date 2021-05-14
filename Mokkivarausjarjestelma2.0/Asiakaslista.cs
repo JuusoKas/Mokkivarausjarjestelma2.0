@@ -12,9 +12,9 @@ namespace Mokkivarausjarjestelma2._0
 {
     public partial class Asiakaslista : Form
     {
-        Mokinvaraaminen isantaForm = null;
+        varaukset isantaForm = null;
 
-        public Asiakaslista(Mokinvaraaminen isantaForm)
+        public Asiakaslista(varaukset isantaForm)
         {
             InitializeComponent();
             this.isantaForm = isantaForm;

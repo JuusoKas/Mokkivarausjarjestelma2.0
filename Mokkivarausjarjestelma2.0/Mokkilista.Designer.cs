@@ -31,9 +31,6 @@ namespace Mokkivarausjarjestelma2._0
         {
             this.components = new System.ComponentModel.Container();
             this.dgvMokkilista = new System.Windows.Forms.DataGridView();
-            this.kaikkidata = new Mokkivarausjarjestelma2._0.Kaikkidata();
-            this.mokkiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mokkiTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.mokkiTableAdapter();
             this.mokkiidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toimintaalueidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postinroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,15 +39,19 @@ namespace Mokkivarausjarjestelma2._0
             this.kuvausDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.henkilomaaraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.varusteluDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mokkiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kaikkidata = new Mokkivarausjarjestelma2._0.Kaikkidata();
+            this.mokkiTableAdapter = new Mokkivarausjarjestelma2._0.KaikkidataTableAdapters.mokkiTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMokkilista)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mokkiBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvMokkilista
             // 
             this.dgvMokkilista.AllowUserToAddRows = false;
             this.dgvMokkilista.AutoGenerateColumns = false;
+            this.dgvMokkilista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMokkilista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMokkilista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.mokkiidDataGridViewTextBoxColumn,
@@ -62,26 +63,13 @@ namespace Mokkivarausjarjestelma2._0
             this.henkilomaaraDataGridViewTextBoxColumn,
             this.varusteluDataGridViewTextBoxColumn});
             this.dgvMokkilista.DataSource = this.mokkiBindingSource;
-            this.dgvMokkilista.Location = new System.Drawing.Point(27, 27);
+            this.dgvMokkilista.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMokkilista.Location = new System.Drawing.Point(0, 0);
             this.dgvMokkilista.Name = "dgvMokkilista";
             this.dgvMokkilista.ReadOnly = true;
-            this.dgvMokkilista.Size = new System.Drawing.Size(747, 396);
+            this.dgvMokkilista.Size = new System.Drawing.Size(878, 450);
             this.dgvMokkilista.TabIndex = 2;
             this.dgvMokkilista.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvMokkilista_MouseDoubleClick);
-            // 
-            // kaikkidata
-            // 
-            this.kaikkidata.DataSetName = "Kaikkidata";
-            this.kaikkidata.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // mokkiBindingSource
-            // 
-            this.mokkiBindingSource.DataMember = "mokki";
-            this.mokkiBindingSource.DataSource = this.kaikkidata;
-            // 
-            // mokkiTableAdapter
-            // 
-            this.mokkiTableAdapter.ClearBeforeFill = true;
             // 
             // mokkiidDataGridViewTextBoxColumn
             // 
@@ -139,18 +127,33 @@ namespace Mokkivarausjarjestelma2._0
             this.varusteluDataGridViewTextBoxColumn.Name = "varusteluDataGridViewTextBoxColumn";
             this.varusteluDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // mokkiBindingSource
+            // 
+            this.mokkiBindingSource.DataMember = "mokki";
+            this.mokkiBindingSource.DataSource = this.kaikkidata;
+            // 
+            // kaikkidata
+            // 
+            this.kaikkidata.DataSetName = "Kaikkidata";
+            this.kaikkidata.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // mokkiTableAdapter
+            // 
+            this.mokkiTableAdapter.ClearBeforeFill = true;
+            // 
             // Mokkilista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(878, 450);
             this.Controls.Add(this.dgvMokkilista);
             this.Name = "Mokkilista";
-            this.Text = "Mokkilista";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Village Newbies - Mökit";
             this.Load += new System.EventHandler(this.Mokkilista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMokkilista)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mokkiBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kaikkidata)).EndInit();
             this.ResumeLayout(false);
 
         }

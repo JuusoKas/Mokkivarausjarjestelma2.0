@@ -51,7 +51,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "MMMM yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(17, 55);
+            this.dateTimePicker1.Location = new System.Drawing.Point(37, 58);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(121, 20);
             this.dateTimePicker1.TabIndex = 0;
@@ -60,14 +60,14 @@
             // cbToimialueet
             // 
             this.cbToimialueet.FormattingEnabled = true;
-            this.cbToimialueet.Location = new System.Drawing.Point(17, 28);
+            this.cbToimialueet.Location = new System.Drawing.Point(37, 31);
             this.cbToimialueet.Name = "cbToimialueet";
             this.cbToimialueet.Size = new System.Drawing.Size(121, 21);
             this.cbToimialueet.TabIndex = 4;
             // 
             // btnLataa
             // 
-            this.btnLataa.Location = new System.Drawing.Point(244, 28);
+            this.btnLataa.Location = new System.Drawing.Point(264, 31);
             this.btnLataa.Name = "btnLataa";
             this.btnLataa.Size = new System.Drawing.Size(121, 47);
             this.btnLataa.TabIndex = 7;
@@ -81,9 +81,9 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -94,7 +94,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 94);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 100);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -107,16 +107,16 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(464, 287);
+            this.dataGridView1.Size = new System.Drawing.Size(501, 505);
             this.dataGridView1.TabIndex = 9;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 392);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 606);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(964, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1309, 22);
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -129,7 +129,7 @@
             // 
             this.rbMajoitukset.AutoSize = true;
             this.rbMajoitukset.Checked = true;
-            this.rbMajoitukset.Location = new System.Drawing.Point(144, 32);
+            this.rbMajoitukset.Location = new System.Drawing.Point(164, 35);
             this.rbMajoitukset.Name = "rbMajoitukset";
             this.rbMajoitukset.Size = new System.Drawing.Size(79, 17);
             this.rbMajoitukset.TabIndex = 11;
@@ -140,7 +140,7 @@
             // rbPalvelut
             // 
             this.rbPalvelut.AutoSize = true;
-            this.rbPalvelut.Location = new System.Drawing.Point(144, 55);
+            this.rbPalvelut.Location = new System.Drawing.Point(164, 58);
             this.rbPalvelut.Name = "rbPalvelut";
             this.rbPalvelut.Size = new System.Drawing.Size(63, 17);
             this.rbPalvelut.TabIndex = 12;
@@ -156,32 +156,36 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(487, 94);
+            this.chart1.Location = new System.Drawing.Point(500, 100);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
+        System.Drawing.SystemColors.ScrollBar,
+        System.Drawing.Color.DodgerBlue};
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(464, 287);
+            this.chart1.Size = new System.Drawing.Size(809, 505);
             this.chart1.TabIndex = 14;
             this.chart1.Text = "chart1";
             // 
-            // raportointi
+            // raportti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 414);
+            this.ClientSize = new System.Drawing.Size(1309, 628);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.rbPalvelut);
             this.Controls.Add(this.rbMajoitukset);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnLataa);
             this.Controls.Add(this.cbToimialueet);
             this.Controls.Add(this.dateTimePicker1);
-            this.Name = "raportointi";
-            this.Text = "Form2";
+            this.Name = "raportti";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Village Newbies - Raportointi";
             this.Load += new System.EventHandler(this.raportointi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
